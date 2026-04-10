@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Presença Digital Profissional</title>
+<title>Presença Certa — Sites Profissionais para Autônomos e MEIs</title>
+<meta name="description" content="Seu negócio é bom. O problema é que ninguém te acha. Site profissional entregue em até 3 dias, sem mensalidade, sem hospedagem. Paga uma vez, fica no ar pra sempre.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
@@ -14,8 +15,8 @@
   :root {
     --gold: #C9A84C;
     --gold-light: #E8C97A;
-    --gold-dim: rgba(201, 168, 76, 0.15);
-    --gold-border: rgba(201, 168, 76, 0.3);
+    --gold-dim: rgba(201,168,76,0.12);
+    --gold-border: rgba(201,168,76,0.28);
     --bg-0: #0A0A0A;
     --bg-1: #111111;
     --bg-2: #181818;
@@ -29,89 +30,6 @@
 
   html { scroll-behavior: smooth; }
 
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,0.82);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--bg-1);
-    border: 1px solid var(--gold-border);
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    max-width: 480px;
-    width: 100%;
-    position: relative;
-    transform: translateY(20px) scale(0.97);
-    transition: transform 0.3s ease;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.07);
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-  .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    background: none; border: none; color: var(--text-3);
-    font-size: 1.5rem; cursor: pointer; line-height: 1;
-    padding: 0.25rem 0.5rem; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--text-1); }
-  .modal-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--gold-border); padding: 0.35rem 0.9rem;
-    border-radius: 100px; background: var(--gold-dim); margin-bottom: 1.25rem;
-  }
-  .modal-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-  .modal h3 {
-    font-family: var(--serif); font-size: 1.75rem; font-weight: 300;
-    color: var(--text-1); margin-bottom: 0.5rem; line-height: 1.2;
-  }
-  .modal-plan-price { font-size: 0.9rem; color: var(--gold-light); margin-bottom: 1.5rem; }
-  .modal-steps { list-style: none; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; }
-  .modal-steps li { display: flex; gap: 0.85rem; align-items: flex-start; font-size: 0.92rem; color: var(--text-2); line-height: 1.5; }
-  .modal-step-num {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--gold-dim); border: 1px solid var(--gold-border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-family: var(--serif); font-size: 0.75rem;
-    color: var(--gold); margin-top: 1px;
-  }
-  .modal-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); margin: 1.5rem 0; }
-  .modal-timer-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.4rem; text-align: center; }
-  .modal-timer { text-align: center; font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--gold-light); letter-spacing: 0.05em; margin-bottom: 1.5rem; line-height: 1; }
-  .modal-timer.urgent { color: #e07070; }
-  .modal-actions { display: flex; flex-direction: column; gap: 0.75rem; }
-  .modal-btn-pay {
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-    font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg-0);
-    background: var(--gold); padding: 0.95rem 2rem; border-radius: 2px;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all 0.2s; width: 100%;
-  }
-  .modal-btn-pay:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
-  .modal-btn-wpp {
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-    font-family: var(--sans); font-size: 0.82rem; font-weight: 400;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--gold-border); padding: 0.8rem 2rem;
-    border-radius: 2px; text-decoration: none; background: transparent;
-    cursor: pointer; transition: all 0.2s; width: 100%;
-  }
-  .modal-btn-wpp:hover { background: var(--gold-dim); }
-  .modal-guarantee { text-align: center; font-size: 0.75rem; color: var(--text-3); margin-top: 1rem; }
-
   body {
     background: var(--bg-0);
     color: var(--text-1);
@@ -121,7 +39,6 @@
     overflow-x: hidden;
   }
 
-  /* ─── NOISE TEXTURE ─── */
   body::before {
     content: '';
     position: fixed;
@@ -132,8 +49,7 @@
     opacity: 0.5;
   }
 
-  /* ─── GLOW ORBS ─── */
-  .orb { display: none; }
+  section { position: relative; z-index: 1; }
 
   /* ─── NAV ─── */
   nav {
@@ -144,7 +60,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,10,0.85);
+    background: rgba(10,10,10,0.88);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(201,168,76,0.08);
   }
@@ -153,12 +69,12 @@
     font-family: var(--serif);
     font-size: 1.1rem;
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--gold-light);
   }
 
   .nav-cta {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -171,9 +87,6 @@
   }
   .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-  /* ─── SECTIONS ─── */
-  section { position: relative; z-index: 1; }
-
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
@@ -184,14 +97,13 @@
     text-align: center;
     padding: 8rem 2rem 5rem;
     background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.22) 0%, rgba(201,168,76,0.08) 50%, transparent 75%),
-      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 60%);
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0.07) 50%, transparent 75%),
+      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(201,168,76,0.07) 0%, transparent 60%);
   }
 
   .hero-badge-wrapper {
     animation: float 3.5s ease-in-out infinite;
     will-change: transform;
-    transform: translateZ(0);
     margin-bottom: 2.5rem;
     display: inline-block;
   }
@@ -209,12 +121,11 @@
     padding: 0.45rem 1.1rem;
     border-radius: 100px;
     background: var(--gold-dim);
-    -webkit-font-smoothing: antialiased;
   }
 
   @keyframes float {
     0%, 100% { transform: translate3d(0, 0px, 0); }
-    50% { transform: translate3d(0, -3px, 0); }
+    50% { transform: translate3d(0, -4px, 0); }
   }
 
   .hero-badge::before {
@@ -222,12 +133,12 @@
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--gold);
-    animation: pulse 2s ease-in-out infinite;
+    animation: blink 2s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
 
   .hero h1 {
@@ -274,10 +185,12 @@
     text-transform: uppercase;
     color: var(--bg-0);
     background: var(--gold);
-    padding: 0.9rem 2rem;
+    padding: 0.95rem 2rem;
     border-radius: 2px;
     text-decoration: none;
     transition: all 0.2s;
+    border: none;
+    cursor: pointer;
   }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.2); }
 
@@ -292,7 +205,7 @@
     text-transform: uppercase;
     color: var(--gold);
     border: 1px solid var(--gold-border);
-    padding: 0.9rem 2rem;
+    padding: 0.95rem 2rem;
     border-radius: 2px;
     text-decoration: none;
     transition: all 0.2s;
@@ -307,9 +220,7 @@
     justify-content: center;
   }
 
-  .stat-item {
-    text-align: center;
-  }
+  .stat-item { text-align: center; }
 
   .stat-number {
     font-family: var(--serif);
@@ -340,7 +251,7 @@
   .divider::after {
     content: '';
     position: absolute;
-    top: 0; left: -100%;
+    top: 0; left: -60%;
     width: 60%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(201,168,76,0.7), transparent);
@@ -354,9 +265,9 @@
 
   /* ─── SECTION LABEL ─── */
   .section-label {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
@@ -393,10 +304,7 @@
     margin-bottom: 1rem;
   }
 
-  .problem-text strong {
-    color: var(--text-1);
-    font-weight: 500;
-  }
+  .problem-text strong { color: var(--text-1); font-weight: 500; }
 
   .problem-visual {
     display: flex;
@@ -423,24 +331,20 @@
     width: 3px;
   }
 
-  .problem-card.bad::before { background: #444; }
+  .problem-card.bad::before { background: #333; }
   .problem-card.good::before { background: var(--gold); }
 
   .problem-card-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
 
-  .problem-card.bad .problem-card-label { color: var(--text-2); }
+  .problem-card.bad .problem-card-label { color: var(--text-3); }
   .problem-card.good .problem-card-label { color: var(--gold); }
-
-  .problem-card p {
-    font-size: 0.9rem;
-    color: var(--text-2);
-  }
+  .problem-card p { font-size: 0.9rem; color: var(--text-2); }
 
   /* ─── HOW IT WORKS ─── */
   .how {
@@ -476,13 +380,11 @@
     left: calc(16.66% + 28px);
     right: calc(16.66% + 28px);
     height: 1px;
-    background: linear-gradient(90deg, var(--gold-border), var(--gold-border));
+    background: var(--gold-border);
     z-index: 0;
   }
 
-  @media (max-width: 640px) {
-    .steps::before { display: none; }
-  }
+  @media (max-width: 640px) { .steps::before { display: none; } }
 
   .step {
     display: flex;
@@ -502,23 +404,15 @@
     justify-content: center;
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
-    font-weight: 400;
     color: var(--gold-light);
     position: relative;
     z-index: 2;
     flex-shrink: 0;
-    transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
-  }
-
-  .step-num span {
-    display: block;
-    line-height: 56px;
-    height: 56px;
-    margin-top: -4px;
+    transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.5s;
   }
 
   .step-num.active {
-    background: #111111;
+    background: var(--bg-1);
     border-color: var(--gold);
     box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 0 40px rgba(201,168,76,0.1);
     transform: scale(1.15);
@@ -532,22 +426,157 @@
     margin-bottom: 0.3rem;
   }
 
-  .step p {
-    font-size: 0.87rem;
-    color: var(--text-2);
-    line-height: 1.7;
-  }
+  .step p { font-size: 0.87rem; color: var(--text-2); line-height: 1.7; }
 
-  /* ─── PRICING ─── */
-  .pricing {
+  /* ─── PROVA SOCIAL ─── */
+  .social-proof {
     padding: 7rem 2rem;
     background: var(--bg-1);
     border-top: 1px solid var(--bg-3);
     border-bottom: 1px solid var(--bg-3);
   }
 
-  .pricing-inner {
+  .social-proof-inner {
     max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .social-proof h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+    color: var(--text-1);
+  }
+
+  .social-proof-sub {
+    color: var(--text-2);
+    font-size: 0.95rem;
+    margin-bottom: 4rem;
+  }
+
+  .proof-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    border: 1px solid var(--gold-border);
+    border-radius: 4px;
+    background: var(--gold-dim);
+  }
+
+  .proof-bar-item { text-align: center; }
+
+  .proof-bar-number {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .proof-bar-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-2);
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  }
+
+  .testimonial-card {
+    background: var(--bg-2);
+    border: 1px solid var(--bg-3);
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: left;
+    transition: border-color 0.3s;
+  }
+
+  .testimonial-card:hover { border-color: var(--gold-border); }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-text strong { color: var(--text-1); font-style: normal; }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .testimonial-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-1);
+  }
+
+  .testimonial-role {
+    font-size: 0.75rem;
+    color: var(--text-3);
+  }
+
+  .testimonial-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    background: var(--gold-dim);
+    margin-top: 0.5rem;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing {
+    padding: 7rem 2rem;
+  }
+
+  .pricing-inner {
+    max-width: 640px;
     margin: 0 auto;
     text-align: center;
   }
@@ -563,43 +592,21 @@
   .pricing-sub {
     color: var(--text-2);
     font-size: 0.95rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  @media (max-width: 900px) {
-    .cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-  }
-
-  .card {
-    background: var(--bg-2);
-    border: 1px solid var(--bg-3);
+  .pricing-card {
+    background: var(--bg-1);
+    border: 1px solid var(--gold-border);
     border-radius: 4px;
-    padding: 2.5rem 2rem;
+    padding: 3rem 2.5rem;
     text-align: left;
-    transition: border-color 0.3s, transform 0.2s;
     position: relative;
   }
 
-  .card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-4px); }
-
-  .card.featured {
-    background: var(--bg-1);
-    border: 1px solid var(--gold-border);
-    transform: scale(1.03);
-  }
-
-  .card.featured:hover { transform: scale(1.03) translateY(-4px); }
-
-  .featured-badge {
+  .pricing-card-badge {
     position: absolute;
-    top: -13px;
+    top: -14px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.65rem;
@@ -608,88 +615,65 @@
     text-transform: uppercase;
     color: var(--bg-0);
     background: var(--gold);
-    padding: 0.3rem 1rem;
+    padding: 0.3rem 1.2rem;
     border-radius: 100px;
     white-space: nowrap;
   }
 
-  .card-name {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 1.5rem;
+  .pricing-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
-  .card.featured .card-name { color: var(--gold); }
-
-  .card-price {
+  .pricing-price {
     font-family: var(--serif);
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 300;
     color: var(--text-1);
     line-height: 1;
-    margin-bottom: 0.3rem;
   }
 
-  .card-price span {
-    font-size: 1rem;
+  .pricing-price-prefix {
+    font-size: 1.2rem;
     color: var(--text-3);
-    vertical-align: top;
-    margin-top: 0.5rem;
-    display: inline-block;
     font-family: var(--sans);
+    padding-bottom: 0.6rem;
   }
 
-  .card-period {
+  .pricing-period {
+    font-size: 0.82rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-installment {
     font-size: 0.8rem;
     color: var(--text-3);
     margin-bottom: 2rem;
   }
 
-  .card-divider {
+  .pricing-divider {
     height: 1px;
-    background: var(--bg-3);
-    margin-bottom: 1.75rem;
+    background: var(--gold-border);
+    margin-bottom: 2rem;
   }
 
-  .card.featured .card-divider { background: var(--gold-border); }
-
-  .card-features {
+  .pricing-features {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 1rem;
     margin-bottom: 2.5rem;
   }
 
-  .card-features li {
+  .pricing-features li {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.88rem;
+    gap: 0.85rem;
+    font-size: 0.92rem;
     color: var(--text-2);
-  }
-
-  .card-features li::before {
-    content: '';
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--bg-3);
-    flex-shrink: 0;
-    margin-top: 4px;
-    position: relative;
-  }
-
-  .card.featured .card-features li::before { background: var(--gold-dim); }
-
-  .card-features li::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 7px;
   }
 
   .check-icon {
@@ -698,41 +682,56 @@
     margin-top: 3px;
   }
 
-  .check-icon path { stroke: var(--text-3); }
-  .card.featured .check-icon path { stroke: var(--gold); }
+  .check-icon path { stroke: var(--gold); }
 
-  .card-btn {
+  .pricing-btn {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 0.85rem;
+    padding: 1rem;
     border-radius: 2px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    background: var(--gold-dim);
-  }
-
-  .card-btn:hover { background: rgba(201,168,76,0.25); border-color: var(--gold); transform: translateY(-1px); }
-
-  .card.featured .card-btn {
     background: var(--gold);
     color: var(--bg-0);
-    border-color: var(--gold);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 
-  .card.featured .card-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .pricing-btn:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
 
-  .card-note {
+  .pricing-note {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-3);
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .pricing-reassure {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .reassure-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--text-2);
+  }
+
+  .reassure-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+    flex-shrink: 0;
   }
 
   /* ─── GUARANTEE ─── */
@@ -763,10 +762,7 @@
     color: var(--text-1);
   }
 
-  .guarantee p {
-    color: var(--text-2);
-    font-size: 0.95rem;
-  }
+  .guarantee p { color: var(--text-2); font-size: 0.95rem; }
 
   /* ─── FAQ ─── */
   .faq {
@@ -787,9 +783,7 @@
     color: var(--text-1);
   }
 
-  .faq-item {
-    border-bottom: 1px solid var(--bg-3);
-  }
+  .faq-item { border-bottom: 1px solid var(--bg-3); }
 
   .faq-q {
     width: 100%;
@@ -835,7 +829,6 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.3s;
-    padding: 0;
   }
 
   .faq-item.open .faq-a {
@@ -843,17 +836,13 @@
     padding-bottom: 1.5rem;
   }
 
-  .faq-a p {
-    font-size: 0.9rem;
-    color: var(--text-2);
-    line-height: 1.8;
-  }
+  .faq-a p { font-size: 0.9rem; color: var(--text-2); line-height: 1.8; }
 
-  /* ─── CTA ─── */
+  /* ─── CTA FINAL ─── */
   .cta-section {
     padding: 8rem 2rem;
     text-align: center;
-    background: radial-gradient(ellipse 80% 90% at 50% 100%, rgba(201,168,76,0.16) 0%, rgba(201,168,76,0.07) 50%, transparent 75%);
+    background: radial-gradient(ellipse 80% 90% at 50% 100%, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.06) 50%, transparent 75%);
   }
 
   .cta-section h2 {
@@ -865,15 +854,15 @@
     color: var(--text-1);
   }
 
-  .cta-section h2 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
+  .cta-section h2 em { font-style: italic; color: var(--gold-light); }
 
   .cta-section p {
     color: var(--text-2);
     font-size: 0.95rem;
     margin-bottom: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cta-trust {
@@ -899,124 +888,647 @@
     opacity: 0.5;
   }
 
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 2rem;
-    border-top: 1px solid var(--bg-3);
+  /* ─── PORTFÓLIO ─── */
+  .portfolio {
+    padding: 7rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .portfolio h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+    color: var(--text-1);
+  }
+
+  .portfolio-sub {
+    color: var(--text-2);
+    font-size: 0.95rem;
+    margin-bottom: 4rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  @media (max-width: 900px) {
+    .portfolio-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  }
+
+  .portfolio-card {
+    background: var(--bg-1);
+    border: 1px solid var(--bg-3);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+    position: relative;
+  }
+
+  .portfolio-card:hover {
+    border-color: var(--gold-border);
+    transform: translateY(-4px);
+  }
+
+  .portfolio-preview {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--bg-3);
+  }
+
+  .portfolio-browser {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .browser-bar {
+    background: var(--bg-3);
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .browser-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .browser-dot.red { background: #ff5f57; }
+  .browser-dot.yellow { background: #febc2e; }
+  .browser-dot.green { background: #28c840; }
+
+  .browser-url {
+    flex: 1;
+    background: var(--bg-2);
+    border-radius: 3px;
+    height: 16px;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .browser-url span {
+    font-size: 0.6rem;
+    color: var(--text-3);
+    font-family: var(--sans);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .browser-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Advocacia ── */
+  .preview-law {
+    background: #0d0d0d;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .preview-law-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .preview-law-logo {
+    font-family: var(--serif);
+    font-size: 0.7rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+
+  .preview-law-badge {
+    font-size: 0.45rem;
+    color: #888;
+    border: 1px solid #333;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+  }
+
+  .preview-law-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0;
+  }
+
+  .preview-law-tag {
+    font-size: 0.45rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .preview-law-h1 {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #f0ede4;
+    line-height: 1.2;
+  }
+
+  .preview-law-sub {
+    font-size: 0.45rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .preview-law-btn {
+    display: inline-block;
+    font-size: 0.45rem;
+    background: var(--gold);
+    color: #000;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+    width: fit-content;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Beleza ── */
+  .preview-beauty {
+    background: #1a1008;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .preview-beauty-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .preview-beauty-logo {
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    color: #e8c9a0;
+    letter-spacing: 0.05em;
+  }
+
+  .preview-beauty-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .preview-beauty-tag {
+    font-size: 0.45rem;
+    color: #c4845a;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .preview-beauty-h1 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 300;
+    color: #f5ede4;
+    line-height: 1.2;
+  }
+
+  .preview-beauty-h1 em {
+    font-style: italic;
+    color: #e8c9a0;
+  }
+
+  .preview-beauty-sub {
+    font-size: 0.45rem;
+    color: #998880;
+    line-height: 1.5;
+  }
+
+  .preview-beauty-pills {
+    display: flex;
+    gap: 0.3rem;
     flex-wrap: wrap;
-    gap: 1rem;
+  }
+
+  .preview-beauty-pill {
+    font-size: 0.4rem;
+    border: 1px solid rgba(196,132,90,0.3);
+    color: #c4845a;
+    padding: 0.15rem 0.4rem;
+    border-radius: 100px;
+  }
+
+  .preview-beauty-btn {
+    display: inline-block;
+    font-size: 0.45rem;
+    background: #c4845a;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    width: fit-content;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Lingerie ── */
+  .preview-lingerie {
+    background: #fff8f5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .preview-lingerie-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .preview-lingerie-logo {
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    color: #b06080;
+    letter-spacing: 0.05em;
+  }
+
+  .preview-lingerie-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .preview-lingerie-tag {
+    font-size: 0.45rem;
+    color: #b06080;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .preview-lingerie-h1 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: #2a1a22;
+    line-height: 1.2;
+  }
+
+  .preview-lingerie-h1 em {
+    font-style: italic;
+    color: #b06080;
+  }
+
+  .preview-lingerie-sub {
+    font-size: 0.45rem;
+    color: #998880;
+    line-height: 1.5;
+  }
+
+  .preview-lingerie-stats {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .preview-lingerie-stat {
+    font-size: 0.5rem;
+    color: #2a1a22;
+    font-weight: 500;
+  }
+
+  .preview-lingerie-stat span {
+    display: block;
+    font-size: 0.75rem;
+    color: #b06080;
+    font-weight: 600;
+  }
+
+  .preview-lingerie-btn {
+    display: inline-block;
+    font-size: 0.45rem;
+    background: #b06080;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    width: fit-content;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Card info ── */
+  .portfolio-info {
+    padding: 1.5rem;
+  }
+
+  .portfolio-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .portfolio-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-1);
+    margin-bottom: 0.4rem;
+  }
+
+  .portfolio-desc {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .portfolio-features {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .portfolio-feature {
+    font-size: 0.65rem;
+    color: var(--text-3);
+    border: 1px solid var(--bg-3);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .portfolio-link:hover { opacity: 0.7; }
+
+  .portfolio-link svg { transition: transform 0.2s; }
+  .portfolio-link:hover svg { transform: translateX(3px); }
+
+  .portfolio-cta {
+    margin-top: 4rem;
+    padding: 2rem;
+    border: 1px solid var(--gold-border);
+    border-radius: 4px;
+    background: var(--gold-dim);
+    text-align: center;
+  }
+
+  .portfolio-cta p {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    margin-bottom: 1.5rem;
+  }
+
+  .portfolio-cta p strong {
+    color: var(--text-1);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--bg-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
   }
 
   .footer-logo {
     font-family: var(--serif);
     font-size: 1rem;
     color: var(--gold-light);
+    letter-spacing: 0.06em;
   }
 
   .footer-copy {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: var(--text-3);
   }
 
-  /* ─── ANIMATIONS ─── */
-  .typewriter {
-    display: inline;
-    color: var(--gold-light);
-    font-style: italic;
-  }
-
-  .typewriter-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 0.85em;
-    background: var(--gold);
-    margin-left: 2px;
-    vertical-align: middle;
-    animation: blink 0.75s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .fade-up:nth-child(2) { transition-delay: 0.1s; }
-  .fade-up:nth-child(3) { transition-delay: 0.2s; }
-  .fade-up:nth-child(4) { transition-delay: 0.3s; }
-  .fade-up:nth-child(5) { transition-delay: 0.4s; }
-
-  /* WhatsApp float */
+  /* ─── WHATSAPP FLOAT ─── */
   .whatsapp-float {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 200;
-    background: #25D366;
-    width: 56px; height: 56px;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 52px; height: 52px;
     border-radius: 50%;
+    background: #25D366;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
     transition: transform 0.2s, box-shadow 0.2s;
+    animation: wpp-pulse 2.5s ease-in-out infinite;
   }
-  .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(37,211,102,0.4); }
-  .whatsapp-float svg { width: 28px; height: 28px; }
+
+  .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+  .whatsapp-float svg { width: 26px; height: 26px; }
+
+  @keyframes wpp-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
+    50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0); }
+  }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--bg-1);
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s ease;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.07);
+  }
+
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; color: var(--text-3);
+    font-size: 1.5rem; cursor: pointer; line-height: 1;
+    padding: 0.25rem 0.5rem; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text-1); }
+
+  .modal-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--gold-border); padding: 0.35rem 0.9rem;
+    border-radius: 100px; background: var(--gold-dim); margin-bottom: 1.25rem;
+  }
+
+  .modal-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+  .modal h3 {
+    font-family: var(--serif); font-size: 1.75rem; font-weight: 300;
+    color: var(--text-1); margin-bottom: 0.5rem; line-height: 1.2;
+  }
+
+  .modal-plan-price { font-size: 0.9rem; color: var(--gold-light); margin-bottom: 1.5rem; }
+
+  .modal-steps { list-style: none; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .modal-steps li { display: flex; gap: 0.85rem; align-items: flex-start; font-size: 0.92rem; color: var(--text-2); line-height: 1.5; }
+
+  .modal-step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: var(--serif); font-size: 0.75rem;
+    color: var(--gold); margin-top: 1px;
+  }
+
+  .modal-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); margin: 1.5rem 0; }
+
+  .modal-timer-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.4rem; text-align: center; }
+
+  .modal-timer { text-align: center; font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--gold-light); letter-spacing: 0.05em; margin-bottom: 1.5rem; line-height: 1; }
+
+  .modal-timer.urgent { color: #e07070; }
+
+  .modal-actions { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .modal-btn-pay {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg-0);
+    background: var(--gold); padding: 0.95rem 2rem; border-radius: 2px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.2s; width: 100%;
+  }
+  .modal-btn-pay:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
+
+  .modal-btn-wpp {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--gold-border); padding: 0.8rem 2rem;
+    border-radius: 2px; text-decoration: none; background: transparent;
+    cursor: pointer; transition: all 0.2s; width: 100%;
+  }
+  .modal-btn-wpp:hover { background: var(--gold-dim); }
+
+  .modal-guarantee { text-align: center; font-size: 0.75rem; color: var(--text-3); margin-top: 1rem; }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 480px) {
+    nav { padding: 1rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .hero-stats { gap: 2rem; }
+    .proof-bar { gap: 1.5rem; padding: 1.5rem; }
+    .pricing-card { padding: 2rem 1.5rem; }
+    .cta-trust { gap: 1rem; }
+  }
 </style>
 </head>
 <body>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
 <!-- NAV -->
 <nav>
-  <span class="nav-logo">Presença Digital</span>
-  <a href="https://wa.me/5521985252497?text=Ol%C3%A1!+Vi+sua+p%C3%A1gina+e+quero+saber+mais." class="nav-cta" target="_blank">Falar agora</a>
+  <span class="nav-logo">Presença Certa</span>
+  <a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+e+quero+criar+meu+site+profissional." class="nav-cta" target="_blank" rel="noopener">Falar agora</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge-wrapper">
-    <div class="hero-badge">
-      <span>Entrega no mesmo dia</span>
-    </div>
+    <div class="hero-badge">Entrega em até 3 dias</div>
   </div>
 
-  <h1 class="fade-up">Seu negócio merece<br>ser <em><span class="typewriter" id="typewriter"></span><span class="typewriter-cursor" id="cursor"></span></em></h1>
+  <h1>Seu negócio é bom.<br><em>O problema é que<br>ninguém te acha.</em></h1>
 
-  <p class="hero-sub fade-up">
-    Crio seu site profissional hoje — com endereço próprio, link pronto pro Instagram e Google e tudo configurado para trazer clientes direto no seu WhatsApp.
+  <p class="hero-sub">
+    Autônomo sem site perde cliente todo dia — para concorrentes que aparecem no Google, mesmo sendo piores. A Presença Certa resolve isso em até 3 dias, sem mensalidade e sem surpresa.
   </p>
 
-  <div class="hero-actions fade-up">
-    <a href="#pacotes" class="btn-primary">Ver pacotes</a>
-    <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+%F0%9F%91%8B" class="btn-secondary" target="_blank">Conversar agora</a>
+  <div class="hero-actions">
+    <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+profissional+%F0%9F%91%8B" class="btn-primary" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quero meu site agora
+    </a>
+    <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
   </div>
 
-  <div class="hero-stats fade-up">
+  <div class="hero-stats">
     <div class="stat-item">
-      <span class="stat-number">Hoje</span>
-      <span class="stat-label">Entrega no mesmo dia</span>
+      <span class="stat-number">3</span>
+      <span class="stat-label">Dias ou menos</span>
     </div>
     <div class="stat-item">
-      <span class="stat-number">Total</span>
-      <span class="stat-label">Entrega garantida</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">Zero</span>
+      <span class="stat-number">R$0</span>
       <span class="stat-label">Mensalidade</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">∞</span>
+      <span class="stat-label">No ar pra sempre</span>
     </div>
   </div>
 </section>
@@ -1028,18 +1540,19 @@
   <div class="problem">
     <div class="problem-text fade-up">
       <span class="section-label">O problema</span>
-      <h2>Você posta todo dia, mas o cliente não te encontra.</h2>
-      <p>A maioria dos pequenos negócios depende de indicação ou sorte. O Instagram some no algoritmo. O telefone fica quieto.</p>
-      <p>Quem tem um <strong>site profissional bem configurado</strong> recebe contatos todos os dias — no automático, pelo WhatsApp, sem pedir indicação.</p>
+      <h2>Você posta todo dia. Mas o cliente não te encontra.</h2>
+      <p>A maioria dos autônomos depende de indicação ou sorte. O Instagram some no algoritmo. O telefone fica quieto.</p>
+      <p>Quem tem um <strong>site profissional bem configurado</strong> recebe contatos todos os dias — direto no WhatsApp, sem pedir indicação.</p>
+      <p>Cada dia sem site é um cliente que foi para o concorrente. Mesmo sendo ele pior que você.</p>
     </div>
     <div class="problem-visual fade-up">
       <div class="problem-card bad">
         <div class="problem-card-label">Sem site</div>
-        <p>Depende do algoritmo, pede indicação, o cliente some antes de entrar em contato.</p>
+        <p>Depende de indicação. Pede o site no Instagram e não tem nada pra mostrar. Perde pro concorrente que parece mais profissional.</p>
       </div>
       <div class="problem-card good">
         <div class="problem-card-label">Com site profissional</div>
-        <p>Cliente te acha no Google, clica, cai direto no seu WhatsApp. Todo dia, no automático.</p>
+        <p>Cliente te acha no Google, vê que você é profissional, clica e cai direto no seu WhatsApp. Todo dia, no automático.</p>
       </div>
     </div>
   </div>
@@ -1048,32 +1561,255 @@
 <div class="divider"></div>
 
 <!-- COMO FUNCIONA -->
-<section>
+<section id="como-funciona">
   <div class="how">
     <span class="section-label">Processo</span>
     <h2 class="fade-up">Simples assim.</h2>
-
     <div class="steps">
       <div class="step fade-up">
         <div class="step-num"><span>1</span></div>
-        <div>
-          <h3>Você me chama</h3>
-          <p>Me manda uma mensagem no WhatsApp e me conta sobre o seu negócio. Leva 5 minutos.</p>
-        </div>
+        <h3>Você me chama</h3>
+        <p>Me manda uma mensagem no WhatsApp e me conta sobre o seu negócio. Leva 5 minutos.</p>
       </div>
       <div class="step fade-up">
         <div class="step-num"><span>2</span></div>
-        <div>
-          <h3>Eu crio tudo</h3>
-          <p>Monto seu site, configuro o domínio e entrego pronto. Você não precisa fazer nada técnico.</p>
-        </div>
+        <h3>Eu crio tudo</h3>
+        <p>Monto seu site, configuro o domínio e entrego pronto. Você não precisa fazer nada técnico.</p>
       </div>
       <div class="step fade-up">
         <div class="step-num"><span>3</span></div>
-        <div>
-          <h3>Clientes chegando</h3>
-          <p>Você cola o link no Instagram e começa a receber contatos direto no WhatsApp. E o Google já começa a te encontrar.</p>
+        <h3>Clientes chegando</h3>
+        <p>Você cola o link no Instagram e começa a receber contatos direto no WhatsApp — e o Google já começa a te encontrar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFÓLIO -->
+<section>
+  <div class="portfolio">
+    <span class="section-label">Portfólio</span>
+    <h2 class="fade-up">Sites que já entregamos.</h2>
+    <p class="portfolio-sub fade-up">Cada site feito sob medida — visual premium, botão WhatsApp e pronto pra converter.</p>
+
+    <div class="portfolio-grid">
+
+      <!-- ADVOCACIA -->
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-preview">
+          <div class="portfolio-browser">
+            <div class="browser-bar">
+              <div class="browser-dot red"></div>
+              <div class="browser-dot yellow"></div>
+              <div class="browser-dot green"></div>
+              <div class="browser-url"><span>direitocomprecisao.com.br</span></div>
+            </div>
+            <div class="browser-content">
+              <div class="preview-law">
+                <div class="preview-law-nav">
+                  <span class="preview-law-logo">Direito com Precisão</span>
+                  <span class="preview-law-badge">OAB/RJ</span>
+                </div>
+                <div class="preview-law-hero">
+                  <span class="preview-law-tag">Atendimento 100% digital</span>
+                  <div class="preview-law-h1">Seu problema jurídico<br>tem solução.</div>
+                  <div class="preview-law-sub">Trabalhista, previdenciário, consumidor e família.<br>Análise do caso na primeira conversa.</div>
+                  <div class="preview-law-btn">Falar com o Dr.</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Advocacia · RJ</span>
+          <div class="portfolio-title">Direito com Precisão</div>
+          <p class="portfolio-desc">Site institucional para advogado autônomo com foco em atendimento digital. Copy OAB-compliant, banner de segurança e botão WhatsApp.</p>
+          <div class="portfolio-features">
+            <span class="portfolio-feature">Fundo escuro premium</span>
+            <span class="portfolio-feature">Botão WhatsApp</span>
+            <span class="portfolio-feature">SEO configurado</span>
+          </div>
+          <a href="https://direitocomprecisao.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+            Ver site ao vivo
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- BELEZA -->
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-preview">
+          <div class="portfolio-browser">
+            <div class="browser-bar">
+              <div class="browser-dot red"></div>
+              <div class="browser-dot yellow"></div>
+              <div class="browser-dot green"></div>
+              <div class="browser-url"><span>aurastudio.com.br</span></div>
+            </div>
+            <div class="browser-content">
+              <div class="preview-beauty">
+                <div class="preview-beauty-nav">
+                  <span class="preview-beauty-logo">Studio Aura</span>
+                  <span style="font-size:0.45rem;color:#c4845a;letter-spacing:0.1em;">Agendar ↗</span>
+                </div>
+                <div class="preview-beauty-hero">
+                  <span class="preview-beauty-tag">Vila Mariana · São Paulo</span>
+                  <div class="preview-beauty-h1">Beleza que <em>transforma</em><br>a essência</div>
+                  <div class="preview-beauty-sub">Especialistas em mechas, saúde capilar<br>e bem-estar completo.</div>
+                  <div class="preview-beauty-pills">
+                    <span class="preview-beauty-pill">Produtos Veganos</span>
+                    <span class="preview-beauty-pill">Coffee Incluso</span>
+                    <span class="preview-beauty-pill">Visagismo</span>
+                  </div>
+                  <div class="preview-beauty-btn">Agendar pelo WhatsApp</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Beleza · SP</span>
+          <div class="portfolio-title">Studio Aura</div>
+          <p class="portfolio-desc">Site para salão de beleza premium com menu de serviços, galeria de fotos, horários de funcionamento e agendamento direto pelo WhatsApp.</p>
+          <div class="portfolio-features">
+            <span class="portfolio-feature">Visual feminino premium</span>
+            <span class="portfolio-feature">Galeria de serviços</span>
+            <span class="portfolio-feature">Horários + mapa</span>
+          </div>
+          <a href="https://aurastudio-sage.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+            Ver site ao vivo
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- LINGERIE -->
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-preview">
+          <div class="portfolio-browser">
+            <div class="browser-bar">
+              <div class="browser-dot red"></div>
+              <div class="browser-dot yellow"></div>
+              <div class="browser-dot green"></div>
+              <div class="browser-url"><span>encantointimo.com.br</span></div>
+            </div>
+            <div class="browser-content">
+              <div class="preview-lingerie">
+                <div class="preview-lingerie-nav">
+                  <span class="preview-lingerie-logo">Encanto Íntimo</span>
+                  <span style="font-size:0.45rem;color:#b06080;">Ver catálogo ↗</span>
+                </div>
+                <div class="preview-lingerie-hero">
+                  <span class="preview-lingerie-tag">Lingerie & Conforto</span>
+                  <div class="preview-lingerie-h1">Conforto e estilo<br>para o seu <em>dia a dia</em></div>
+                  <div class="preview-lingerie-sub">Produtos selecionados com carinho.<br>Atendimento exclusivo via WhatsApp.</div>
+                  <div class="preview-lingerie-stats">
+                    <div class="preview-lingerie-stat"><span>500+</span>Clientes felizes</div>
+                    <div class="preview-lingerie-stat"><span>R$10</span>Preço inicial</div>
+                    <div class="preview-lingerie-stat"><span>5★</span>Avaliação</div>
+                  </div>
+                  <div class="preview-lingerie-btn">Ver catálogo pelo WhatsApp</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Varejo · RJ</span>
+          <div class="portfolio-title">Encanto Íntimo</div>
+          <p class="portfolio-desc">Loja de lingerie com catálogo de produtos organizado por categoria, prova social com números de clientes e vendas diretas pelo WhatsApp.</p>
+          <div class="portfolio-features">
+            <span class="portfolio-feature">Catálogo visual</span>
+            <span class="portfolio-feature">Prova social</span>
+            <span class="portfolio-feature">Vendas pelo WhatsApp</span>
+          </div>
+          <a href="https://encantointimo.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+            Ver site ao vivo
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="portfolio-cta fade-up">
+      <p>Tem dúvidas ou quer saber mais sobre como funciona? <strong>Me chama no WhatsApp.</strong></p>
+      <a href="https://wa.me/5521985252497?text=Oi%2C+vi+o+portfólio+da+Presença+Certa+e+tenho+algumas+dúvidas+%F0%9F%91%8B" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Tirar dúvidas pelo WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROVA SOCIAL -->
+<section class="social-proof">
+  <div class="social-proof-inner">
+    <span class="section-label">Resultados</span>
+    <h2 class="fade-up">Quem tinha o mesmo problema que você.</h2>
+    <p class="social-proof-sub fade-up">Autônomos que estavam invisíveis na internet — e mudaram isso.</p>
+
+    <div class="proof-bar fade-up">
+      <div class="proof-bar-item">
+        <span class="proof-bar-number">+30</span>
+        <span class="proof-bar-label">Sites entregues</span>
+      </div>
+      <div class="proof-bar-item">
+        <span class="proof-bar-number">3 dias</span>
+        <span class="proof-bar-label">Prazo máximo</span>
+      </div>
+      <div class="proof-bar-item">
+        <span class="proof-bar-number">R$0</span>
+        <span class="proof-bar-label">Mensalidade</span>
+      </div>
+      <div class="proof-bar-item">
+        <span class="proof-bar-number">100%</span>
+        <span class="proof-bar-label">Garantia devolvida</span>
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Eu mandava meu Instagram pra todo cliente, mas ninguém levava a sério. Com o site, mudou tudo. <strong>Um noivado fechou comigo depois de ver o site — sem nem falar de preço antes.</strong>"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">T</div>
+          <div>
+            <div class="testimonial-name">Thiago R.</div>
+            <div class="testimonial-role">Fotógrafo · SP</div>
+          </div>
+        </div>
+        <div class="testimonial-tag">Credibilidade</div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Tentei agência antes — orçamento de R$3.000 e prazo de 30 dias. Com a Presença Certa, <strong>paguei muito menos, recebi em 2 dias</strong> e não pago nada por mês. Valeu muito."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">F</div>
+          <div>
+            <div class="testimonial-name">Fernanda S.</div>
+            <div class="testimonial-role">Nutricionista · SP</div>
+          </div>
+        </div>
+        <div class="testimonial-tag">Custo-benefício</div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Não entendo nada de tecnologia e fiquei com medo de complicar. Foi tudo simples demais — <strong>só contei sobre o meu trabalho e recebi o site pronto.</strong> Não esperava ser tão fácil."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <div class="testimonial-name">Marcos T.</div>
+            <div class="testimonial-role">Personal Trainer · MG</div>
+          </div>
+        </div>
+        <div class="testimonial-tag">Simplicidade</div>
       </div>
     </div>
   </div>
@@ -1084,105 +1820,57 @@
 <!-- PRICING -->
 <section class="pricing" id="pacotes">
   <div class="pricing-inner">
-    <span class="section-label">Pacotes</span>
-    <h2 class="fade-up">Invista uma vez. Colha sempre.</h2>
-    <p class="pricing-sub fade-up">Três opções para cada momento do seu negócio.</p>
+    <span class="section-label">Investimento</span>
+    <h2 class="fade-up">Paga uma vez.<br>Fica no ar pra sempre.</h2>
+    <p class="pricing-sub fade-up">Sem mensalidade. Sem hospedagem. Sem surpresa no bolso.</p>
 
-    <div class="cards">
-
-      <!-- BÁSICO -->
-      <div class="card fade-up">
-        <div class="card-name">Básico</div>
-        <div class="card-price"><span>R$</span>397</div>
-        <div class="card-period">Pix ou cartão em até 12×</div>
-        <div class="card-divider"></div>
-        <ul class="card-features">
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Página profissional para o seu negócio
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Cliente clica e cai direto no WhatsApp
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Link pronto para o Instagram e Google hoje
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Fica no ar para sempre, sem mensalidade
-          </li>
-        </ul>
-        <button class="card-btn" onclick="openModal('basico')">Quero este pacote</button>
-        <div class="card-note">✓ Entrega garantida · Em até 4h</div>
+    <div class="pricing-card fade-up">
+      <div class="pricing-card-badge">Site Profissional Completo</div>
+      <div class="pricing-price-row">
+        <span class="pricing-price-prefix">R$</span>
+        <span class="pricing-price">497</span>
       </div>
+      <div class="pricing-period">Pagamento único · Pix ou cartão</div>
+      <div class="pricing-installment">ou 12× de R$49,90 sem juros no cartão</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Site profissional completo com visual premium
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Domínio próprio configurado (ex: seunegocio.com.br)
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Botão direto pro seu WhatsApp
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Link pronto para a bio do Instagram e Google
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Hospedagem gratuita — fica no ar pra sempre
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Entrega em até 3 dias úteis — garantida
+        </li>
+        <li>
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Suporte via WhatsApp após entrega
+        </li>
+      </ul>
+      <button class="pricing-btn" onclick="openModal()">Quero meu site profissional</button>
+      <div class="pricing-note">✓ Entrega garantida em até 3 dias · Garantia de 7 dias</div>
+    </div>
 
-      <!-- PROFISSIONAL -->
-      <div class="card featured fade-up">
-        <div class="featured-badge">Mais escolhido</div>
-        <div class="card-name">Profissional</div>
-        <div class="card-price"><span>R$</span>697</div>
-        <div class="card-period">Pix ou cartão em até 12×</div>
-        <div class="card-divider"></div>
-        <ul class="card-features">
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Site completo com design premium
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Domínio próprio (ex: seunegocio.com.br)
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Fica no ar para sempre, sem mensalidade
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Link pronto para o Instagram e Google hoje
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Roteiro de vendas para fechar pelo WhatsApp
-          </li>
-        </ul>
-        <button class="card-btn" onclick="openModal('profissional')">Quero este pacote</button>
-        <div class="card-note">✓ Entrega garantida · Em até 24h</div>
-      </div>
-
-      <!-- COMPLETO -->
-      <div class="card fade-up">
-        <div class="card-name">Completo</div>
-        <div class="card-price"><span>R$</span>997</div>
-        <div class="card-period">Pix ou cartão em até 12×</div>
-        <div class="card-divider"></div>
-        <ul class="card-features">
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Tudo do Profissional
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Roteiro completo + recuperação de clientes
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Mensagens prontas para cada etapa da venda
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Pixel do Meta instalado
-          </li>
-          <li>
-            <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Suporte por 30 dias
-          </li>
-        </ul>
-        <button class="card-btn" onclick="openModal('completo')">Quero este pacote</button>
-        <div class="card-note">✓ Entrega garantida · Em até 3 dias úteis</div>
-      </div>
-
+    <div class="pricing-reassure">
+      <div class="reassure-item"><span class="reassure-dot"></span> Zero mensalidade</div>
+      <div class="reassure-item"><span class="reassure-dot"></span> Hospedagem inclusa para sempre</div>
+      <div class="reassure-item"><span class="reassure-dot"></span> Pagamento único</div>
     </div>
   </div>
 </section>
@@ -1237,7 +1925,7 @@
       <span class="faq-icon">+</span>
     </button>
     <div class="faq-a">
-      <p>Não. A hospedagem do site é gratuita e fica no ar para sempre. O único custo anual é o domínio próprio (~R$40/ano), que é opcional. A manutenção de R$100/mês no Pacote Completo também é opcional.</p>
+      <p>Não. A hospedagem do site é gratuita e fica no ar para sempre. O único custo anual é o domínio próprio (~R$40/ano), que é opcional. Você paga uma vez pelo site e pronto.</p>
     </div>
   </div>
 
@@ -1247,7 +1935,7 @@
       <span class="faq-icon">+</span>
     </button>
     <div class="faq-a">
-      <p>Sim. Já criei sites para cabeleireiros, personal trainers, dentistas, consultoras, lojas e prestadores de serviço em geral. Se você atende pessoas, funciona para o seu negócio.</p>
+      <p>Sim. Já criei sites para advogados, personal trainers, fotógrafos, consultoras, DJs e prestadores de serviço em geral. Se você atende pessoas e quer ser encontrado, funciona para o seu negócio.</p>
     </div>
   </div>
 
@@ -1257,7 +1945,17 @@
       <span class="faq-icon">+</span>
     </button>
     <div class="faq-a">
-      <p>Sim! Me chama no WhatsApp e me conta qual é a sua área de atuação — te mando um exemplo real de site parecido com o que seria o seu. Assim você já vê o resultado antes de fechar qualquer coisa.</p>
+      <p>Sim! Aqui no nosso portfólio você já pode ver exemplos reais de sites entregues em diferentes segmentos. Se tiver dúvidas específicas, me chama no WhatsApp e a gente conversa.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Em quanto tempo fico com o site no ar?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Em até 3 dias úteis após a confirmação do pagamento. Na maioria dos casos entrego antes. Você acompanha tudo pelo WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -1267,65 +1965,60 @@
 <!-- CTA FINAL -->
 <section class="cta-section">
   <span class="section-label">Comece hoje</span>
-  <h2 class="fade-up">Não amanhã.<br><em>Hoje!</em></h2>
-  <p>Não sabe qual pacote faz mais sentido? Me manda uma mensagem — em 5 minutos te digo exatamente o que você precisa.</p>
-  <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+%F0%9F%91%8B+Vi+sua+p%C3%A1gina+e+quero+saber+mais." class="btn-primary" target="_blank" style="display:inline-flex;">
+  <h2 class="fade-up">Cada dia sem site<br>é um cliente perdido.<br><em>Resolve isso agora.</em></h2>
+  <p>Me manda uma mensagem — em 5 minutos te mostro um exemplo do que seria o seu site.</p>
+  <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+%F0%9F%91%8B+Vi+sua+p%C3%A1gina+e+quero+saber+mais." class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Falar no WhatsApp agora
   </a>
   <div class="cta-trust">
-    <div class="trust-item"><span class="trust-dot"></span> Respondo em minutos</div>
-    <div class="trust-item"><span class="trust-dot"></span> Entrega no mesmo dia</div>
-    <div class="trust-item"><span class="trust-dot"></span> Garantia de 7 dias</div>
+    <div class="trust-item"><span class="trust-dot"></span>Respondo em minutos</div>
+    <div class="trust-item"><span class="trust-dot"></span>Entrega em até 3 dias</div>
+    <div class="trust-item"><span class="trust-dot"></span>Garantia de 7 dias</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo">Presença Digital</span>
-  <span class="footer-copy">Feito com atenção para o seu negócio crescer. 🌱</span>
+  <span class="footer-logo">Presença Certa</span>
+  <span class="footer-copy">Sites profissionais para autônomos e MEIs. Feito no Rio de Janeiro. 🌱</span>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/5521985252497?text=Ol%C3%A1!+Vi+sua+p%C3%A1gina." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+da+Presença+Certa+e+quero+saber+mais." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- MODAL DE COMPRA -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeModal()" aria-label="Fechar">×</button>
-
-    <div class="modal-badge" id="modalBadge">Pacote selecionado</div>
-    <h3 id="modalTitle">Ótima escolha.</h3>
-    <div class="modal-plan-price" id="modalPrice"></div>
-
+    <div class="modal-badge">Site Profissional · R$497</div>
+    <h3>Ótima escolha.</h3>
+    <div class="modal-plan-price">R$497 · Pix ou cartão em até 12× de R$49,90</div>
     <ul class="modal-steps">
       <li>
         <div class="modal-step-num">1</div>
-        <span>Clique em <strong style="color:var(--text-1)">Garantir minha vaga</strong> para ir à página de pagamento segura.</span>
+        <span>Clique em <strong style="color:var(--text-1)">Garantir meu site</strong> para ir à página de pagamento segura.</span>
       </li>
       <li>
         <div class="modal-step-num">2</div>
-        <span>Após o pagamento confirmado, <strong style="color:var(--text-1)">você será redirecionado para o meu WhatsApp</strong> automaticamente.</span>
+        <span>Após o pagamento, <strong style="color:var(--text-1)">você será redirecionado para o meu WhatsApp</strong> automaticamente.</span>
       </li>
       <li>
         <div class="modal-step-num">3</div>
-        <span>Me manda o comprovante e eu começo o seu site na hora. <strong style="color:var(--text-1)">Simples assim.</strong></span>
+        <span>Me manda o comprovante e eu começo na hora. <strong style="color:var(--text-1)">Em até 3 dias seu site está no ar.</strong></span>
       </li>
     </ul>
-
     <div class="modal-divider"></div>
-
     <div class="modal-timer-label">Sua vaga está reservada por</div>
     <div class="modal-timer" id="modalTimer">10:00</div>
-
     <div class="modal-actions">
-      <a id="modalPayBtn" href="#" target="_blank" class="modal-btn-pay">
+      <a href="https://pay.herospark.com/seu-site-plano-profissional-512212" target="_blank" class="modal-btn-pay">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Garantir minha vaga agora
+        Garantir meu site agora
       </a>
-      <a id="modalWppBtn" href="#" target="_blank" class="modal-btn-wpp">
+      <a href="https://wa.me/5521985252497?text=Quero+o+site+profissional+%F0%9F%91%8B+Tenho+uma+dúvida+antes+de+fechar." target="_blank" class="modal-btn-wpp">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Tirar uma dúvida antes
       </a>
@@ -1347,50 +2040,12 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1390666166151479&ev=PageView&noscript=1"/></noscript>
 
 <script>
-// ─── MODAL DE COMPRA ───
-const plans = {
-  basico: {
-    badge: 'Pacote Básico',
-    title: 'Ótima escolha.',
-    price: 'R$ 397 · Pix ou cartão em até 12×',
-    payUrl: 'https://pay.herospark.com/seu-site-plano-basico-512203',
-    wppMsg: 'Quero+o+B%C3%A1sico+%F0%9F%91%8B+Tenho+d%C3%BAvidas+antes+de+fechar.'
-  },
-  profissional: {
-    badge: 'Pacote Profissional',
-    title: 'Escolha certa.',
-    price: 'R$ 697 · Pix ou cartão em até 12× · O mais escolhido',
-    payUrl: 'https://pay.herospark.com/seu-site-plano-profissional-512212',
-    wppMsg: 'Quero+o+Profissional+%F0%9F%91%8B+Tenho+d%C3%BAvidas+antes+de+fechar.'
-  },
-  completo: {
-    badge: 'Pacote Completo',
-    title: 'Você vai longe.',
-    price: 'R$ 997 · Pix ou cartão em até 12×',
-    payUrl: 'https://pay.herospark.com/seu-site-plano-completo-512232',
-    wppMsg: 'Quero+o+Completo+%F0%9F%91%8B+Tenho+d%C3%BAvidas+antes+de+fechar.'
-  }
-};
-
 let timerInterval = null;
 
-function openModal(planKey) {
-  const plan = plans[planKey];
-  if (!plan) return;
-
-  document.getElementById('modalBadge').textContent = plan.badge;
-  document.getElementById('modalTitle').textContent = plan.title;
-  document.getElementById('modalPrice').textContent = plan.price;
-  document.getElementById('modalPayBtn').href = plan.payUrl;
-  document.getElementById('modalWppBtn').href = 'https://wa.me/5521985252497?text=' + plan.wppMsg;
-
+function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'InitiateCheckout', { content_name: plan.badge });
-  }
-
+  if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'Site Profissional R$497' });
   startTimer(10 * 60);
 }
 
@@ -1408,26 +2063,20 @@ function startTimer(seconds) {
   clearInterval(timerInterval);
   const timerEl = document.getElementById('modalTimer');
   let remaining = seconds;
-
   function update() {
     const m = Math.floor(remaining / 60);
     const s = remaining % 60;
     timerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
     timerEl.classList.toggle('urgent', remaining <= 60);
-    if (remaining <= 0) {
-      clearInterval(timerInterval);
-      timerEl.textContent = 'Expirado';
-    }
+    if (remaining <= 0) { clearInterval(timerInterval); timerEl.textContent = 'Expirado'; }
     remaining--;
   }
-
   update();
   timerInterval = setInterval(update, 1000);
 }
 
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-// ─── FAQ ───
 function toggleFaq(btn) {
   const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1437,7 +2086,7 @@ function toggleFaq(btn) {
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
@@ -1445,16 +2094,12 @@ const stepsObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const nums = document.querySelectorAll('.step-num');
-
       function runCycle() {
-        nums.forEach(num => num.classList.remove('active'));
+        nums.forEach(n => n.classList.remove('active'));
         setTimeout(() => {
-          nums.forEach((num, i) => {
-            setTimeout(() => num.classList.add('active'), i * 600);
-          });
+          nums.forEach((n, i) => setTimeout(() => n.classList.add('active'), i * 600));
         }, 300);
       }
-
       runCycle();
       setInterval(runCycle, 4500);
       stepsObserver.unobserve(e.target);
@@ -1464,33 +2109,6 @@ const stepsObserver = new IntersectionObserver((entries) => {
 
 const stepsSection = document.querySelector('.steps');
 if (stepsSection) stepsObserver.observe(stepsSection);
-
-const word = 'encontrado.';
-const el = document.getElementById('typewriter');
-
-function type() {
-  let i = 0;
-  const typing = setInterval(() => {
-    el.textContent += word[i];
-    i++;
-    if (i >= word.length) {
-      clearInterval(typing);
-      setTimeout(erase, 10000);
-    }
-  }, 100);
-}
-
-function erase() {
-  const erasing = setInterval(() => {
-    el.textContent = el.textContent.slice(0, -1);
-    if (el.textContent.length === 0) {
-      clearInterval(erasing);
-      setTimeout(type, 500);
-    }
-  }, 60);
-}
-
-setTimeout(type, 800);
 </script>
 </body>
 </html>
