@@ -1,2081 +1,2491 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Presença Certa — Sites Profissionais para Autônomos e MEIs</title>
-<meta name="description" content="Seu negócio é bom. O problema é que ninguém te acha. Site profissional entregue em até 3 dias, sem mensalidade. Paga uma vez e pronto.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
-
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dim: rgba(201,168,76,0.12);
-    --gold-border: rgba(201,168,76,0.28);
-    --bg-0: #0A0A0A;
-    --bg-1: #111111;
-    --bg-2: #181818;
-    --bg-3: #222222;
-    --text-1: #F0EDE4;
-    --text-2: #B0A898;
-    --text-3: #6E6760;
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-0);
-    color: var(--text-1);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-  }
-
-  section { position: relative; z-index: 1; }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,10,0.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-  }
-
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: var(--gold-light);
-  }
-
-  .nav-cta {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--bg-0);
-    background: var(--gold);
-    padding: 0.55rem 1.4rem;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 5rem;
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0.07) 50%, transparent 75%),
-      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(201,168,76,0.07) 0%, transparent 60%);
-  }
-
-  .hero-badge-wrapper {
-    animation: float 3.5s ease-in-out infinite;
-    will-change: transform;
-    margin-bottom: 2.5rem;
-    display: inline-block;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.45rem 1.1rem;
-    border-radius: 100px;
-    background: var(--gold-dim);
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translate3d(0, 0px, 0); }
-    50% { transform: translate3d(0, -4px, 0); }
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: blink 2s ease-in-out infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--text-1);
-    max-width: 820px;
-    margin-bottom: 1.75rem;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--text-2);
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.8;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 4rem;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--sans);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--bg-0);
-    background: var(--gold);
-    padding: 0.95rem 2rem;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.2); }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--sans);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.95rem 2rem;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: all 0.2s;
-    background: transparent;
-  }
-  .btn-secondary:hover { background: var(--gold-dim); border-color: var(--gold); }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .stat-item { text-align: center; }
-
-  .stat-number {
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--gold-light);
-    display: block;
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-2);
-  }
-
-  /* ─── DIVIDER ─── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .divider::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -60%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.7), transparent);
-    animation: shimmer 3.5s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0% { left: -60%; }
-    100% { left: 160%; }
-  }
-
-  /* ─── SECTION LABEL ─── */
-  .section-label {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  /* ─── PROBLEM ─── */
-  .problem {
-    padding: 7rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .problem { grid-template-columns: 1fr; gap: 3rem; }
-  }
-
-  .problem-text h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    line-height: 1.25;
-    margin-bottom: 1.5rem;
-    color: var(--text-1);
-  }
-
-  .problem-text p {
-    color: var(--text-2);
-    font-size: 0.97rem;
-    margin-bottom: 1rem;
-  }
-
-  .problem-text strong { color: var(--text-1); font-weight: 500; }
-
-  .problem-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .problem-card {
-    padding: 1.5rem;
-    border: 1px solid var(--bg-3);
-    border-radius: 8px;
-    background: var(--bg-1);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .problem-card:hover { border-color: var(--gold-border); }
-
-  .problem-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-  }
-
-  .problem-card.bad::before { background: #333; }
-  .problem-card.good::before { background: var(--gold); }
-
-  .problem-card-label {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .problem-card.bad .problem-card-label { color: var(--text-3); }
-  .problem-card.good .problem-card-label { color: var(--gold); }
-  .problem-card p { font-size: 0.9rem; color: var(--text-2); }
-
-  /* ─── HOW IT WORKS ─── */
-  .how {
-    padding: 7rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .how h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 4rem;
-    color: var(--text-1);
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    position: relative;
-  }
-
-  @media (max-width: 640px) {
-    .steps { grid-template-columns: 1fr; }
-  }
-
-  .steps::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: calc(16.66% + 28px);
-    right: calc(16.66% + 28px);
-    height: 1px;
-    background: var(--gold-border);
-    z-index: 0;
-  }
-
-  @media (max-width: 640px) { .steps::before { display: none; } }
-
-  .step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .step-num {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    border: 1px solid var(--gold-border);
-    background: var(--bg-1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--gold-light);
-    position: relative;
-    z-index: 2;
-    flex-shrink: 0;
-    transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.5s;
-  }
-
-  .step-num.active {
-    background: var(--bg-1);
-    border-color: var(--gold);
-    box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 0 40px rgba(201,168,76,0.1);
-    transform: scale(1.15);
-  }
-
-  .step h3 {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--text-1);
-    margin-bottom: 0.3rem;
-  }
-
-  .step p { font-size: 0.87rem; color: var(--text-2); line-height: 1.7; }
-
-  /* ─── PROVA SOCIAL ─── */
-  .social-proof {
-    padding: 7rem 2rem;
-    background: var(--bg-1);
-    border-top: 1px solid var(--bg-3);
-    border-bottom: 1px solid var(--bg-3);
-  }
-
-  .social-proof-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .social-proof h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 0.75rem;
-    color: var(--text-1);
-  }
-
-  .social-proof-sub {
-    color: var(--text-2);
-    font-size: 0.95rem;
-    margin-bottom: 4rem;
-  }
-
-  .proof-bar {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    margin-bottom: 4rem;
-    padding: 2rem;
-    border: 1px solid var(--gold-border);
-    border-radius: 4px;
-    background: var(--gold-dim);
-  }
-
-  .proof-bar-item { text-align: center; }
-
-  .proof-bar-number {
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: var(--gold-light);
-    display: block;
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .proof-bar-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-2);
-  }
-
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 900px) {
-    .testimonials { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-  }
-
-  .testimonial-card {
-    background: var(--bg-2);
-    border: 1px solid var(--bg-3);
-    border-radius: 4px;
-    padding: 2rem;
-    text-align: left;
-    transition: border-color 0.3s;
-  }
-
-  .testimonial-card:hover { border-color: var(--gold-border); }
-
-  .testimonial-stars {
-    color: var(--gold);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-  }
-
-  .testimonial-text {
-    font-size: 0.9rem;
-    color: var(--text-2);
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-  }
-
-  .testimonial-text strong { color: var(--text-1); font-style: normal; }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .testimonial-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--gold-dim);
-    border: 1px solid var(--gold-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-size: 0.9rem;
-    color: var(--gold);
-    flex-shrink: 0;
-  }
-
-  .testimonial-name {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text-1);
-  }
-
-  .testimonial-role {
-    font-size: 0.75rem;
-    color: var(--text-3);
-  }
-
-  .testimonial-tag {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-    background: var(--gold-dim);
-    margin-top: 0.5rem;
-  }
-
-  /* ─── PRICING ─── */
-  .pricing {
-    padding: 7rem 2rem;
-  }
-
-  .pricing-inner {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .pricing h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 0.75rem;
-    color: var(--text-1);
-  }
-
-  .pricing-sub {
-    color: var(--text-2);
-    font-size: 0.95rem;
-    margin-bottom: 3rem;
-  }
-
-  .pricing-card {
-    background: var(--bg-1);
-    border: 1px solid var(--gold-border);
-    border-radius: 4px;
-    padding: 3rem 2.5rem;
-    text-align: left;
-    position: relative;
-  }
-
-  .pricing-card-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bg-0);
-    background: var(--gold);
-    padding: 0.3rem 1.2rem;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .pricing-price-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 0.5rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .pricing-price {
-    font-family: var(--serif);
-    font-size: 4rem;
-    font-weight: 300;
-    color: var(--text-1);
-    line-height: 1;
-  }
-
-  .pricing-price-prefix {
-    font-size: 1.2rem;
-    color: var(--text-3);
-    font-family: var(--sans);
-    padding-bottom: 0.6rem;
-  }
-
-  .pricing-period {
-    font-size: 0.82rem;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
-  .pricing-installment {
-    font-size: 0.8rem;
-    color: var(--text-3);
-    margin-bottom: 2rem;
-  }
-
-  .pricing-divider {
-    height: 1px;
-    background: var(--gold-border);
-    margin-bottom: 2rem;
-  }
-
-  .pricing-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .pricing-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-    font-size: 0.92rem;
-    color: var(--text-2);
-  }
-
-  .check-icon {
-    width: 16px; height: 16px;
-    flex-shrink: 0;
-    margin-top: 3px;
-  }
-
-  .check-icon path { stroke: var(--gold); }
-
-  .pricing-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 2px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: var(--gold);
-    color: var(--bg-0);
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .pricing-btn:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
-
-  .pricing-note {
-    text-align: center;
-    font-size: 0.78rem;
-    color: var(--text-3);
-    margin-top: 1rem;
-  }
-
-  .pricing-reassure {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .reassure-item {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.8rem;
-    color: var(--text-2);
-  }
-
-  .reassure-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.5;
-    flex-shrink: 0;
-  }
-
-  /* ─── GUARANTEE ─── */
-  .guarantee {
-    padding: 6rem 2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .guarantee-icon {
-    width: 64px; height: 64px;
-    border: 1px solid var(--gold-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 2rem;
-    background: var(--gold-dim);
-  }
-
-  .guarantee h2 {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 300;
-    line-height: 1.25;
-    margin-bottom: 1rem;
-    color: var(--text-1);
-  }
-
-  .guarantee p { color: var(--text-2); font-size: 0.95rem; }
-
-  /* ─── FAQ ─── */
-  .faq {
-    padding: 7rem 2rem;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .faq-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .faq-header h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    color: var(--text-1);
-  }
-
-  .faq-item { border-bottom: 1px solid var(--bg-3); }
-
-  .faq-q {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 1.5rem 0;
-    text-align: left;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--text-1);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.2s;
-  }
-
-  .faq-q:hover { color: var(--gold-light); }
-
-  .faq-q .faq-icon {
-    width: 20px; height: 20px;
-    border: 1px solid var(--bg-3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 14px;
-    color: var(--text-3);
-    transition: all 0.2s;
-  }
-
-  .faq-item.open .faq-q .faq-icon {
-    background: var(--gold-dim);
-    border-color: var(--gold-border);
-    color: var(--gold);
-    transform: rotate(45deg);
-  }
-
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-  }
-
-  .faq-item.open .faq-a {
-    max-height: 300px;
-    padding-bottom: 1.5rem;
-  }
-
-  .faq-a p { font-size: 0.9rem; color: var(--text-2); line-height: 1.8; }
-
-  /* ─── CTA FINAL ─── */
-  .cta-section {
-    padding: 8rem 2rem;
-    text-align: center;
-    background: radial-gradient(ellipse 80% 90% at 50% 100%, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.06) 50%, transparent 75%);
-  }
-
-  .cta-section h2 {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-    color: var(--text-1);
-  }
-
-  .cta-section h2 em { font-style: italic; color: var(--gold-light); }
-
-  .cta-section p {
-    color: var(--text-2);
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-trust {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--text-2);
-  }
-
-  .trust-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.5;
-  }
-
-  /* ─── PORTFÓLIO ─── */
-  .portfolio {
-    padding: 7rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .portfolio h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 0.75rem;
-    color: var(--text-1);
-  }
-
-  .portfolio-sub {
-    color: var(--text-2);
-    font-size: 0.95rem;
-    margin-bottom: 4rem;
-  }
-
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    text-align: left;
-  }
-
-  @media (max-width: 900px) {
-    .portfolio-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-  }
-
-  .portfolio-card {
-    background: var(--bg-1);
-    border: 1px solid var(--bg-3);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.2s;
-    position: relative;
-  }
-
-  .portfolio-card:hover {
-    border-color: var(--gold-border);
-    transform: translateY(-4px);
-  }
-
-  .portfolio-preview {
-    width: 100%;
-    height: 240px;
-    overflow: hidden;
-    position: relative;
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--bg-3);
-  }
-
-  .portfolio-browser {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .browser-bar {
-    background: var(--bg-3);
-    padding: 0.5rem 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-
-  .browser-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .browser-dot.red { background: #ff5f57; }
-  .browser-dot.yellow { background: #febc2e; }
-  .browser-dot.green { background: #28c840; }
-
-  .browser-url {
-    flex: 1;
-    background: var(--bg-2);
-    border-radius: 3px;
-    height: 16px;
-    margin-left: 0.5rem;
-    display: flex;
-    align-items: center;
-    padding: 0 0.5rem;
-  }
-
-  .browser-url span {
-    font-size: 0.6rem;
-    color: var(--text-3);
-    font-family: var(--sans);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .browser-content {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* ── Advocacia ── */
-  .preview-law {
-    background: #0d0d0d;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-
-  .preview-law-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .preview-law-logo {
-    font-family: var(--serif);
-    font-size: 0.7rem;
-    color: var(--gold-light);
-    letter-spacing: 0.1em;
-  }
-
-  .preview-law-badge {
-    font-size: 0.45rem;
-    color: #888;
-    border: 1px solid #333;
-    padding: 0.15rem 0.4rem;
-    border-radius: 2px;
-    letter-spacing: 0.08em;
-  }
-
-  .preview-law-hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.35rem;
-    padding: 0.5rem 0;
-  }
-
-  .preview-law-tag {
-    font-size: 0.45rem;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .preview-law-h1 {
-    font-family: var(--serif);
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #f0ede4;
-    line-height: 1.2;
-  }
-
-  .preview-law-sub {
-    font-size: 0.45rem;
-    color: #888;
-    line-height: 1.5;
-  }
-
-  .preview-law-btn {
-    display: inline-block;
-    font-size: 0.45rem;
-    background: var(--gold);
-    color: #000;
-    padding: 0.3rem 0.7rem;
-    border-radius: 1px;
-    width: fit-content;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── Beleza ── */
-  .preview-beauty {
-    background: #1a1008;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-
-  .preview-beauty-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .preview-beauty-logo {
-    font-family: var(--serif);
-    font-size: 0.75rem;
-    color: #e8c9a0;
-    letter-spacing: 0.05em;
-  }
-
-  .preview-beauty-hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-  }
-
-  .preview-beauty-tag {
-    font-size: 0.45rem;
-    color: #c4845a;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .preview-beauty-h1 {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 300;
-    color: #f5ede4;
-    line-height: 1.2;
-  }
-
-  .preview-beauty-h1 em {
-    font-style: italic;
-    color: #e8c9a0;
-  }
-
-  .preview-beauty-sub {
-    font-size: 0.45rem;
-    color: #998880;
-    line-height: 1.5;
-  }
-
-  .preview-beauty-pills {
-    display: flex;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-  }
-
-  .preview-beauty-pill {
-    font-size: 0.4rem;
-    border: 1px solid rgba(196,132,90,0.3);
-    color: #c4845a;
-    padding: 0.15rem 0.4rem;
-    border-radius: 100px;
-  }
-
-  .preview-beauty-btn {
-    display: inline-block;
-    font-size: 0.45rem;
-    background: #c4845a;
-    color: #fff;
-    padding: 0.3rem 0.7rem;
-    border-radius: 2px;
-    width: fit-content;
-    letter-spacing: 0.08em;
-  }
-
-  /* ── Lingerie ── */
-  .preview-lingerie {
-    background: #fff8f5;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-
-  .preview-lingerie-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .preview-lingerie-logo {
-    font-family: var(--serif);
-    font-size: 0.75rem;
-    color: #b06080;
-    letter-spacing: 0.05em;
-  }
-
-  .preview-lingerie-hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-  }
-
-  .preview-lingerie-tag {
-    font-size: 0.45rem;
-    color: #b06080;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .preview-lingerie-h1 {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 400;
-    color: #2a1a22;
-    line-height: 1.2;
-  }
-
-  .preview-lingerie-h1 em {
-    font-style: italic;
-    color: #b06080;
-  }
-
-  .preview-lingerie-sub {
-    font-size: 0.45rem;
-    color: #998880;
-    line-height: 1.5;
-  }
-
-  .preview-lingerie-stats {
-    display: flex;
-    gap: 0.8rem;
-  }
-
-  .preview-lingerie-stat {
-    font-size: 0.5rem;
-    color: #2a1a22;
-    font-weight: 500;
-  }
-
-  .preview-lingerie-stat span {
-    display: block;
-    font-size: 0.75rem;
-    color: #b06080;
-    font-weight: 600;
-  }
-
-  .preview-lingerie-btn {
-    display: inline-block;
-    font-size: 0.45rem;
-    background: #b06080;
-    color: #fff;
-    padding: 0.3rem 0.7rem;
-    border-radius: 2px;
-    width: fit-content;
-    letter-spacing: 0.08em;
-  }
-
-  /* ── Card info ── */
-  .portfolio-info {
-    padding: 1.5rem;
-  }
-
-  .portfolio-tag {
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .portfolio-title {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--text-1);
-    margin-bottom: 0.4rem;
-  }
-
-  .portfolio-desc {
-    font-size: 0.82rem;
-    color: var(--text-2);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
-
-  .portfolio-features {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.25rem;
-  }
-
-  .portfolio-feature {
-    font-size: 0.65rem;
-    color: var(--text-3);
-    border: 1px solid var(--bg-3);
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-  }
-
-  .portfolio-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-
-  .portfolio-link:hover { opacity: 0.7; }
-
-  .portfolio-link svg { transition: transform 0.2s; }
-  .portfolio-link:hover svg { transform: translateX(3px); }
-
-  .portfolio-cta {
-    margin-top: 4rem;
-    padding: 2rem;
-    border: 1px solid var(--gold-border);
-    border-radius: 4px;
-    background: var(--gold-dim);
-    text-align: center;
-  }
-
-  .portfolio-cta p {
-    font-size: 0.95rem;
-    color: var(--text-2);
-    margin-bottom: 1.5rem;
-  }
-
-  .portfolio-cta p strong {
-    color: var(--text-1);
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 2.5rem 2rem;
-    border-top: 1px solid var(--bg-3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-logo {
-    font-family: var(--serif);
-    font-size: 1rem;
-    color: var(--gold-light);
-    letter-spacing: 0.06em;
-  }
-
-  .footer-copy {
-    font-size: 0.8rem;
-    color: var(--text-3);
-  }
-
-  /* ─── WHATSAPP FLOAT ─── */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 999;
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: #25D366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: wpp-pulse 2.5s ease-in-out infinite;
-  }
-
-  .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
-  .whatsapp-float svg { width: 26px; height: 26px; }
-
-  @keyframes wpp-pulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
-    50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0); }
-  }
-
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,0.82);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-  .modal {
-    background: var(--bg-1);
-    border: 1px solid var(--gold-border);
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    max-width: 480px;
-    width: 100%;
-    position: relative;
-    transform: translateY(20px) scale(0.97);
-    transition: transform 0.3s ease;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.07);
-  }
-
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-
-  .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    background: none; border: none; color: var(--text-3);
-    font-size: 1.5rem; cursor: pointer; line-height: 1;
-    padding: 0.25rem 0.5rem; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--text-1); }
-
-  .modal-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--gold-border); padding: 0.35rem 0.9rem;
-    border-radius: 100px; background: var(--gold-dim); margin-bottom: 1.25rem;
-  }
-
-  .modal-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-
-  .modal h3 {
-    font-family: var(--serif); font-size: 1.75rem; font-weight: 300;
-    color: var(--text-1); margin-bottom: 0.5rem; line-height: 1.2;
-  }
-
-  .modal-plan-price { font-size: 0.9rem; color: var(--gold-light); margin-bottom: 1.5rem; }
-
-  .modal-steps { list-style: none; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; }
-
-  .modal-steps li { display: flex; gap: 0.85rem; align-items: flex-start; font-size: 0.92rem; color: var(--text-2); line-height: 1.5; }
-
-  .modal-step-num {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--gold-dim); border: 1px solid var(--gold-border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-family: var(--serif); font-size: 0.75rem;
-    color: var(--gold); margin-top: 1px;
-  }
-
-  .modal-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); margin: 1.5rem 0; }
-
-  .modal-timer-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.4rem; text-align: center; }
-
-  .modal-timer { text-align: center; font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--gold-light); letter-spacing: 0.05em; margin-bottom: 1.5rem; line-height: 1; }
-
-  .modal-timer.urgent { color: #e07070; }
-
-  .modal-actions { display: flex; flex-direction: column; gap: 0.75rem; }
-
-  .modal-btn-pay {
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-    font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg-0);
-    background: var(--gold); padding: 0.95rem 2rem; border-radius: 2px;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all 0.2s; width: 100%;
-  }
-  .modal-btn-pay:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
-
-  .modal-btn-wpp {
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-    font-family: var(--sans); font-size: 0.82rem; font-weight: 400;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--gold-border); padding: 0.8rem 2rem;
-    border-radius: 2px; text-decoration: none; background: transparent;
-    cursor: pointer; transition: all 0.2s; width: 100%;
-  }
-  .modal-btn-wpp:hover { background: var(--gold-dim); }
-
-  .modal-guarantee { text-align: center; font-size: 0.75rem; color: var(--text-3); margin-top: 1rem; }
-
-  /* ─── ANIMATIONS ─── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 480px) {
-    nav { padding: 1rem; }
-    .hero { padding: 7rem 1.25rem 4rem; }
-    .hero-stats { gap: 2rem; }
-    .proof-bar { gap: 1.5rem; padding: 1.5rem; }
-    .pricing-card { padding: 2rem 1.5rem; }
-    .cta-trust { gap: 1rem; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presença Certa — Sites Profissionais para Autônomos e MEIs</title>
+  <meta name="description"
+    content="Seu negócio é bom. O problema é que ninguém te acha. Site profissional entregue em até 3 dias, sem mensalidade. Paga uma vez e pronto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dim: rgba(201, 168, 76, 0.12);
+      --gold-border: rgba(201, 168, 76, 0.28);
+      --bg-0: #0A0A0A;
+      --bg-1: #111111;
+      --bg-2: #181818;
+      --bg-3: #222222;
+      --text-1: #F0EDE4;
+      --text-2: #B0A898;
+      --text-3: #6E6760;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-0);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+    }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg-0);
+      background: var(--gold);
+      padding: 0.55rem 1.4rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 168, 76, 0.2) 0%, rgba(201, 168, 76, 0.07) 50%, transparent 75%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(201, 168, 76, 0.07) 0%, transparent 60%);
+    }
+
+    .hero-badge-wrapper {
+      animation: float 3.5s ease-in-out infinite;
+      will-change: transform;
+      margin-bottom: 2.5rem;
+      display: inline-block;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      background: var(--gold-dim);
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0px, 0);
+      }
+
+      50% {
+        transform: translate3d(0, -4px, 0);
+      }
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      max-width: 820px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg-0);
+      background: var(--gold);
+      padding: 0.95rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(201, 168, 76, 0.2);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.95rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s;
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.7), transparent);
+      animation: shimmer 3.5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -60%;
+      }
+
+      100% {
+        left: 160%;
+      }
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem {
+      padding: 7rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .problem {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .problem-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      color: var(--text-1);
+    }
+
+    .problem-text p {
+      color: var(--text-2);
+      font-size: 0.97rem;
+      margin-bottom: 1rem;
+    }
+
+    .problem-text strong {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .problem-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .problem-card {
+      padding: 1.5rem;
+      border: 1px solid var(--bg-3);
+      border-radius: 8px;
+      background: var(--bg-1);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .problem-card:hover {
+      border-color: var(--gold-border);
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+    }
+
+    .problem-card.bad::before {
+      background: #333;
+    }
+
+    .problem-card.good::before {
+      background: var(--gold);
+    }
+
+    .problem-card-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .problem-card.bad .problem-card-label {
+      color: var(--text-3);
+    }
+
+    .problem-card.good .problem-card-label {
+      color: var(--gold);
+    }
+
+    .problem-card p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding: 7rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .how h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 4rem;
+      color: var(--text-1);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    @media (max-width: 640px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(16.66% + 28px);
+      right: calc(16.66% + 28px);
+      height: 1px;
+      background: var(--gold-border);
+      z-index: 0;
+    }
+
+    @media (max-width: 640px) {
+      .steps::before {
+        display: none;
+      }
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      background: var(--bg-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.5s;
+    }
+
+    .step-num.active {
+      background: var(--bg-1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1);
+      transform: scale(1.15);
+    }
+
+    .step h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text-1);
+      margin-bottom: 0.3rem;
+    }
+
+    .step p {
+      font-size: 0.87rem;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* ─── PROVA SOCIAL ─── */
+    .social-proof {
+      padding: 7rem 2rem;
+      background: var(--bg-1);
+      border-top: 1px solid var(--bg-3);
+      border-bottom: 1px solid var(--bg-3);
+    }
+
+    .social-proof-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .social-proof h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      color: var(--text-1);
+    }
+
+    .social-proof-sub {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      margin-bottom: 4rem;
+    }
+
+    .proof-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+      padding: 2rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      background: var(--gold-dim);
+    }
+
+    .proof-bar-item {
+      text-align: center;
+    }
+
+    .proof-bar-number {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .proof-bar-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    .testimonial-card {
+      background: var(--bg-2);
+      border: 1px solid var(--bg-3);
+      border-radius: 4px;
+      padding: 2rem;
+      text-align: left;
+      transition: border-color 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--gold-border);
+    }
+
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-text strong {
+      color: var(--text-1);
+      font-style: normal;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-1);
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    .testimonial-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      background: var(--gold-dim);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      padding: 7rem 2rem;
+    }
+
+    .pricing-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pricing h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      color: var(--text-1);
+    }
+
+    .pricing-sub {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-card {
+      background: var(--bg-1);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      padding: 3rem 2.5rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .pricing-card-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg-0);
+      background: var(--gold);
+      padding: 0.3rem 1.2rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .pricing-price-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pricing-price {
+      font-family: var(--serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--text-1);
+      line-height: 1;
+    }
+
+    .pricing-price-prefix {
+      font-size: 1.2rem;
+      color: var(--text-3);
+      font-family: var(--sans);
+      padding-bottom: 0.6rem;
+    }
+
+    .pricing-period {
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-installment {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: var(--gold-border);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.92rem;
+      color: var(--text-2);
+    }
+
+    .check-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .check-icon path {
+      stroke: var(--gold);
+    }
+
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--bg-0);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pricing-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-3);
+      margin-top: 1rem;
+    }
+
+    .pricing-reassure {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .reassure-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+    }
+
+    .reassure-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ─── GUARANTEE ─── */
+    .guarantee {
+      padding: 6rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .guarantee-icon {
+      width: 64px;
+      height: 64px;
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      background: var(--gold-dim);
+    }
+
+    .guarantee h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--text-1);
+    }
+
+    .guarantee p {
+      color: var(--text-2);
+      font-size: 0.95rem;
+    }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 7rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .faq-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--text-1);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--bg-3);
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      text-align: left;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text-1);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover {
+      color: var(--gold-light);
+    }
+
+    .faq-q .faq-icon {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--bg-3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--text-3);
+      transition: all 0.2s;
+    }
+
+    .faq-item.open .faq-q .faq-icon {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-bottom: 1.5rem;
+    }
+
+    .faq-a p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.8;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      padding: 8rem 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 90% at 50% 100%, rgba(201, 168, 76, 0.15) 0%, rgba(201, 168, 76, 0.06) 50%, transparent 75%);
+    }
+
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-1);
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .cta-section p {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-trust {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+    }
+
+    .trust-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* ─── PORTFÓLIO ─── */
+    .portfolio {
+      padding: 7rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .portfolio h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      color: var(--text-1);
+    }
+
+    .portfolio-sub {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      margin-bottom: 4rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      text-align: left;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    .portfolio-card {
+      background: var(--bg-1);
+      border: 1px solid var(--bg-3);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+      position: relative;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-4px);
+    }
+
+    .portfolio-preview {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--bg-3);
+    }
+
+    .portfolio-browser {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .browser-bar {
+      background: var(--bg-3);
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .browser-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .browser-dot.red {
+      background: #ff5f57;
+    }
+
+    .browser-dot.yellow {
+      background: #febc2e;
+    }
+
+    .browser-dot.green {
+      background: #28c840;
+    }
+
+    .browser-url {
+      flex: 1;
+      background: var(--bg-2);
+      border-radius: 3px;
+      height: 16px;
+      margin-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+    }
+
+    .browser-url span {
+      font-size: 0.6rem;
+      color: var(--text-3);
+      font-family: var(--sans);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .browser-content {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Advocacia ── */
+    .preview-law {
+      background: #0d0d0d;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .preview-law-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-law-logo {
+      font-family: var(--serif);
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+    }
+
+    .preview-law-badge {
+      font-size: 0.45rem;
+      color: #888;
+      border: 1px solid #333;
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+    }
+
+    .preview-law-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0;
+    }
+
+    .preview-law-tag {
+      font-size: 0.45rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .preview-law-h1 {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #f0ede4;
+      line-height: 1.2;
+    }
+
+    .preview-law-sub {
+      font-size: 0.45rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .preview-law-btn {
+      display: inline-block;
+      font-size: 0.45rem;
+      background: var(--gold);
+      color: #000;
+      padding: 0.3rem 0.7rem;
+      border-radius: 1px;
+      width: fit-content;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Beleza ── */
+    .preview-beauty {
+      background: #1a1008;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .preview-beauty-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-beauty-logo {
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      color: #e8c9a0;
+      letter-spacing: 0.05em;
+    }
+
+    .preview-beauty-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .preview-beauty-tag {
+      font-size: 0.45rem;
+      color: #c4845a;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .preview-beauty-h1 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      color: #f5ede4;
+      line-height: 1.2;
+    }
+
+    .preview-beauty-h1 em {
+      font-style: italic;
+      color: #e8c9a0;
+    }
+
+    .preview-beauty-sub {
+      font-size: 0.45rem;
+      color: #998880;
+      line-height: 1.5;
+    }
+
+    .preview-beauty-pills {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .preview-beauty-pill {
+      font-size: 0.4rem;
+      border: 1px solid rgba(196, 132, 90, 0.3);
+      color: #c4845a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 100px;
+    }
+
+    .preview-beauty-btn {
+      display: inline-block;
+      font-size: 0.45rem;
+      background: #c4845a;
+      color: #fff;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      width: fit-content;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Lingerie ── */
+    .preview-lingerie {
+      background: #fff8f5;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .preview-lingerie-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-lingerie-logo {
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      color: #b06080;
+      letter-spacing: 0.05em;
+    }
+
+    .preview-lingerie-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .preview-lingerie-tag {
+      font-size: 0.45rem;
+      color: #b06080;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .preview-lingerie-h1 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2a1a22;
+      line-height: 1.2;
+    }
+
+    .preview-lingerie-h1 em {
+      font-style: italic;
+      color: #b06080;
+    }
+
+    .preview-lingerie-sub {
+      font-size: 0.45rem;
+      color: #998880;
+      line-height: 1.5;
+    }
+
+    .preview-lingerie-stats {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .preview-lingerie-stat {
+      font-size: 0.5rem;
+      color: #2a1a22;
+      font-weight: 500;
+    }
+
+    .preview-lingerie-stat span {
+      display: block;
+      font-size: 0.75rem;
+      color: #b06080;
+      font-weight: 600;
+    }
+
+    .preview-lingerie-btn {
+      display: inline-block;
+      font-size: 0.45rem;
+      background: #b06080;
+      color: #fff;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      width: fit-content;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Card info ── */
+    .portfolio-info {
+      padding: 1.5rem;
+    }
+
+    .portfolio-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .portfolio-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--text-1);
+      margin-bottom: 0.4rem;
+    }
+
+    .portfolio-desc {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .portfolio-features {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .portfolio-feature {
+      font-size: 0.65rem;
+      color: var(--text-3);
+      border: 1px solid var(--bg-3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .portfolio-link:hover {
+      opacity: 0.7;
+    }
+
+    .portfolio-link svg {
+      transition: transform 0.2s;
+    }
+
+    .portfolio-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .portfolio-cta {
+      margin-top: 4rem;
+      padding: 2rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      background: var(--gold-dim);
+      text-align: center;
+    }
+
+    .portfolio-cta p {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-cta p strong {
+      color: var(--text-1);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--bg-3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      text-align: center;
+    }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: wpp-pulse 2.5s ease-in-out infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    @keyframes wpp-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg-1);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s ease;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(201, 168, 76, 0.07);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-3);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text-1);
+    }
+
+    .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      background: var(--gold-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .modal h3 {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: var(--text-1);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .modal-plan-price {
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-steps {
+      list-style: none;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .modal-steps li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .modal-step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-top: 1px;
+    }
+
+    .modal-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+      margin: 1.5rem 0;
+    }
+
+    .modal-timer-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .modal-timer {
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+
+    .modal-timer.urgent {
+      color: #e07070;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .modal-btn-pay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg-0);
+      background: var(--gold);
+      padding: 0.95rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .modal-btn-pay:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
+    }
+
+    .modal-btn-wpp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.8rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .modal-btn-wpp:hover {
+      background: var(--gold-dim);
+    }
+
+    .modal-guarantee {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-3);
+      margin-top: 1rem;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 480px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .hero {
+        padding: 7rem 1.25rem 4rem;
+      }
+
+      .hero-stats {
+        gap: 2rem;
+      }
+
+      .proof-bar {
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .pricing-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .pricing-price-row {
+        justify-content: center;
+      }
+
+      .pricing-period,
+      .pricing-installment {
+        text-align: center;
+      }
+
+      .cta-trust {
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">Presença Certa</span>
-  <a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+e+quero+criar+meu+site+profissional." class="nav-cta" target="_blank" rel="noopener">Falar agora</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Presença Certa</span>
+    <a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+e+quero+criar+meu+site+profissional." class="nav-cta"
+      target="_blank" rel="noopener">Falar agora</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-badge-wrapper">
-    <div class="hero-badge">Entrega em até 3 dias</div>
-  </div>
-
-  <h1>Seu negócio é bom.<br><em>O problema é que<br>ninguém te acha.</em></h1>
-
-  <p class="hero-sub">
-    Autônomo sem site perde cliente todo dia — para concorrentes que aparecem no Google, mesmo sendo piores. A Presença Certa resolve isso em até 3 dias, sem mensalidade e sem surpresa no bolso.
-  </p>
-
-  <div class="hero-actions">
-    <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+profissional+%F0%9F%91%8B" class="btn-primary" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Quero meu site agora
-    </a>
-    <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-number">R$0</span>
-      <span class="stat-label">Taxa mensal</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">3</span>
-      <span class="stat-label">Dias ou menos</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">100%</span>
-      <span class="stat-label">Garantia</span>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROBLEMA -->
-<section>
-  <div class="problem">
-    <div class="problem-text fade-up">
-      <span class="section-label">O problema</span>
-      <h2>Você posta todo dia. Mas o cliente não te encontra.</h2>
-      <p>A maioria dos autônomos depende de indicação ou sorte. O Instagram some no algoritmo. O telefone fica quieto.</p>
-      <p>Quem tem um <strong>site profissional bem configurado</strong> recebe contatos todos os dias — direto no WhatsApp, sem pedir indicação.</p>
-      <p>Cada dia sem site é um cliente que foi para o concorrente. Mesmo sendo ele pior que você.</p>
-    </div>
-    <div class="problem-visual fade-up">
-      <div class="problem-card bad">
-        <div class="problem-card-label">Sem site</div>
-        <p>Depende de indicação. Pede o site no Instagram e não tem nada pra mostrar. Perde pro concorrente que parece mais profissional.</p>
-      </div>
-      <div class="problem-card good">
-        <div class="problem-card-label">Com site profissional</div>
-        <p>Cliente te acha no Google, vê que você é profissional, clica e cai direto no seu WhatsApp. Todo dia, no automático.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- COMO FUNCIONA -->
-<section id="como-funciona">
-  <div class="how">
-    <span class="section-label">Processo</span>
-    <h2 class="fade-up">Simples assim.</h2>
-    <div class="steps">
-      <div class="step fade-up">
-        <div class="step-num"><span>1</span></div>
-        <h3>Você me chama</h3>
-        <p>Me manda uma mensagem no WhatsApp e me conta sobre o seu negócio. Leva 5 minutos.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num"><span>2</span></div>
-        <h3>Eu crio tudo</h3>
-        <p>Monto seu site, configuro o domínio e entrego pronto. Você não precisa fazer nada técnico.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num"><span>3</span></div>
-        <h3>Clientes chegando</h3>
-        <p>Você cola o link no Instagram e começa a receber contatos direto no WhatsApp — e o Google já começa a te encontrar.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PORTFÓLIO -->
-<section>
-  <div class="portfolio">
-    <span class="section-label">Portfólio</span>
-    <h2 class="fade-up">Sites que já entregamos.</h2>
-    <p class="portfolio-sub fade-up">Cada site feito sob medida — visual premium, botão WhatsApp e pronto pra converter.</p>
-
-    <div class="portfolio-grid">
-
-      <!-- ADVOCACIA -->
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-preview">
-          <div class="portfolio-browser">
-            <div class="browser-bar">
-              <div class="browser-dot red"></div>
-              <div class="browser-dot yellow"></div>
-              <div class="browser-dot green"></div>
-              <div class="browser-url"><span>direitocomprecisao.com.br</span></div>
-            </div>
-            <div class="browser-content">
-              <img src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/001%20-%20A.jpg" alt="Site Direito com Precisão" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <span class="portfolio-tag">Advocacia · RJ</span>
-          <div class="portfolio-title">Direito com Precisão</div>
-          <p class="portfolio-desc">Site institucional para advogado autônomo com foco em atendimento digital. Copy OAB-compliant, banner de segurança e botão WhatsApp.</p>
-          <div class="portfolio-features">
-            <span class="portfolio-feature">Fundo escuro premium</span>
-            <span class="portfolio-feature">Botão WhatsApp</span>
-            <span class="portfolio-feature">SEO configurado</span>
-          </div>
-          <a href="https://direitocomprecisao.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
-            Ver site ao vivo
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- BELEZA -->
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-preview">
-          <div class="portfolio-browser">
-            <div class="browser-bar">
-              <div class="browser-dot red"></div>
-              <div class="browser-dot yellow"></div>
-              <div class="browser-dot green"></div>
-              <div class="browser-url"><span>aurastudio.com.br</span></div>
-            </div>
-            <div class="browser-content">
-              <img src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/002%20-%20A.jpg" alt="Site Studio Aura" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <span class="portfolio-tag">Beleza · SP</span>
-          <div class="portfolio-title">Studio Aura</div>
-          <p class="portfolio-desc">Site para salão de beleza premium com menu de serviços, galeria de fotos, horários de funcionamento e agendamento direto pelo WhatsApp.</p>
-          <div class="portfolio-features">
-            <span class="portfolio-feature">Visual feminino premium</span>
-            <span class="portfolio-feature">Galeria de serviços</span>
-            <span class="portfolio-feature">Horários + mapa</span>
-          </div>
-          <a href="https://aurastudio-sage.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
-            Ver site ao vivo
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- LINGERIE -->
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-preview">
-          <div class="portfolio-browser">
-            <div class="browser-bar">
-              <div class="browser-dot red"></div>
-              <div class="browser-dot yellow"></div>
-              <div class="browser-dot green"></div>
-              <div class="browser-url"><span>encantointimo.com.br</span></div>
-            </div>
-            <div class="browser-content">
-              <img src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/003%20-%20A.jpg" alt="Site Encanto Íntimo" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <span class="portfolio-tag">Varejo · RJ</span>
-          <div class="portfolio-title">Encanto Íntimo</div>
-          <p class="portfolio-desc">Loja de lingerie com catálogo de produtos organizado por categoria, prova social com números de clientes e vendas diretas pelo WhatsApp.</p>
-          <div class="portfolio-features">
-            <span class="portfolio-feature">Catálogo visual</span>
-            <span class="portfolio-feature">Prova social</span>
-            <span class="portfolio-feature">Vendas pelo WhatsApp</span>
-          </div>
-          <a href="https://encantointimo.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
-            Ver site ao vivo
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge-wrapper">
+      <div class="hero-badge">Entrega em até 3 dias</div>
     </div>
 
-    <div class="portfolio-cta fade-up">
-      <p>Tem dúvidas ou quer saber mais sobre como funciona? <strong>Me chama no WhatsApp.</strong></p>
-      <a href="https://wa.me/5521985252497?text=Oi%2C+vi+o+portfólio+da+Presença+Certa+e+tenho+algumas+dúvidas+%F0%9F%91%8B" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Tirar dúvidas pelo WhatsApp
+    <h1>O seu trabalho é ótimo.<br><em>O desafio é fazer<br>as pessoas te encontrarem.</em></h1>
+
+    <p class="hero-sub">
+      Uma página profissional pode ser a peça que falta para atrair clientes que procuram pelo seu serviço no Google.
+      Nós criamos o seu site em até 3 dias, garantindo presença digital sem mensalidades ou surpresas.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+profissional+%F0%9F%91%8B" class="btn-primary"
+        target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        Ter o meu site profissional
       </a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROVA SOCIAL -->
-<section class="social-proof">
-  <div class="social-proof-inner">
-    <span class="section-label">Resultados</span>
-    <h2 class="fade-up">Quem tinha o mesmo problema que você.</h2>
-    <p class="social-proof-sub fade-up">Autônomos que estavam invisíveis na internet — e mudaram isso.</p>
-
-    <div class="proof-bar fade-up">
-      <div class="proof-bar-item">
-        <span class="proof-bar-number">+30</span>
-        <span class="proof-bar-label">Sites entregues</span>
-      </div>
-      <div class="proof-bar-item">
-        <span class="proof-bar-number">3 dias</span>
-        <span class="proof-bar-label">Prazo máximo</span>
-      </div>
-      <div class="proof-bar-item">
-        <span class="proof-bar-number">R$0</span>
-        <span class="proof-bar-label">Mensalidade</span>
-      </div>
-      <div class="proof-bar-item">
-        <span class="proof-bar-number">100%</span>
-        <span class="proof-bar-label">Garantia devolvida</span>
-      </div>
+      <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
     </div>
 
-    <div class="testimonials">
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Eu mandava meu Instagram pra todo cliente, mas ninguém levava a sério. Com o site, mudou tudo. <strong>Um noivado fechou comigo depois de ver o site — sem nem falar de preço antes.</strong>"</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">T</div>
-          <div>
-            <div class="testimonial-name">Thiago R.</div>
-            <div class="testimonial-role">Fotógrafo · SP</div>
-          </div>
-        </div>
-        <div class="testimonial-tag">Credibilidade</div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">R$0</span>
+        <span class="stat-label">Taxa mensal</span>
       </div>
-
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Tentei agência antes — orçamento de R$3.000 e prazo de 30 dias. Com a Presença Certa, <strong>paguei muito menos, recebi em 2 dias</strong> e não pago nada por mês. Valeu muito."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">F</div>
-          <div>
-            <div class="testimonial-name">Fernanda S.</div>
-            <div class="testimonial-role">Nutricionista · SP</div>
-          </div>
-        </div>
-        <div class="testimonial-tag">Custo-benefício</div>
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Dias ou menos</span>
       </div>
-
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Não entendo nada de tecnologia e fiquei com medo de complicar. Foi tudo simples demais — <strong>só contei sobre o meu trabalho e recebi o site pronto.</strong> Não esperava ser tão fácil."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">M</div>
-          <div>
-            <div class="testimonial-name">Marcos T.</div>
-            <div class="testimonial-role">Personal Trainer · MG</div>
-          </div>
-        </div>
-        <div class="testimonial-tag">Simplicidade</div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Garantia</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- PRICING -->
-<section class="pricing" id="pacotes">
-  <div class="pricing-inner">
-    <span class="section-label">Investimento</span>
-    <h2 class="fade-up">Paga uma vez.<br>Sem mensalidade cobrada por mim.</h2>
-    <p class="pricing-sub fade-up">Sem mensalidade. Sem surpresa.</p>
-
-    <div class="pricing-card fade-up">
-      <div class="pricing-card-badge">Site Profissional Completo</div>
-      <div class="pricing-price-row">
-        <span class="pricing-price-prefix">R$</span>
-        <span class="pricing-price">697</span>
+  <!-- PROBLEMA -->
+  <section>
+    <div class="problem">
+      <div class="problem-text fade-up">
+        <span class="section-label">O problema</span>
+        <h2>Você trabalha duro por cada cliente.</h2>
+        <p>Nós sabemos que depender exclusivamente do Instagram ou do constante "boca a boca" pode gerar altos e baixos
+          na atração de clientes.</p>
+        <p>Com um <strong>site profissional próprio</strong>, as pessoas que buscam no Google pelo que você faz ganham
+          muito mais confiança no seu trabalho — e acabam chamando você no WhatsApp.</p>
+        <p>É uma apresentação que valoriza o seu esforço e cria um laço super saudável desde o momento do primeiro
+          clique na página.</p>
       </div>
-      <div class="pricing-period">Pagamento único · Pix ou cartão</div>
-      <div class="pricing-installment">ou parcele em até 12× no cartão</div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
+      <div class="problem-visual fade-up">
+        <div class="problem-card bad">
+          <div class="problem-card-label">Apenas no Instagram</div>
+          <p>A atenção pode ficar muito limitada. Quando uma pessoa busca mais solidez e não acha um link profissional,
+            a página faz bastante falta.</p>
+        </div>
+        <div class="problem-card good">
+          <div class="problem-card-label">Com site profissional</div>
+          <p>Cliente te acha no Google, vê que você é profissional, clica e cai direto no seu WhatsApp. Todo dia, no
+            automático.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="how">
+      <span class="section-label">Processo</span>
+      <h2 class="fade-up">Simples assim.</h2>
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num"><span>1</span></div>
+          <h3>Você me chama</h3>
+          <p>Me manda uma mensagem no WhatsApp e me conta sobre o seu negócio. Leva 5 minutos.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num"><span>2</span></div>
+          <h3>Eu crio tudo</h3>
+          <p>Monto seu site, configuro o domínio e entrego pronto. Você não precisa fazer nada técnico.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num"><span>3</span></div>
+          <h3>Clientes chegando</h3>
+          <p>Você cola o link no Instagram e começa a receber contatos direto no WhatsApp — e o Google já começa a te
+            encontrar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PORTFÓLIO -->
+  <section>
+    <div class="portfolio">
+      <span class="section-label">Portfólio</span>
+      <h2 class="fade-up">Sites que já entregamos.</h2>
+      <p class="portfolio-sub fade-up">Cada site feito sob medida — visual premium, botão WhatsApp e pronto pra
+        converter.</p>
+
+      <div class="portfolio-grid">
+
+        <!-- ADVOCACIA -->
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-preview">
+            <div class="portfolio-browser">
+              <div class="browser-bar">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot yellow"></div>
+                <div class="browser-dot green"></div>
+                <div class="browser-url"><span>direitocomprecisao.com.br</span></div>
+              </div>
+              <div class="browser-content">
+                <img
+                  src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/001%20-%20A.jpg"
+                  alt="Site Direito com Precisão"
+                  style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Advocacia · RJ</span>
+            <div class="portfolio-title">Direito com Precisão</div>
+            <p class="portfolio-desc">Site institucional para advogado autônomo com foco em atendimento digital. Copy
+              OAB-compliant, banner de segurança e botão WhatsApp.</p>
+            <div class="portfolio-features">
+              <span class="portfolio-feature">Fundo escuro premium</span>
+              <span class="portfolio-feature">Botão WhatsApp</span>
+              <span class="portfolio-feature">SEO configurado</span>
+            </div>
+            <a href="https://direitocomprecisao.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+              Ver site ao vivo
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- BELEZA -->
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-preview">
+            <div class="portfolio-browser">
+              <div class="browser-bar">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot yellow"></div>
+                <div class="browser-dot green"></div>
+                <div class="browser-url"><span>aurastudio.com.br</span></div>
+              </div>
+              <div class="browser-content">
+                <img
+                  src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/002%20-%20A.jpg"
+                  alt="Site Studio Aura"
+                  style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Beleza · SP</span>
+            <div class="portfolio-title">Studio Aura</div>
+            <p class="portfolio-desc">Site para salão de beleza premium com menu de serviços, galeria de fotos, horários
+              de funcionamento e agendamento direto pelo WhatsApp.</p>
+            <div class="portfolio-features">
+              <span class="portfolio-feature">Visual feminino premium</span>
+              <span class="portfolio-feature">Galeria de serviços</span>
+              <span class="portfolio-feature">Horários + mapa</span>
+            </div>
+            <a href="https://aurastudio-sage.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+              Ver site ao vivo
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- LINGERIE -->
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-preview">
+            <div class="portfolio-browser">
+              <div class="browser-bar">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot yellow"></div>
+                <div class="browser-dot green"></div>
+                <div class="browser-url"><span>encantointimo.com.br</span></div>
+              </div>
+              <div class="browser-content">
+                <img
+                  src="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/003%20-%20A.jpg"
+                  alt="Site Encanto Íntimo"
+                  style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Varejo · RJ</span>
+            <div class="portfolio-title">Encanto Íntimo</div>
+            <p class="portfolio-desc">Loja de lingerie com catálogo de produtos organizado por categoria, prova social
+              com números de clientes e vendas diretas pelo WhatsApp.</p>
+            <div class="portfolio-features">
+              <span class="portfolio-feature">Catálogo visual</span>
+              <span class="portfolio-feature">Prova social</span>
+              <span class="portfolio-feature">Vendas pelo WhatsApp</span>
+            </div>
+            <a href="https://encantointimo.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+              Ver site ao vivo
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="portfolio-cta fade-up">
+        <p>Tem dúvidas ou quer saber mais sobre como funciona? <strong>Me chama no WhatsApp.</strong></p>
+        <a href="https://wa.me/5521985252497?text=Oi%2C+vi+o+portfólio+da+Presença+Certa+e+tenho+algumas+dúvidas+%F0%9F%91%8B"
+          class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          Tirar dúvidas pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROVA SOCIAL -->
+  <section class="social-proof">
+    <div class="social-proof-inner">
+      <span class="section-label">Resultados</span>
+      <h2 class="fade-up">Quem tinha o mesmo problema que você.</h2>
+      <p class="social-proof-sub fade-up">Autônomos que estavam invisíveis na internet — e mudaram isso.</p>
+
+      <div class="proof-bar fade-up">
+        <div class="proof-bar-item">
+          <span class="proof-bar-number">+30</span>
+          <span class="proof-bar-label">Sites entregues</span>
+        </div>
+        <div class="proof-bar-item">
+          <span class="proof-bar-number">3 dias</span>
+          <span class="proof-bar-label">Prazo máximo</span>
+        </div>
+        <div class="proof-bar-item">
+          <span class="proof-bar-number">R$0</span>
+          <span class="proof-bar-label">Mensalidade</span>
+        </div>
+        <div class="proof-bar-item">
+          <span class="proof-bar-number">100%</span>
+          <span class="proof-bar-label">Garantia devolvida</span>
+        </div>
+      </div>
+
+      <div class="testimonials">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Eu mandava meu Instagram pra todo cliente, mas ninguém levava a sério. Com o
+            site, mudou tudo. <strong>Um noivado fechou comigo depois de ver o site — sem nem falar de preço
+              antes.</strong>"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">T</div>
+            <div>
+              <div class="testimonial-name">Thiago R.</div>
+              <div class="testimonial-role">Fotógrafo · SP</div>
+            </div>
+          </div>
+          <div class="testimonial-tag">Credibilidade</div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Tentei agência antes — orçamento de R$3.000 e prazo de 30 dias. Com a Presença
+            Certa, <strong>paguei muito menos, recebi em 2 dias</strong> e não pago nada por mês. Valeu muito."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">F</div>
+            <div>
+              <div class="testimonial-name">Fernanda S.</div>
+              <div class="testimonial-role">Nutricionista · SP</div>
+            </div>
+          </div>
+          <div class="testimonial-tag">Custo-benefício</div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Não entendo nada de tecnologia e fiquei com medo de complicar. Foi tudo simples
+            demais — <strong>só contei sobre o meu trabalho e recebi o site pronto.</strong> Não esperava ser tão
+            fácil."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marcos T.</div>
+              <div class="testimonial-role">Personal Trainer · MG</div>
+            </div>
+          </div>
+          <div class="testimonial-tag">Simplicidade</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pacotes">
+    <div class="pricing-inner">
+      <span class="section-label">Investimento</span>
+      <h2 class="fade-up">Paga uma vez.<br>Sem mensalidade cobrada por mim.</h2>
+      <p class="pricing-sub fade-up">Sem mensalidade. Sem surpresa.</p>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-card-badge">Site Profissional Completo</div>
+        <div class="pricing-price-row">
+          <span class="pricing-price-prefix">R$</span>
+          <span class="pricing-price">697</span>
+        </div>
+        <div class="pricing-period">Pagamento único · Pix ou cartão</div>
+        <div class="pricing-installment">ou parcele em até 12× no cartão</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Site profissional completo com visual premium
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Domínio próprio configurado (ex: seunegocio.com.br)
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Botão direto pro seu WhatsApp
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Link pronto para a bio do Instagram e Google
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Hospedagem gratuita inclusa — sem mensalidade
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Entrega em até 3 dias úteis — garantida
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Suporte via WhatsApp após entrega
+          </li>
+        </ul>
+        <button class="pricing-btn" onclick="openModal()">Quero meu site profissional</button>
+        <div class="pricing-note">✓ Entrega garantida em até 3 dias · Garantia de 7 dias</div>
+      </div>
+
+      <div class="pricing-reassure">
+        <div class="reassure-item"><span class="reassure-dot"></span> Zero mensalidade</div>
+        <div class="reassure-item"><span class="reassure-dot"></span> Hospedagem inclusa</div>
+        <div class="reassure-item"><span class="reassure-dot"></span> Pagamento único</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GARANTIA -->
+  <section class="guarantee">
+    <div class="guarantee-icon">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 3L5 7v7c0 5.25 3.85 10.15 9 11.35C19.15 24.15 23 19.25 23 14V7L14 3z" stroke="#C9A84C"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M10 14l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <span class="section-label">O nosso compromisso</span>
+    <h2 class="fade-up">Transparência do começo ao fim.</h2>
+    <p>Vamos alinhar tudo juntos antes mesmo de começar: os detalhes, a cara do negócio e o resultado final. Se no final
+      a página por um acaso não encaixar com o que alinhamos, devolvemos todo o seu investimento, respeitando seu
+      esforço e o nosso trabalho.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="faq-header">
+      <span class="section-label">Dúvidas</span>
+      <h2 class="fade-up">Perguntas frequentes</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Preciso entender alguma coisa técnica para ter meu site?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Não. Você só me conta sobre o seu negócio e eu faço tudo. Quando terminar, você recebe o link pronto para
+          colocar no Instagram e no Google. É só isso.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tem uma opção mais acessível para começar?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Sim. A Presença Bio é uma página profissional de entrada por R$197 — com seus serviços, foto e botão direto
+          pro WhatsApp. Perfeita para quem quer ter presença agora e evoluir depois. Os R$197 são descontados no site
+          completo quando quiser fazer o upgrade — você complementa só R$500. Me chame no WhatsApp para saber mais.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        O que é domínio próprio e preciso pagar separado?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>O domínio próprio (ex: seunegocio.com.br) está incluso no valor do site — você não paga nada a mais. Eu cuido
+          da compra e de toda a configuração técnica. Sem custo extra, sem surpresa.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tem alguma mensalidade depois?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Não. Não cobro mensalidade pelo serviço. A hospedagem é gratuita e sem custo recorrente. O único custo
+          eventual é o domínio próprio — que você pode adquirir separadamente ou eu cuido da compra pra você durante a
+          entrega do site.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Funciona para qualquer tipo de negócio?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Sim. Já criei sites para advogados, personal trainers, fotógrafos, consultoras, DJs e prestadores de serviço
+          em geral. Se você atende pessoas e quer ser encontrado, funciona para o seu negócio.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Consigo ver um exemplo antes de decidir?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Sim! Aqui no nosso portfólio você já pode ver exemplos reais de sites entregues em diferentes segmentos. Se
+          tiver dúvidas específicas, me chama no WhatsApp e a gente conversa.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Em quanto tempo fico com o site no ar?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Em até 3 dias úteis após a confirmação do pagamento. Na maioria dos casos entrego antes. Você acompanha tudo
+          pelo WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <span class="section-label">Bora crescer juntos?</span>
+    <h2 class="fade-up">Um espaço online só seu<br>valoriza a sua imagem e mostra<br><em>o que você tem de melhor.</em>
+    </h2>
+    <p>Fique totalmente à vontade para me chamar. Podemos bater um papo leve, ver exemplos maravilhosos do que seu
+      negócio pode ter e conversar melhor.</p>
+    <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+%F0%9F%91%8B+Vi+sua+p%C3%A1gina+e+quero+saber+mais."
+      class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+      Falar no WhatsApp agora
+    </a>
+    <div class="cta-trust">
+      <div class="trust-item"><span class="trust-dot"></span>Respondo em minutos</div>
+      <div class="trust-item"><span class="trust-dot"></span>Entrega em até 3 dias</div>
+      <div class="trust-item"><span class="trust-dot"></span>Garantia de 7 dias</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Presença Certa</span>
+    <span class="footer-copy">Sites profissionais para autônomos e MEIs. Feito no Rio de Janeiro. 🌱</span>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+da+Presença+Certa+e+quero+saber+mais." class="whatsapp-float"
+    target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modalBox">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fechar">×</button>
+      <div class="modal-badge">Site Profissional · R$697</div>
+      <h3>Ótima escolha.</h3>
+      <div class="modal-plan-price">R$697 · Pix ou parcele em até 12× no cartão</div>
+      <ul class="modal-steps">
         <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Site profissional completo com visual premium
+          <div class="modal-step-num">1</div>
+          <span>Basta clicar em <strong style="color:var(--text-1)">Garantir meu site</strong> para seguir para a tela
+            protegida de pagamento.</span>
         </li>
         <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Domínio próprio configurado (ex: seunegocio.com.br)
+          <div class="modal-step-num">2</div>
+          <span>Após confirmado, <strong style="color:var(--text-1)">você recebe o link do nosso formulário bem rápido e
+              será encaminhado ao meu WhatsApp</strong>.</span>
         </li>
         <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Botão direto pro seu WhatsApp
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Link pronto para a bio do Instagram e Google
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Hospedagem gratuita inclusa — sem mensalidade
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Entrega em até 3 dias úteis — garantida
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Suporte via WhatsApp após entrega
+          <div class="modal-step-num">3</div>
+          <span>Aí é só me dar um "oi" por lá mesmo com o comprovante e as respostas. <strong
+              style="color:var(--text-1)">No prazo de 3 dias o seu site já fica no ar!</strong></span>
         </li>
       </ul>
-      <button class="pricing-btn" onclick="openModal()">Quero meu site profissional</button>
-      <div class="pricing-note">✓ Entrega garantida em até 3 dias · Garantia de 7 dias</div>
-    </div>
-
-    <div class="pricing-reassure">
-      <div class="reassure-item"><span class="reassure-dot"></span> Zero mensalidade</div>
-      <div class="reassure-item"><span class="reassure-dot"></span> Hospedagem inclusa</div>
-      <div class="reassure-item"><span class="reassure-dot"></span> Pagamento único</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- GARANTIA -->
-<section class="guarantee">
-  <div class="guarantee-icon">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <path d="M14 3L5 7v7c0 5.25 3.85 10.15 9 11.35C19.15 24.15 23 19.25 23 14V7L14 3z" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 14l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <span class="section-label">Garantia</span>
-  <h2 class="fade-up">Entrego o que foi acordado ou devolvo cada centavo.</h2>
-  <p>Combinamos tudo antes de começar — prazo, estrutura e resultado esperado. Se não entregar exatamente o que foi acordado, você recebe 100% do valor de volta. Sem perguntas, sem burocracia.</p>
-</section>
-
-<div class="divider"></div>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="faq-header">
-    <span class="section-label">Dúvidas</span>
-    <h2 class="fade-up">Perguntas frequentes</h2>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Preciso entender alguma coisa técnica para ter meu site?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Não. Você só me conta sobre o seu negócio e eu faço tudo. Quando terminar, você recebe o link pronto para colocar no Instagram e no Google. É só isso.</p>
+      <div class="modal-divider"></div>
+      <div class="modal-timer-label">Sua vaga está reservada por</div>
+      <div class="modal-timer" id="modalTimer">10:00</div>
+      <div class="modal-actions">
+        <a href="https://pay.herospark.com/seu-site-plano-completo-512232" target="_blank" class="modal-btn-pay">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+          Garantir meu site agora
+        </a>
+        <a href="https://wa.me/5521985252497?text=Quero+o+site+profissional+%F0%9F%91%8B+Tenho+uma+dúvida+antes+de+fechar."
+          target="_blank" class="modal-btn-wpp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          Tirar uma dúvida antes
+        </a>
+      </div>
+      <div class="modal-guarantee">🔒 Pagamento 100% seguro · Garantia de 7 dias</div>
     </div>
   </div>
 
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Tem uma opção mais acessível para começar?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Sim. A Presença Bio é uma página profissional de entrada por R$197 — com seus serviços, foto e botão direto pro WhatsApp. Perfeita para quem quer ter presença agora e evoluir depois. Os R$197 são descontados no site completo quando quiser fazer o upgrade — você complementa só R$500. Me chame no WhatsApp para saber mais.</p>
-    </div>
-  </div>
+  <!-- Meta Pixel -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      }; if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+    }(window,
+      document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1390666166151479');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1390666166151479&ev=PageView&noscript=1" /></noscript>
 
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      O que é domínio próprio e preciso pagar separado?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>O domínio próprio (ex: seunegocio.com.br) está incluso no valor do site — você não paga nada a mais. Eu cuido da compra e de toda a configuração técnica. Sem custo extra, sem surpresa.</p>
-    </div>
-  </div>
+  <script>
+    let timerInterval = null;
 
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Tem alguma mensalidade depois?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Não. Não cobro mensalidade pelo serviço. A hospedagem é gratuita e sem custo recorrente. O único custo eventual é o domínio próprio — que você pode adquirir separadamente ou eu cuido da compra pra você durante a entrega do site.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Funciona para qualquer tipo de negócio?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Sim. Já criei sites para advogados, personal trainers, fotógrafos, consultoras, DJs e prestadores de serviço em geral. Se você atende pessoas e quer ser encontrado, funciona para o seu negócio.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Consigo ver um exemplo antes de decidir?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Sim! Aqui no nosso portfólio você já pode ver exemplos reais de sites entregues em diferentes segmentos. Se tiver dúvidas específicas, me chama no WhatsApp e a gente conversa.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">
-      Em quanto tempo fico com o site no ar?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-a">
-      <p>Em até 3 dias úteis após a confirmação do pagamento. Na maioria dos casos entrego antes. Você acompanha tudo pelo WhatsApp.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CTA FINAL -->
-<section class="cta-section">
-  <span class="section-label">Comece hoje</span>
-  <h2 class="fade-up">Cada dia sem site<br>é um cliente perdido.<br><em>Resolve isso agora.</em></h2>
-  <p>Me manda uma mensagem — em 5 minutos te mostro um exemplo do que seria o seu site.</p>
-  <a href="https://wa.me/5521985252497?text=Quero+criar+meu+site+%F0%9F%91%8B+Vi+sua+p%C3%A1gina+e+quero+saber+mais." class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Falar no WhatsApp agora
-  </a>
-  <div class="cta-trust">
-    <div class="trust-item"><span class="trust-dot"></span>Respondo em minutos</div>
-    <div class="trust-item"><span class="trust-dot"></span>Entrega em até 3 dias</div>
-    <div class="trust-item"><span class="trust-dot"></span>Garantia de 7 dias</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">Presença Certa</span>
-  <span class="footer-copy">Sites profissionais para autônomos e MEIs. Feito no Rio de Janeiro. 🌱</span>
-</footer>
-
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/5521985252497?text=Olá!+Vi+o+site+da+Presença+Certa+e+quero+saber+mais." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-  <div class="modal" id="modalBox">
-    <button class="modal-close" onclick="closeModal()" aria-label="Fechar">×</button>
-    <div class="modal-badge">Site Profissional · R$697</div>
-    <h3>Ótima escolha.</h3>
-    <div class="modal-plan-price">R$697 · Pix ou parcele em até 12× no cartão</div>
-    <ul class="modal-steps">
-      <li>
-        <div class="modal-step-num">1</div>
-        <span>Clique em <strong style="color:var(--text-1)">Garantir meu site</strong> para ir à página de pagamento segura.</span>
-      </li>
-      <li>
-        <div class="modal-step-num">2</div>
-        <span>Após o pagamento, <strong style="color:var(--text-1)">você será redirecionado automaticamente para um formulário rápido e para o meu WhatsApp</strong>.</span>
-      </li>
-      <li>
-        <div class="modal-step-num">3</div>
-        <span>Me envie o comprovante e o briefing respondido, e eu começo na hora. <strong style="color:var(--text-1)">Em até 3 dias seu site estará no ar.</strong></span>
-      </li>
-    </ul>
-    <div class="modal-divider"></div>
-    <div class="modal-timer-label">Sua vaga está reservada por</div>
-    <div class="modal-timer" id="modalTimer">10:00</div>
-    <div class="modal-actions">
-      <a href="https://pay.herospark.com/seu-site-plano-completo-512232" target="_blank" class="modal-btn-pay">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Garantir meu site agora
-      </a>
-      <a href="https://wa.me/5521985252497?text=Quero+o+site+profissional+%F0%9F%91%8B+Tenho+uma+dúvida+antes+de+fechar." target="_blank" class="modal-btn-wpp">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Tirar uma dúvida antes
-      </a>
-    </div>
-    <div class="modal-guarantee">🔒 Pagamento 100% seguro · Garantia de 7 dias</div>
-  </div>
-</div>
-
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1390666166151479');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1390666166151479&ev=PageView&noscript=1"/></noscript>
-
-<script>
-let timerInterval = null;
-
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'Site Profissional R$697' });
-  startTimer(10 * 60);
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  clearInterval(timerInterval);
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-function startTimer(seconds) {
-  clearInterval(timerInterval);
-  const timerEl = document.getElementById('modalTimer');
-  let remaining = seconds;
-  function update() {
-    const m = Math.floor(remaining / 60);
-    const s = remaining % 60;
-    timerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-    timerEl.classList.toggle('urgent', remaining <= 60);
-    if (remaining <= 0) { clearInterval(timerInterval); timerEl.textContent = 'Expirado'; }
-    remaining--;
-  }
-  update();
-  timerInterval = setInterval(update, 1000);
-}
-
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
-  if (!isOpen) item.classList.add('open');
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-const stepsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const nums = document.querySelectorAll('.step-num');
-      function runCycle() {
-        nums.forEach(n => n.classList.remove('active'));
-        setTimeout(() => {
-          nums.forEach((n, i) => setTimeout(() => n.classList.add('active'), i * 600));
-        }, 300);
-      }
-      runCycle();
-      setInterval(runCycle, 4500);
-      stepsObserver.unobserve(e.target);
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'Site Profissional R$697' });
+      startTimer(10 * 60);
     }
-  });
-}, { threshold: 0.4 });
 
-const stepsSection = document.querySelector('.steps');
-if (stepsSection) stepsObserver.observe(stepsSection);
-</script>
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      clearInterval(timerInterval);
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      const timerEl = document.getElementById('modalTimer');
+      let remaining = seconds;
+      function update() {
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        timerEl.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        timerEl.classList.toggle('urgent', remaining <= 60);
+        if (remaining <= 0) { clearInterval(timerInterval); timerEl.textContent = 'Expirado'; }
+        remaining--;
+      }
+      update();
+      timerInterval = setInterval(update, 1000);
+    }
+
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const stepsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const nums = document.querySelectorAll('.step-num');
+          function runCycle() {
+            nums.forEach(n => n.classList.remove('active'));
+            setTimeout(() => {
+              nums.forEach((n, i) => setTimeout(() => n.classList.add('active'), i * 600));
+            }, 300);
+          }
+          runCycle();
+          setInterval(runCycle, 4500);
+          stepsObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    const stepsSection = document.querySelector('.steps');
+    if (stepsSection) stepsObserver.observe(stepsSection);
+  </script>
 </body>
+
 </html>
