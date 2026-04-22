@@ -1785,10 +1785,10 @@
       <div class="pricing-card-badge">Site Profissional Completo</div>
       <div class="pricing-price-row">
         <span class="pricing-price-prefix">R$</span>
-        <span class="pricing-price">497</span>
+        <span class="pricing-price">697</span>
       </div>
       <div class="pricing-period">Pagamento único · Pix ou cartão</div>
-      <div class="pricing-installment">ou 12× de R$49,90 sem juros no cartão</div>
+      <div class="pricing-installment">ou parcele em até 12× no cartão</div>
       <div class="pricing-divider"></div>
       <ul class="pricing-features">
         <li>
@@ -1868,11 +1868,21 @@
 
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">
+      Tem uma opção mais acessível para começar?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Sim. A Presença Bio é uma página profissional de entrada por R$197 — com seus serviços, foto e botão direto pro WhatsApp. Perfeita para quem quer ter presença agora e evoluir depois. Os R$197 são descontados no site completo quando quiser fazer o upgrade — você complementa só R$500. Me chame no WhatsApp para saber mais.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
       O que é domínio próprio e preciso pagar separado?
       <span class="faq-icon">+</span>
     </button>
     <div class="faq-a">
-      <p>O domínio é o endereço do seu site, como "seunegocio.com.br". Você paga direto no Registro.br, em torno de R$40 por ano. É uma taxa anual, não mensalidade. Eu cuido de toda a configuração técnica para você.</p>
+      <p>O domínio próprio (ex: seunegocio.com.br) está incluso no valor do site — você não paga nada a mais. Eu cuido da compra e de toda a configuração técnica. Sem custo extra, sem surpresa.</p>
     </div>
   </div>
 
@@ -1950,9 +1960,9 @@
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeModal()" aria-label="Fechar">×</button>
-    <div class="modal-badge">Site Profissional · R$497</div>
+    <div class="modal-badge">Site Profissional · R$697</div>
     <h3>Ótima escolha.</h3>
-    <div class="modal-plan-price">R$497 · Pix ou cartão em até 12× de R$49,90</div>
+    <div class="modal-plan-price">R$697 · Pix ou parcele em até 12× no cartão</div>
     <ul class="modal-steps">
       <li>
         <div class="modal-step-num">1</div>
@@ -1971,7 +1981,7 @@
     <div class="modal-timer-label">Sua vaga está reservada por</div>
     <div class="modal-timer" id="modalTimer">10:00</div>
     <div class="modal-actions">
-      <a href="https://pay.herospark.com/seu-site-plano-profissional-512212" target="_blank" class="modal-btn-pay">
+      <a href="https://pay.herospark.com/seu-site-plano-completo-512232" target="_blank" class="modal-btn-pay">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         Garantir meu site agora
       </a>
@@ -2002,7 +2012,7 @@ let timerInterval = null;
 function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'Site Profissional R$497' });
+  if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'Site Profissional R$697' });
   startTimer(10 * 60);
 }
 
