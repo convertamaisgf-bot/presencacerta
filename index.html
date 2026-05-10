@@ -2231,7 +2231,19 @@ function goStep2() {
   document.getElementById('err-tel').style.display = tel ? 'none' : 'block'; if (!tel) ok = false;
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   document.getElementById('err-email').style.display = emailOk ? 'none' : 'block'; if (!emailOk) ok = false;
-  if (ok) showStep(2);
+  if (!ok) return;
+  fetch('https://formspree.io/f/mnjwozgg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'Lead Presenca Certa — etapa 1 preenchida',
+      Nome: nome,
+      WhatsApp: tel,
+      Email: email,
+      Status: 'Preencheu etapa 1 — aguardando etapa 2'
+    })
+  }).catch(function() {});
+  showStep(2);
 }
 
 function goStep1() { showStep(1); }
@@ -2262,6 +2274,20 @@ function goStep3() {
     'Quero saber mais antes de fechar.'
   );
   document.getElementById('wpp-link').href = 'https://wa.me/5521985252497?text=' + msg;
+  const email2 = document.getElementById('f-email').value.trim();
+  fetch('https://formspree.io/f/mnjwozgg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'Lead Presenca Certa — formulario completo',
+      Nome: nome,
+      WhatsApp: tel,
+      Email: email2,
+      Desafio: desafio,
+      Solucao: selectedSolution,
+      Status: 'Formulario completo — aguardando decisao'
+    })
+  }).catch(function() {});
   showStep(3);
 }
 
