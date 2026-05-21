@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeloPrime — Climatização e PMOC para Empresas e Residências</title>
+  <meta name="description" content="Instalação, manutenção e PMOC para empresas e residências. Laudo técnico ANVISA, atendimento em até 2h. Solicite orçamento gratuito agora.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════
+       DESIGN SYSTEM
+    ════════════════════════════════════════ */
+    :root {
+      --bg:          #F8F9FA;
+      --bg-mid:      #EFF2F7;
+      --surface:     #FFFFFF;
+      --navy:        #0A192F;
+      --navy-mid:    #112240;
+      --blue:        #0066FF;
+      --blue-dark:   #0050CC;
+      --blue-light:  #E8F0FF;
+      --blue-glow:   rgba(0,102,255,.18);
+      --green:       #25D366;
+      --green-dark:  #1DA851;
+      --text:        #0A192F;
+      --text-mid:    #3D5A80;
+      --text-muted:  #64748B;
+      --border:      rgba(10,25,47,.1);
+      --border-blue: rgba(0,102,255,.2);
+
+      --font-head: 'Outfit', system-ui, sans-serif;
+      --font-body: 'Inter',  system-ui, sans-serif;
+
+      --section-pad: clamp(80px, 9vw, 130px);
+      --max-w:       1160px;
+      --radius:      14px;
+      --radius-sm:   8px;
+      --ease:        cubic-bezier(0.25,0.46,0.45,0.94);
+      --t:           0.35s;
+    }
+
+    /* ════════════════════════════════════════
+       RESET & BASE
+    ════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font-body); }
+
+    /* ════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ════════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .75s var(--ease), transform .75s var(--ease);
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity .9s var(--ease);
+    }
+    .fade-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity .75s var(--ease), transform .75s var(--ease);
+    }
+    .fade-right {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity .75s var(--ease), transform .75s var(--ease);
+    }
+    .fade-up.visible, .fade-in.visible,
+    .fade-left.visible, .fade-right.visible {
+      opacity: 1; transform: none;
+    }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .18s; }
+    .d3 { transition-delay: .28s; }
+    .d4 { transition-delay: .38s; }
+    .d5 { transition-delay: .48s; }
+
+    /* ════════════════════════════════════════
+       REUSABLES
+    ════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .eyebrow.light { color: rgba(232,240,255,.75); }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 3.8vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .section-title span  { color: var(--blue); }
+    .section-title.light { color: #FFFFFF; }
+    .section-title.light span { color: #64B5FF; }
+
+    .body-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-weight: 400;
+      max-width: 520px;
+    }
+    .body-text.light { color: rgba(255,255,255,.62); }
+
+    /* ─ Buttons ─ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: 8px;
+      padding: 14px 28px;
+      border: 2px solid transparent;
+      transition: background var(--t) var(--ease), color var(--t) var(--ease),
+                  transform var(--t) var(--ease), box-shadow var(--t) var(--ease),
+                  border-color var(--t) var(--ease);
+    }
+    .btn svg { flex-shrink: 0; transition: transform var(--t) var(--ease); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn-blue {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-blue:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,102,255,.38);
+    }
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+    }
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,.38);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+    .btn-outline-light {
+      background: transparent;
+      color: rgba(255,255,255,.85);
+      border-color: rgba(255,255,255,.2);
+    }
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.5);
+    }
+    .btn-lg { padding: 17px 36px; font-size: 0.95rem; border-radius: 10px; }
+
+    /* ════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(248,249,250,.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(10,25,47,.08);
+      transition: padding var(--t) var(--ease), background var(--t) var(--ease);
+    }
+    #header.scrolled {
+      padding: 12px 48px;
+      background: rgba(248,249,250,.96);
+      box-shadow: 0 4px 24px rgba(10,25,47,.06);
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--t) var(--ease);
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-phone {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: var(--t) var(--ease);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 64px 0 0;
+      z-index: 800;
+      background: rgba(248,249,250,.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      transition: color var(--t);
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10,25,47,.96) 0%,
+        rgba(10,25,47,.82) 55%,
+        rgba(10,25,47,.4) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: 140px 48px 80px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,102,255,.18);
+      border: 1px solid rgba(0,102,255,.3);
+      color: #64B5FF;
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #25D366;
+      animation: blink 1.8s infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .3; }
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: #64B5FF; }
+
+    .hero-lead {
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      color: rgba(255,255,255,.6);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+    }
+    .trust-item svg { color: var(--green); flex-shrink: 0; }
+
+    /* ════════════════════════════════════════
+       NÚMEROS / STRIP
+    ════════════════════════════════════════ */
+    .numbers-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .numbers-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .number-item {
+      padding: 0 40px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .number-item:first-child { padding-left: 0; }
+    .number-item:last-child  { border-right: none; padding-right: 0; }
+
+    .num-val {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .num-val span { color: var(--blue); }
+    .num-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ════════════════════════════════════════
+       PMOC ALERT
+    ════════════════════════════════════════ */
+    .pmoc-wrap {
+      background: var(--bg-mid);
+      padding: var(--section-pad) 48px;
+    }
+    .pmoc-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .pmoc-alert-box {
+      background: rgba(220,38,38,.06);
+      border: 1.5px solid rgba(220,38,38,.2);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: 32px;
+    }
+    .pmoc-alert-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #B91C1C;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pmoc-alert-body {
+      font-size: 0.88rem;
+      color: #7F1D1D;
+      line-height: 1.75;
+    }
+    .pmoc-alert-body strong { font-weight: 600; }
+
+    .pmoc-checklist {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pmoc-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+    .check-icon {
+      width: 22px; height: 22px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--blue);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .pmoc-image {
+      position: relative;
+      height: 480px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(10,25,47,.12);
+    }
+    .pmoc-badge-float {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(10,25,47,.14);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 2;
+    }
+    .float-icon {
+      width: 44px; height: 44px;
+      background: var(--blue-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+    .float-val  { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .float-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ════════════════════════════════════════
+       SERVIÇOS
+    ════════════════════════════════════════ */
+    .services-wrap {
+      padding: var(--section-pad) 48px;
+      background: var(--surface);
+    }
+    .services-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .services-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 56px rgba(10,25,47,.09);
+      border-color: var(--border-blue);
+    }
+    .service-thumb {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-thumb img { transition: transform .6s ease; }
+    .service-card:hover .service-thumb img { transform: scale(1.05); }
+    .service-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--blue);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .service-tag.green { background: var(--green); }
+
+    .service-body { padding: 26px 24px 30px; }
+    .service-icon {
+      width: 46px; height: 46px;
+      background: var(--blue-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+    }
+    .service-features {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .service-features li {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-features li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      transition: gap var(--t) var(--ease);
+    }
+    .service-cta:hover { gap: 12px; }
+
+    /* ════════════════════════════════════════
+       COMO FUNCIONA
+    ════════════════════════════════════════ */
+    .process-wrap {
+      background: var(--navy);
+      padding: var(--section-pad) 48px;
+    }
+    .process-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .process-head { text-align: center; margin-bottom: 64px; }
+    .process-head .body-text { margin: 0 auto; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 1px;
+      background: rgba(255,255,255,.1);
+    }
+
+    .process-step {
+      padding: 0 40px;
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(0,102,255,.15);
+      border: 1.5px solid rgba(0,102,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #64B5FF;
+      position: relative;
+      z-index: 1;
+    }
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    .step-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.78;
+    }
+
+    /* ════════════════════════════════════════
+       EQUIPE / EMPRESA
+    ════════════════════════════════════════ */
+    .about-wrap {
+      background: var(--bg-mid);
+      padding: var(--section-pad) 48px;
+    }
+    .about-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      height: 500px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(10,25,47,.1);
+    }
+    .about-badge {
+      position: absolute;
+      top: 24px;
+      right: -20px;
+      background: var(--surface);
+      padding: 18px 22px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 12px 36px rgba(10,25,47,.13);
+      text-align: center;
+      min-width: 130px;
+    }
+    .about-badge-val {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .credentials {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .credential {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .credential:hover {
+      border-color: var(--border-blue);
+      box-shadow: 0 4px 16px rgba(0,102,255,.08);
+    }
+    .cred-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .cred-text {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .cred-sub {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ════════════════════════════════════════
+       DEPOIMENTOS
+    ════════════════════════════════════════ */
+    .testi-wrap {
+      background: var(--surface);
+      padding: var(--section-pad) 48px;
+    }
+    .testi-inner { max-width: var(--max-w); margin: 0 auto; }
+    .testi-head  { text-align: center; margin-bottom: 56px; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(10,25,47,.07);
+    }
+    .testi-stars { color: #F59E0B; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 16px; }
+    .testi-text {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+    .testi-role { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+    .testi-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--blue-light);
+      color: var(--blue);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    /* ════════════════════════════════════════
+       FAQ
+    ════════════════════════════════════════ */
+    .faq-wrap {
+      background: var(--bg-mid);
+      padding: var(--section-pad) 48px;
+    }
+    .faq-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 88px;
+      align-items: start;
+    }
+    .faq-left { position: sticky; top: 100px; }
+
+    .accordion { display: flex; flex-direction: column; }
+    .acc-item  { border-bottom: 1px solid var(--border); }
+    .acc-btn   {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .acc-icon {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: var(--text-muted);
+      transition: background var(--t), color var(--t), border-color var(--t), transform var(--t);
+    }
+    .acc-item.open .acc-icon {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+    .acc-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .42s ease, padding .28s ease;
+    }
+    .acc-item.open .acc-body { max-height: 260px; }
+    .acc-body-inner {
+      padding-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    /* ════════════════════════════════════════
+       COBERTURA / ATENDIMENTO
+    ════════════════════════════════════════ */
+    .coverage-strip {
+      background: var(--navy-mid);
+      padding: 56px 48px;
+      text-align: center;
+    }
+    .coverage-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .coverage-title span { color: #64B5FF; }
+    .coverage-zones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .zone-tag {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.7);
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ════════════════════════════════════════
+       CTA FINAL
+    ════════════════════════════════════════ */
+    .cta-wrap {
+      background: var(--blue);
+      padding: var(--section-pad) 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-wrap::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      pointer-events: none;
+    }
+    .cta-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: 5%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+    }
+    .cta-actions { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+    .cta-note {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: var(--navy);
+      padding: 64px 48px 40px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 32px;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: #64B5FF; }
+    .footer-tagline {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.75;
+      font-weight: 400;
+      max-width: 260px;
+    }
+    .footer-col-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,.35);
+      transition: color var(--t) var(--ease);
+    }
+    .footer-col ul li a:hover { color: #64B5FF; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,.22);
+    }
+    .footer-credit a {
+      color: #64B5FF;
+      font-weight: 600;
+      transition: opacity var(--t);
+    }
+    .footer-credit a:hover { opacity: 0.7; }
+
+    /* ════════════════════════════════════════
+       WHATSAPP FLUTUANTE
+    ════════════════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,.45);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .wa-float:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 16px 40px rgba(37,211,102,.55);
+    }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #25D366;
+      animation: pulse 2.6s infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse {
+      0%   { transform: scale(1); opacity: .5; }
+      70%  { transform: scale(1.7); opacity: 0; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+
+    /* ════════════════════════════════════════
+       URGENCY BAR
+    ════════════════════════════════════════ */
+    .urgency-bar {
+      background: #B91C1C;
+      padding: 10px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .urgency-bar a {
+      color: #FCA5A5;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .urgency-bar a:hover { color: #fff; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1040px) {
+      .pmoc-inner      { grid-template-columns: 1fr; gap: 48px; }
+      .pmoc-image      { height: 360px; }
+      .services-head   { grid-template-columns: 1fr; gap: 20px; }
+      .about-inner     { grid-template-columns: 1fr; gap: 48px; }
+      .about-image     { height: 380px; }
+      .about-badge     { right: 0; }
+      .testi-grid      { grid-template-columns: 1fr; gap: 18px; }
+      .faq-inner       { grid-template-columns: 1fr; gap: 48px; }
+      .faq-left        { position: static; }
+      .cta-inner       { grid-template-columns: 1fr; }
+      .cta-actions     { flex-direction: row; flex-wrap: wrap; min-width: auto; }
+      .footer-top      { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .numbers-inner   { grid-template-columns: 1fr 1fr; gap: 0; }
+      .number-item:nth-child(2) { border-right: none; }
+      .number-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); padding-top: 32px; }
+      .number-item:nth-child(4) { border-right: none; border-top: 1px solid var(--border); padding-top: 32px; }
+      .process-grid    { grid-template-columns: 1fr; gap: 36px; }
+      .process-grid::before { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      #header, #header.scrolled { padding: 14px 24px; }
+      .nav-links  { display: none; }
+      .header-cta { display: none; }
+      .hamburger  { display: flex; }
+
+      .hero-content    { padding: 110px 24px 60px; }
+      .numbers-inner   { padding: 36px 24px; }
+      .pmoc-wrap, .services-wrap, .about-wrap,
+      .testi-wrap, .faq-wrap { padding: var(--section-pad) 24px; }
+      .process-wrap, .cta-wrap, footer { padding: var(--section-pad) 24px; }
+      .coverage-strip  { padding: 48px 24px; }
+      .urgency-bar     { padding: 10px 24px; font-size: 0.76rem; }
+
+      .services-grid   { grid-template-columns: 1fr; }
+      .numbers-inner   { grid-template-columns: 1fr 1fr; }
+      .credentials     { grid-template-columns: 1fr; }
+      .footer-top      { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom   { flex-direction: column; gap: 8px; text-align: center; }
+      .cta-actions     { flex-direction: column; }
+      .hero-actions    { flex-direction: column; align-items: flex-start; }
+      .number-item:nth-child(n) {
+        border-right: none;
+        border-top: none;
+        padding: 0;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 24px;
+      }
+      .number-item:last-child { border-bottom: none; }
+      .wa-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     URGENCY BAR
+════════════════════════════════════════ -->
+<div class="urgency-bar" id="urgencyBar">
+  ⚠️ Portaria MS 3.523/98 exige PMOC para todo imóvel com AC central. Sua empresa está regular?
+  <a href="#pmoc">Saiba mais</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header id="header">
+  <a href="#" class="logo">Gelo<span>Prime</span></a>
+
+  <nav class="nav-links" aria-label="Navegação principal">
+    <a href="#pmoc">PMOC</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#empresa">A Empresa</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <div class="header-cta">
+    <span class="header-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      (11) 99999-9999
+    </span>
+    <a
+      href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20um%20orçamento%20GeloPrime!"
+      class="btn btn-green"
+      target="_blank"
+      rel="noopener"
+      style="padding:9px 20px; font-size:0.8rem;"
+    >
+      Orçamento grátis
+    </a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#pmoc"        class="mob-link">PMOC</a>
+  <a href="#servicos"    class="mob-link">Serviços</a>
+  <a href="#empresa"     class="mob-link">A Empresa</a>
+  <a href="#depoimentos" class="mob-link">Depoimentos</a>
+  <a href="#faq"         class="mob-link">FAQ</a>
+  <a href="https://wa.me/5511999999999" class="mob-link btn btn-green" target="_blank" rel="noopener" style="margin-top:8px;">
+    Orçamento grátis
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-bg">
+    <!--
+      IMAGE SLOT 1 — HERO BACKGROUND
+      Replace src with your generated image.
+      See Midjourney prompts at the bottom.
+    -->
+    <img
+      src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1800&q=85&auto=format&fit=crop"
+      alt="Técnico GeloPrime em atendimento"
+      loading="eager"
+      fetchpriority="high"
+      id="heroImg"
+    >
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge fade-up">
+      <span class="dot"></span>
+      Atendimento disponível agora
+    </div>
+
+    <h1 class="hero-title fade-up d1">
+      Climatização instalada<br>
+      PMOC <span>entregue</span>.<br>
+      Empresa regularizada.
+    </h1>
+
+    <p class="hero-lead fade-up d2">
+      Instalação, manutenção preventiva, higienização e laudos técnicos ANVISA para empresas e residências. Equipe certificada, atendimento em até 2 horas.
+    </p>
+
+    <div class="hero-actions fade-up d3">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20um%20orçamento%20GeloPrime!"
+        class="btn btn-green btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Solicitar orçamento grátis
+      </a>
+      <a href="#servicos" class="btn btn-outline-light btn-lg">
+        Ver serviços
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-trust fade-up d4">
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Laudo técnico incluso
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Garantia de 12 meses
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        NR-35 e NR-10 certificados
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Atendimento em até 2h
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     NÚMEROS
+════════════════════════════════════════ -->
+<div class="numbers-strip" aria-label="Nossos números">
+  <div class="numbers-inner">
+    <div class="number-item fade-up">
+      <div class="num-val">5<span>+</span></div>
+      <div class="num-label">Anos no mercado</div>
+    </div>
+    <div class="number-item fade-up d1">
+      <div class="num-val">1.200<span>+</span></div>
+      <div class="num-label">Atendimentos realizados</div>
+    </div>
+    <div class="number-item fade-up d2">
+      <div class="num-val">98<span>%</span></div>
+      <div class="num-label">Clientes satisfeitos</div>
+    </div>
+    <div class="number-item fade-up d3">
+      <div class="num-val"><span>&lt;</span>2h</div>
+      <div class="num-label">Tempo médio de resposta</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PMOC ALERT SECTION
+════════════════════════════════════════ -->
+<section class="pmoc-wrap" id="pmoc" aria-label="PMOC — Regularização empresarial">
+  <div class="pmoc-inner">
+
+    <div>
+      <span class="eyebrow fade-up">Obrigação Legal</span>
+      <h2 class="section-title fade-up d1">Sua empresa pode<br>estar <span>irregular</span> agora.</h2>
+      <p class="body-text fade-up d2">
+        A Portaria MS 3.523/98 e a ANVISA RDC 09/2003 exigem que todo imóvel comercial com sistema de climatização central tenha um PMOC — Plano de Manutenção, Operação e Controle — atualizado e em execução.
+      </p>
+
+      <div class="pmoc-alert-box fade-up d3">
+        <div class="pmoc-alert-title">
+          ⚠️ Atenção: risco de autuação
+        </div>
+        <div class="pmoc-alert-body">
+          Estabelecimentos sem PMOC estão sujeitos a <strong>interdição imediata e multas pesadas</strong> da Vigilância Sanitária. Clínicas, escritórios, shoppings, restaurantes e escolas são os mais fiscalizados.
+        </div>
+      </div>
+
+      <ul class="pmoc-checklist fade-up d4">
+        <li>
+          <span class="check-icon">✓</span>
+          <span><strong>Diagnóstico gratuito</strong> — verificamos se sua empresa precisa de PMOC e qual o escopo necessário</span>
+        </li>
+        <li>
+          <span class="check-icon">✓</span>
+          <span><strong>Laudo ANVISA-compliant</strong> — documentação completa assinada por responsável técnico</span>
+        </li>
+        <li>
+          <span class="check-icon">✓</span>
+          <span><strong>Cronograma de manutenções</strong> — plano preventivo que mantém sua empresa regularizada o ano todo</span>
+        </li>
+        <li>
+          <span class="check-icon">✓</span>
+          <span><strong>Entrega em até 48h</strong> — ideal para empresas que precisam se regularizar com urgência</span>
+        </li>
+      </ul>
+
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20preciso%20de%20ajuda%20com%20o%20PMOC%20da%20minha%20empresa!"
+        class="btn btn-blue btn-lg fade-up d5"
+        target="_blank"
+        rel="noopener"
+        style="margin-top: 36px; display: inline-flex;"
+      >
+        Regularizar minha empresa agora
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="fade-in d1">
+      <div class="pmoc-image">
+        <!--
+          IMAGE SLOT 2 — PMOC: COMMERCIAL BUILDING / TECHNICAL DOCUMENT
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=85&auto=format&fit=crop"
+          alt="Ambiente comercial com climatização"
+          loading="lazy"
+        >
+        <div class="pmoc-badge-float">
+          <div class="float-icon">📋</div>
+          <div>
+            <div class="float-val">48h</div>
+            <div class="float-desc">Para entrega do laudo PMOC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════ -->
+<section class="services-wrap" id="servicos" aria-label="Nossos serviços">
+  <div class="services-inner">
+
+    <div class="services-head">
+      <div>
+        <span class="eyebrow fade-up">O que fazemos</span>
+        <h2 class="section-title fade-up d1">Soluções completas<br>em <span>climatização</span>.</h2>
+      </div>
+      <p class="body-text fade-up d2">
+        Da instalação ao laudo técnico — tudo em uma empresa só, com responsabilidade técnica e garantia em cada serviço.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Card 1: PMOC -->
+      <article class="service-card fade-up d1">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 3 — SERVICE: PMOC / TECHNICAL INSPECTION
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=85&auto=format&fit=crop"
+            alt="PMOC Empresarial"
+            loading="lazy"
+          >
+          <span class="service-tag">PMOC</span>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">📋</div>
+          <h3 class="service-name">PMOC Empresarial</h3>
+          <p class="service-desc">Plano de Manutenção, Operação e Controle completo para manter sua empresa dentro da lei e longe de autuações da Vigilância Sanitária.</p>
+          <ul class="service-features">
+            <li>Laudo técnico assinado (ART)</li>
+            <li>Cronograma de manutenções incluso</li>
+            <li>ANVISA RDC 09/2003 compliant</li>
+            <li>Renovação anual disponível</li>
+          </ul>
+          <a href="https://wa.me/5511999999999?text=Preciso%20de%20PMOC%20para%20minha%20empresa!" class="service-cta" target="_blank" rel="noopener">
+            Solicitar orçamento
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: Instalação -->
+      <article class="service-card fade-up d2">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 4 — SERVICE: AC INSTALLATION
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=85&auto=format&fit=crop"
+            alt="Instalação de ar-condicionado"
+            loading="lazy"
+          >
+          <span class="service-tag">Instalação</span>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">❄️</div>
+          <h3 class="service-name">Instalação Profissional</h3>
+          <p class="service-desc">Split, multi-split e VRF para residências e empresas. Instalação limpa, sem danos às paredes, com passagem de fios embutida e teste de funcionamento.</p>
+          <ul class="service-features">
+            <li>Todas as marcas e modelos</li>
+            <li>Instalação em até 2h</li>
+            <li>Garantia de 12 meses na mão de obra</li>
+            <li>Laudo de instalação incluso</li>
+          </ul>
+          <a href="https://wa.me/5511999999999?text=Preciso%20de%20instalação%20de%20ar-condicionado!" class="service-cta" target="_blank" rel="noopener">
+            Solicitar orçamento
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3: Manutenção -->
+      <article class="service-card fade-up d3">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 5 — SERVICE: PREVENTIVE MAINTENANCE
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=85&auto=format&fit=crop"
+            alt="Manutenção preventiva de ar-condicionado"
+            loading="lazy"
+          >
+          <span class="service-tag green">Mais pedido</span>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-name">Manutenção Preventiva</h3>
+          <p class="service-desc">Contratos mensais, trimestrais ou semestrais para empresas. Evite paradas inesperadas, prolongue a vida útil dos equipamentos e reduza o consumo de energia até 30%.</p>
+          <ul class="service-features">
+            <li>Contratos a partir de 1 aparelho</li>
+            <li>Relatório técnico a cada visita</li>
+            <li>Prioridade de atendimento</li>
+            <li>Integra o cronograma do PMOC</li>
+          </ul>
+          <a href="https://wa.me/5511999999999?text=Preciso%20de%20contrato%20de%20manutenção%20preventiva!" class="service-cta" target="_blank" rel="noopener">
+            Solicitar orçamento
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 4: Higienização -->
+      <article class="service-card fade-up d4">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 6 — SERVICE: DEEP CLEANING / HYGIENIZATION
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&q=85&auto=format&fit=crop"
+            alt="Higienização de ar-condicionado"
+            loading="lazy"
+          >
+          <span class="service-tag">Higienização</span>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">🧪</div>
+          <h3 class="service-name">Higienização Profissional</h3>
+          <p class="service-desc">Limpeza química completa com produtos bactericidas e fungicidas. Remove fungos, bactérias e ácaros que circulam pelo ar do seu ambiente — invisíveis e perigosos.</p>
+          <ul class="service-features">
+            <li>Certificado de higienização incluso</li>
+            <li>Produtos homologados ANVISA</li>
+            <li>Exigido pelo PMOC anualmente</li>
+            <li>Melhora qualidade do ar imediatamente</li>
+          </ul>
+          <a href="https://wa.me/5511999999999?text=Preciso%20de%20higienização%20de%20ar-condicionado!" class="service-cta" target="_blank" rel="noopener">
+            Solicitar orçamento
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     COMO FUNCIONA
+════════════════════════════════════════ -->
+<section class="process-wrap" aria-label="Como funciona">
+  <div class="process-inner">
+    <div class="process-head">
+      <span class="eyebrow light fade-up">Simples assim</span>
+      <h2 class="section-title light fade-up d1">Do contato à <span>solução</span><br>em 3 passos.</h2>
+      <p class="body-text light fade-up d2">
+        Sem burocracia, sem visita técnica desnecessária. Enviou a foto — já sabemos o que você precisa.
+      </p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step fade-up d1">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Mande uma mensagem</h3>
+        <p class="step-body">
+          Nos chame no WhatsApp com a foto do aparelho e uma breve descrição do problema. Respondemos em minutos — mesmo fora do horário comercial.
+        </p>
+      </div>
+      <div class="process-step fade-up d2">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Receba o orçamento</h3>
+        <p class="step-body">
+          Nossa equipe técnica analisa e envia um orçamento detalhado em até 30 minutos. Sem surpresas — o preço que você aprova é o preço que você paga.
+        </p>
+      </div>
+      <div class="process-step fade-up d3">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Agendamos e executamos</h3>
+        <p class="step-body">
+          Você escolhe o melhor horário. Nossa equipe chega no horário marcado, executa o serviço e entrega o laudo técnico. Garantia por escrito.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     A EMPRESA
+════════════════════════════════════════ -->
+<section class="about-wrap" id="empresa" aria-label="Sobre a GeloPrime">
+  <div class="about-inner">
+
+    <div class="fade-in">
+      <div class="about-image">
+        <!--
+          IMAGE SLOT 7 — TEAM / COMPANY PHOTO
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=85&auto=format&fit=crop"
+          alt="Equipe GeloPrime"
+          loading="lazy"
+        >
+        <div class="about-badge">
+          <div class="about-badge-val">5★</div>
+          <div class="about-badge-label">Google Avaliações</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow fade-up">Por que GeloPrime</span>
+      <h2 class="section-title fade-up d1">Técnicos certificados,<br><span>não curiosos</span>.</h2>
+      <p class="body-text fade-up d2">
+        Desde 2019 atendendo empresas e residências em toda a Grande São Paulo. Nossa equipe é formada por técnicos com formação em refrigeração e climatização — não por mão de obra generalista.
+      </p>
+      <p class="body-text fade-up d3" style="margin-top: 16px;">
+        Cada técnico da GeloPrime é treinado, certificado e auditado internamente. Você recebe o mesmo padrão de qualidade toda vez — seja a primeira ou a vigésima visita.
+      </p>
+
+      <div class="credentials fade-up d4">
+        <div class="credential">
+          <span class="cred-icon">🎓</span>
+          <div>
+            <div class="cred-text">NR-35 Certificados</div>
+            <div class="cred-sub">Trabalho em altura</div>
+          </div>
+        </div>
+        <div class="credential">
+          <span class="cred-icon">⚡</span>
+          <div>
+            <div class="cred-text">NR-10 Certificados</div>
+            <div class="cred-sub">Instalações elétricas</div>
+          </div>
+        </div>
+        <div class="credential">
+          <span class="cred-icon">📋</span>
+          <div>
+            <div class="cred-text">ART Registrada</div>
+            <div class="cred-sub">Anotação de Responsabilidade Técnica</div>
+          </div>
+        </div>
+        <div class="credential">
+          <span class="cred-icon">🛡️</span>
+          <div>
+            <div class="cred-text">Seguro de Responsabilidade</div>
+            <div class="cred-sub">Cobertura em todos os atendimentos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════ -->
+<section class="testi-wrap" id="depoimentos" aria-label="Depoimentos">
+  <div class="testi-inner">
+    <div class="testi-head">
+      <span class="eyebrow fade-up">O que dizem</span>
+      <h2 class="section-title fade-up d1">Clientes que confiam.<br><span>Resultados</span> que ficam.</h2>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card fade-up d1">
+        <span class="testi-type-badge">🏢 Empresa</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "A Vigilância Sanitária nos notificou em uma sexta-feira. A GeloPrime entregou o PMOC completo na segunda. Evitamos a interdição e ainda descobrimos 3 aparelhos que precisavam de manutenção urgente. Atendimento impecável."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 8 — AVATAR 1
+            -->
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Ricardo M.">
+          </div>
+          <div>
+            <div class="testi-name">Ricardo Mendes</div>
+            <div class="testi-role">Gerente Operacional · Clínica Médica Veritas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d2">
+        <span class="testi-type-badge">🏠 Residencial</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Meu split parou de funcionar numa tarde de 38°C. Em 1h40min o técnico estava aqui. O problema foi resolvido no mesmo dia, com peça trocada e laudo na mão. Nunca tinha visto esse nível de agilidade."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 9 — AVATAR 2
+            -->
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80&auto=format&fit=crop&crop=face" alt="Ana Paula C.">
+          </div>
+          <div>
+            <div class="testi-name">Ana Paula Correia</div>
+            <div class="testi-role">Moradora · Moema, SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d3">
+        <span class="testi-type-badge">🏢 Empresa</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Temos contrato de manutenção preventiva com a GeloPrime há 2 anos. Em todo esse tempo, zero paradas emergenciais — algo que antes acontecia toda verão. O retorno sobre o investimento é enorme."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 10 — AVATAR 3
+            -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80&auto=format&fit=crop&crop=face" alt="Felipe A.">
+          </div>
+          <div>
+            <div class="testi-name">Felipe Andrade</div>
+            <div class="testi-role">CEO · Andrade Contabilidade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     COBERTURA
+════════════════════════════════════════ -->
+<div class="coverage-strip" aria-label="Área de atendimento">
+  <h3 class="coverage-title fade-up">Atendemos toda a <span>Grande São Paulo</span></h3>
+  <div class="coverage-zones fade-up d1">
+    <span class="zone-tag">São Paulo (Capital)</span>
+    <span class="zone-tag">Guarulhos</span>
+    <span class="zone-tag">Osasco</span>
+    <span class="zone-tag">Santo André</span>
+    <span class="zone-tag">São Bernardo</span>
+    <span class="zone-tag">São Caetano</span>
+    <span class="zone-tag">Diadema</span>
+    <span class="zone-tag">Mauá</span>
+    <span class="zone-tag">Barueri</span>
+    <span class="zone-tag">Taboão da Serra</span>
+    <span class="zone-tag">Carapicuíba</span>
+    <span class="zone-tag">Mogi das Cruzes</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="faq-wrap" id="faq" aria-label="Perguntas frequentes">
+  <div class="faq-inner">
+
+    <div class="faq-left">
+      <span class="eyebrow fade-up">Dúvidas</span>
+      <h2 class="section-title fade-up d1">Perguntas<br><span>frequentes</span>.</h2>
+      <p class="body-text fade-up d2">
+        Não encontrou o que procura? Nossa equipe responde no WhatsApp em minutos.
+      </p>
+      <a
+        href="https://wa.me/5511999999999?text=Tenho%20uma%20dúvida%20sobre%20os%20serviços%20GeloPrime!"
+        class="btn btn-blue fade-up d3"
+        target="_blank"
+        rel="noopener"
+        style="margin-top: 28px; display: inline-flex;"
+      >
+        Falar com especialista
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="accordion fade-up d1">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Minha empresa é obrigada a ter PMOC?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. A Portaria MS 3.523/98 e a ANVISA RDC 09/2003 tornam obrigatório o PMOC para todo imóvel comercial, público ou de uso coletivo que possua sistema de climatização central. Isso inclui clínicas, escritórios, escolas, restaurantes, salões de beleza e qualquer ambiente climatizado com acesso ao público. O descumprimento pode resultar em interdição e multas.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Quanto tempo leva para emitir o laudo PMOC?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Após a visita técnica (que agendamos em até 24h), o laudo é emitido em até 48 horas. Para casos urgentes — como empresas notificadas pela Vigilância Sanitária — priorizamos o atendimento e conseguimos entregar o documento em até 24h.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Vocês atendem residências ou somente empresas?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Atendemos os dois. Para residências, realizamos instalação, manutenção preventiva, higienização e reparo de splits e multi-splits. Para empresas, além de todos esses serviços, oferecemos o PMOC completo e contratos de manutenção periódica com relatório técnico.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          O orçamento realmente é gratuito?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim, 100% gratuito. Para a maioria dos casos, enviamos o orçamento pelo WhatsApp com base nas fotos do equipamento — sem precisar de visita técnica prévia paga. Só cobramos visita técnica diagnóstica em equipamentos centrais de grande porte, e o valor é abatido do serviço se você fechar conosco.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Vocês têm garantia nos serviços?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. Todos os nossos serviços têm garantia por escrito: 12 meses na mão de obra de instalação, 6 meses em reparos e manutenções, e garantia do fabricante nas peças substituídas. Se algo não funcionar corretamente após nosso atendimento, voltamos sem custo adicional.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Qual o prazo para agendamento?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Para serviços de rotina (instalação, manutenção, higienização), agendamos em até 24h úteis. Para emergências — como equipamento parado em ambiente crítico (clínicas, servidores, etc.) — temos atendimento prioritário com chegada em até 2 horas na Grande São Paulo.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<section class="cta-wrap" aria-label="Contato e orçamento">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title fade-up">
+        Pronto para resolver<br>de uma vez por todas?
+      </h2>
+      <p class="cta-sub fade-up d1">
+        Orçamento gratuito em minutos. Sem visita técnica desnecessária. Técnicos certificados que chegam no horário marcado.
+      </p>
+    </div>
+    <div class="cta-actions fade-up d2">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20um%20orçamento%20GeloPrime!"
+        class="btn btn-green btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Orçamento pelo WhatsApp
+      </a>
+      <a href="tel:+5511999999999" class="btn btn-outline-light btn-lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Ligar agora
+      </a>
+      <p class="cta-note">⏱ Respondemos em até 5 minutos</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer aria-label="Rodapé">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Gelo<span>Prime</span></div>
+        <p class="footer-tagline">
+          Climatização instalada, PMOC entregue e empresa regularizada. Grande São Paulo desde 2019.
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Serviços</div>
+        <ul>
+          <li><a href="#pmoc">PMOC Empresarial</a></li>
+          <li><a href="#servicos">Instalação</a></li>
+          <li><a href="#servicos">Manutenção Preventiva</a></li>
+          <li><a href="#servicos">Higienização</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Empresa</div>
+        <ul>
+          <li><a href="#empresa">Quem somos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contato</div>
+        <ul>
+          <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><a href="mailto:contato@geloprime.com.br">E-mail</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 GeloPrime Climatização. CNPJ 00.000.000/0001-00 · Todos os direitos reservados.</p>
+      <p class="footer-credit">
+        Desenvolvido por <a href="https://presencacerta.com.br" target="_blank" rel="noopener">Presença Certa</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP FLUTUANTE
+════════════════════════════════════════ -->
+<a
+  href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20um%20orçamento%20GeloPrime!"
+  class="wa-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Conversar no WhatsApp"
+>
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  /* ── Header scroll ── */
+  const header = document.getElementById('header');
+  const urgencyBar = document.getElementById('urgencyBar');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 60;
+    header.classList.toggle('scrolled', scrolled);
+    if (urgencyBar) {
+      urgencyBar.style.transform = scrolled ? 'translateY(-100%)' : 'translateY(0)';
+      urgencyBar.style.opacity  = scrolled ? '0' : '1';
+    }
+  }, { passive: true });
+
+  /* ── Hamburger / mobile menu ── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Intersection Observer — fade animations ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        target.classList.add('visible');
+        io.unobserve(target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -44px 0px' });
+
+  document.querySelectorAll('.fade-up, .fade-in, .fade-left, .fade-right').forEach(el => io.observe(el));
+
+  /* ── FAQ Accordion ── */
+  document.querySelectorAll('.acc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Hero parallax suave ── */
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg && window.matchMedia('(min-width: 769px)').matches) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.2) {
+        heroImg.style.transform = `translateY(${y * 0.15}px)`;
+      }
+    }, { passive: true });
+  }
+
+  /* ── Urgency bar style init ── */
+  if (urgencyBar) {
+    urgencyBar.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+  }
+
+  /* ── Number counter animation ── */
+  const counters = document.querySelectorAll('.num-val');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      counterObserver.unobserve(target);
+      const rawText = target.textContent;
+      const match   = rawText.match(/[\d,.]+/);
+      if (!match) return;
+      const target_num = parseFloat(match[0].replace(',', '.'));
+      const prefix     = rawText.slice(0, rawText.indexOf(match[0]));
+      const suffix     = rawText.slice(rawText.indexOf(match[0]) + match[0].length);
+      const duration   = 1800;
+      const steps      = 60;
+      const interval   = duration / steps;
+      let current = 0;
+      const step = target_num / steps;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target_num) {
+          current = target_num;
+          clearInterval(timer);
+        }
+        const display = Number.isInteger(target_num)
+          ? Math.round(current).toLocaleString('pt-BR')
+          : current.toFixed(0);
+        target.innerHTML = `${prefix}${display}${suffix}`;
+      }, interval);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => counterObserver.observe(c));
+</script>
+
+</body>
+</html>

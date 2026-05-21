@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Auto Detail — Estética Automotiva de Alto Padrão</title>
+  <meta name="description" content="Polimento técnico, vitrificação cerâmica e PPF para Porsche, BMW, Ferrari e veículos premium. Agenda limitada. Agende agora.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════
+       DESIGN SYSTEM
+    ════════════════════════════════════════ */
+    :root {
+      --bg:          #0F0F11;
+      --bg-2:        #14141A;
+      --bg-3:        #1A1A24;
+      --surface:     #1C1C26;
+      --gold:        #D4AF37;
+      --gold-dark:   #A8891F;
+      --gold-light:  #E8CB6A;
+      --gold-glow:   rgba(212,175,55,.3);
+      --gold-border: rgba(212,175,55,.15);
+      --gold-border-hover: rgba(212,175,55,.45);
+      --text:        #E2E2E2;
+      --text-mid:    #A0A0A0;
+      --text-muted:  #5A5A5A;
+      --white:       #FFFFFF;
+
+      --font-head: 'Cinzel', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+
+      --radius:      4px;
+      --section-pad: clamp(88px, 10vw, 140px);
+      --max-w:       1160px;
+      --t:           0.38s;
+      --ease:        cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    /* ════════════════════════════════════════
+       RESET & BASE
+    ════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font-body); }
+
+    /* ════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ════════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+    .fade-in  { opacity: 0; transition: opacity 1s var(--ease); }
+    .fade-left  { opacity: 0; transform: translateX(-26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .fade-right { opacity: 0; transform: translateX(26px);  transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .fade-up.visible, .fade-in.visible,
+    .fade-left.visible, .fade-right.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; }
+    .d5 { transition-delay: .5s; }
+
+    /* ════════════════════════════════════════
+       REUSABLES
+    ════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-head);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .eyebrow.center::before { display: none; }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.9rem, 3.6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .section-title em { font-style: normal; color: var(--gold); }
+
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 28px;
+    }
+    .gold-line.center { margin: 0 auto 28px; }
+
+    .body-text {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.88;
+      font-weight: 300;
+      max-width: 500px;
+    }
+
+    /* ─ Gold divider line ─ */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+    }
+
+    /* ─ Buttons ─ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      padding: 15px 32px;
+      border: 1.5px solid transparent;
+      transition: background var(--t) var(--ease),
+                  color     var(--t) var(--ease),
+                  transform var(--t) var(--ease),
+                  box-shadow var(--t) var(--ease),
+                  border-color var(--t) var(--ease);
+    }
+    .btn svg { flex-shrink: 0; transition: transform var(--t) var(--ease); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0F0F11;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--gold-glow), 0 0 0 1px rgba(212,175,55,.2);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--gold);
+      border-color: var(--gold-border-hover);
+    }
+    .btn-outline-gold:hover {
+      background: rgba(212,175,55,.06);
+      border-color: var(--gold);
+      box-shadow: 0 0 24px rgba(212,175,55,.15);
+    }
+    .btn-green {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-green:hover {
+      background: #1DA851;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,.4);
+    }
+    .btn-lg { padding: 18px 40px; font-size: 0.88rem; }
+
+    /* ════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      padding: 22px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(15,15,17,.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(212,175,55,.07);
+      transition: padding var(--t) var(--ease), background var(--t) var(--ease);
+    }
+    #header.scrolled {
+      padding: 14px 52px;
+      background: rgba(15,15,17,.95);
+      border-bottom-color: rgba(212,175,55,.12);
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      transition: color var(--t) var(--ease);
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text-mid);
+      transition: var(--t) var(--ease);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 68px 0 0;
+      z-index: 800;
+      background: rgba(15,15,17,.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      border-top: 1px solid var(--gold-border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: color var(--t);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(15,15,17,1) 0%, rgba(15,15,17,.85) 50%, rgba(15,15,17,.3) 100%),
+        linear-gradient(to top,   rgba(15,15,17,.9) 0%, transparent 40%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: calc(var(--max-w) + 104px);
+      margin: 0 auto;
+      padding: 160px 52px 100px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--gold-border-hover);
+      color: var(--gold);
+      padding: 7px 18px;
+      border-radius: var(--radius);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      animation: heroFade .9s var(--ease) .1s both;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.6rem, 5.5vw, 5.8rem);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      max-width: 780px;
+      margin-bottom: 10px;
+      animation: heroFade .9s var(--ease) .25s both;
+    }
+    .hero-title em { font-style: normal; color: var(--gold); }
+
+    .hero-rule {
+      display: block;
+      width: 64px;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px 0;
+      animation: heroFade .9s var(--ease) .4s both;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      color: var(--text-mid);
+      max-width: 460px;
+      line-height: 1.82;
+      font-weight: 300;
+      margin-bottom: 48px;
+      animation: heroFade .9s var(--ease) .5s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 72px;
+      animation: heroFade .9s var(--ease) .6s both;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      animation: heroFade .9s var(--ease) .72s both;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .trust-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ════════════════════════════════════════
+       MARQUEE
+    ════════════════════════════════════════ */
+    .marquee-wrap {
+      background: var(--bg-2);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 18px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 0 32px;
+      white-space: nowrap;
+    }
+    .marquee-text {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .marquee-sep {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ════════════════════════════════════════
+       STATS
+    ════════════════════════════════════════ */
+    .stats-wrap {
+      padding: 72px 52px;
+    }
+    .stats-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 0 44px;
+      border-right: 1px solid var(--gold-border);
+      text-align: center;
+    }
+    .stat-item:first-child { padding-left: 0; text-align: left; }
+    .stat-item:last-child  { border-right: none; padding-right: 0; text-align: right; }
+    .stat-val {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ════════════════════════════════════════
+       PHILOSOPHY / ABOUT
+    ════════════════════════════════════════ */
+    .philosophy-wrap {
+      background: var(--bg-2);
+      padding: var(--section-pad) 52px;
+    }
+    .philosophy-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: center;
+    }
+    .philosophy-image {
+      position: relative;
+      height: 580px;
+    }
+    .philosophy-img-main {
+      height: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--gold-border);
+    }
+    .philosophy-img-badge {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 48px rgba(212,175,55,.3);
+    }
+    .badge-big-val {
+      font-family: var(--font-head);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--bg);
+      line-height: 1;
+    }
+    .badge-big-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(15,15,17,.7);
+      margin-top: 4px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .philosophy-list {
+      list-style: none;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .philosophy-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .philosophy-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .philo-num {
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .philo-title {
+      font-family: var(--font-head);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+    .philo-body {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       SERVICES
+    ════════════════════════════════════════ */
+    .services-wrap {
+      padding: var(--section-pad) 52px;
+    }
+    .services-inner { max-width: var(--max-w); margin: 0 auto; }
+    .services-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 40px;
+    }
+
+    /* Top row: 3 image cards */
+    .services-top {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .service-img-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: default;
+    }
+    .service-img-card.tall { height: 520px; }
+    .service-img-card.short { height: 460px; }
+
+    .sic-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .sic-bg img { transition: transform .7s ease; }
+    .service-img-card:hover .sic-bg img { transform: scale(1.05); }
+    .sic-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,15,17,.97) 0%, rgba(15,15,17,.3) 60%, transparent 100%);
+      transition: background var(--t) var(--ease);
+    }
+    .service-img-card:hover .sic-overlay {
+      background: linear-gradient(to top, rgba(15,15,17,.99) 0%, rgba(15,15,17,.55) 65%, rgba(15,15,17,.1) 100%);
+    }
+    .sic-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 30px;
+      z-index: 2;
+    }
+    .sic-num {
+      font-family: var(--font-head);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .sic-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .sic-desc {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.72;
+      font-weight: 300;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .45s ease, opacity .35s ease;
+    }
+    .service-img-card:hover .sic-desc {
+      max-height: 120px;
+      opacity: 1;
+    }
+    .sic-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .35s ease, transform .35s ease, gap .25s ease;
+    }
+    .service-img-card:hover .sic-cta { opacity: 1; transform: none; }
+    .sic-cta:hover { gap: 12px; }
+    .sic-border {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      pointer-events: none;
+      transition: border-color var(--t) var(--ease);
+    }
+    .service-img-card:hover .sic-border { border-color: rgba(212,175,55,.35); }
+
+    /* Bottom row: 2 text cards */
+    .services-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .service-text-card {
+      background: var(--bg-2);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: border-color var(--t) var(--ease), background var(--t) var(--ease);
+    }
+    .service-text-card:hover {
+      border-color: rgba(212,175,55,.3);
+      background: var(--bg-3);
+    }
+    .stc-num {
+      font-family: var(--font-head);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .stc-icon { font-size: 1.5rem; margin-bottom: 14px; }
+    .stc-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .stc-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      font-weight: 300;
+    }
+    .stc-features {
+      list-style: none;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stc-features li {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stc-features li::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════════════
+       PROCESSO
+    ════════════════════════════════════════ */
+    .process-wrap {
+      background: var(--bg-2);
+      padding: var(--section-pad) 52px;
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .process-inner { max-width: var(--max-w); margin: 0 auto; }
+    .process-head  { text-align: center; margin-bottom: 72px; }
+    .process-head .body-text { margin: 0 auto; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: calc(100% / 8);
+      right: calc(100% / 8);
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), var(--gold-border), transparent);
+    }
+
+    .process-step {
+      padding: 0 32px;
+      text-align: center;
+    }
+    .proc-num {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border-hover);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+      background: var(--bg-2);
+    }
+    .proc-title {
+      font-family: var(--font-head);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .proc-body {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       GALLERY
+    ════════════════════════════════════════ */
+    .gallery-wrap {
+      padding: var(--section-pad) 52px;
+    }
+    .gallery-inner { max-width: var(--max-w); margin: 0 auto; }
+    .gallery-head  {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      gap: 32px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 14px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--gold-border);
+    }
+    .gallery-item img { transition: transform .7s ease; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .g1 { grid-row: span 2; height: 560px; }
+    .g2 { height: 270px; }
+    .g3 { height: 270px; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,15,17,.8) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--t) var(--ease);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-car-label {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ════════════════════════════════════════
+       PRODUTOS / CERTIFICAÇÕES
+    ════════════════════════════════════════ */
+    .certs-wrap {
+      background: var(--bg-2);
+      padding: 52px;
+      border-top: 1px solid var(--gold-border);
+    }
+    .certs-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .certs-label {
+      font-family: var(--font-head);
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .certs-rule { width: 1px; height: 36px; background: var(--gold-border); flex-shrink: 0; }
+    .certs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      align-items: center;
+    }
+    .cert-tag {
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--t) var(--ease);
+    }
+    .cert-tag:hover { color: var(--gold); }
+
+    /* ════════════════════════════════════════
+       DEPOIMENTOS
+    ════════════════════════════════════════ */
+    .testi-wrap {
+      padding: var(--section-pad) 52px;
+    }
+    .testi-inner { max-width: var(--max-w); margin: 0 auto; }
+    .testi-head  { text-align: center; margin-bottom: 60px; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testi-card {
+      background: var(--bg-2);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 34px 28px;
+      transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: var(--font-head);
+      font-size: 5rem;
+      color: var(--gold-border);
+      line-height: 1;
+    }
+    .testi-card:hover {
+      border-color: rgba(212,175,55,.3);
+      box-shadow: 0 0 40px rgba(212,175,55,.06);
+    }
+    .testi-car-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212,175,55,.08);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .testi-stars { color: var(--gold); letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 16px; }
+    .testi-text {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.82;
+      font-weight: 300;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--gold-border);
+    }
+    .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+    .testi-role { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ════════════════════════════════════════
+       FAQ
+    ════════════════════════════════════════ */
+    .faq-wrap {
+      background: var(--bg-2);
+      padding: var(--section-pad) 52px;
+      border-top: 1px solid var(--gold-border);
+    }
+    .faq-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 100px;
+      align-items: start;
+    }
+    .faq-left { position: sticky; top: 100px; }
+
+    .accordion { display: flex; flex-direction: column; }
+    .acc-item  { border-bottom: 1px solid var(--gold-border); }
+    .acc-btn   {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      text-align: left;
+      font-family: var(--font-head);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      transition: color var(--t) var(--ease);
+    }
+    .acc-btn:hover { color: var(--white); }
+    .acc-item.open .acc-btn { color: var(--gold); }
+    .acc-icon {
+      width: 26px; height: 26px;
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--text-muted);
+      transition: background var(--t), color var(--t), border-color var(--t), transform var(--t);
+    }
+    .acc-item.open .acc-icon {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg);
+      transform: rotate(45deg);
+    }
+    .acc-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .42s ease;
+    }
+    .acc-item.open .acc-body { max-height: 260px; }
+    .acc-body-inner {
+      padding-bottom: 22px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       CTA FINAL
+    ════════════════════════════════════════ */
+    .cta-wrap {
+      position: relative;
+      padding: var(--section-pad) 52px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .cta-bg img { filter: brightness(0.18) saturate(0.6); }
+    .cta-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at center, rgba(212,175,55,.06) 0%, transparent 70%);
+    }
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 3.8vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .cta-title em { font-style: normal; color: var(--gold); }
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta-note {
+      margin-top: 28px;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .cta-note span { color: var(--gold); }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--gold-border);
+      padding: 64px 52px 40px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 52px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 32px;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 260px;
+    }
+    .footer-col-title {
+      font-family: var(--font-head);
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul li a {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      transition: color var(--t) var(--ease);
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .footer-credit a {
+      color: var(--gold);
+      font-weight: 600;
+      transition: opacity var(--t) var(--ease);
+    }
+    .footer-credit a:hover { opacity: .7; }
+
+    /* ════════════════════════════════════════
+       WHATSAPP FLUTUANTE
+    ════════════════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,.45);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .wa-float:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 16px 40px rgba(37,211,102,.55);
+    }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #25D366;
+      animation: waPulse 2.8s infinite;
+      pointer-events: none;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(1); opacity: .5; }
+      70%  { transform: scale(1.7); opacity: 0; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1040px) {
+      .philosophy-inner { grid-template-columns: 1fr; gap: 52px; }
+      .philosophy-image { height: 400px; }
+      .philosophy-img-badge { right: 0; }
+      .services-top     { grid-template-columns: 1fr 1fr; }
+      .services-top .service-img-card:last-child { grid-column: span 2; height: 320px; }
+      .process-grid     { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .process-grid::before { display: none; }
+      .gallery-grid     { grid-template-columns: 1fr; }
+      .g1               { height: 340px; grid-row: span 1; }
+      .g2, .g3          { height: 260px; }
+      .testi-grid       { grid-template-columns: 1fr; gap: 18px; }
+      .faq-inner        { grid-template-columns: 1fr; gap: 48px; }
+      .faq-left         { position: static; }
+      .footer-top       { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .stats-inner      { grid-template-columns: 1fr 1fr; gap: 0; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid var(--gold-border); border-top: 1px solid var(--gold-border); padding-top: 32px; }
+      .stat-item:nth-child(4) { border-right: none; border-top: 1px solid var(--gold-border); padding-top: 32px; }
+      .cta-inner        { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      #header, #header.scrolled { padding: 14px 24px; }
+      .nav-links   { display: none; }
+      .hamburger   { display: flex; }
+
+      .hero-content { padding: 120px 24px 72px; }
+      .stats-wrap, .philosophy-wrap, .services-wrap,
+      .process-wrap, .gallery-wrap, .testi-wrap,
+      .faq-wrap, .cta-wrap { padding: var(--section-pad) 24px; }
+      .certs-wrap  { padding: 40px 24px; }
+      footer       { padding: 52px 24px 36px; }
+
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .services-top { grid-template-columns: 1fr; }
+      .services-top .service-img-card { height: 320px !important; grid-column: auto !important; }
+      .services-bottom { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .footer-top   { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .certs-inner  { gap: 24px; }
+      .hero-trust   { gap: 20px; }
+      .wa-float     { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .services-head { flex-direction: column; align-items: flex-start; }
+      .gallery-head  { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header id="header">
+  <a href="#" class="logo">Elite <span>Auto</span> Detail</a>
+
+  <nav class="nav-links" aria-label="Navegação">
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#depoimentos">Clientes</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <a
+    href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20um%20serviço%20na%20Elite%20Auto%20Detail!"
+    class="btn btn-gold"
+    target="_blank"
+    rel="noopener"
+    style="padding:10px 24px; font-size:0.75rem; display:none;"
+    id="headerCta"
+  >
+    Agendar
+  </a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#servicos"    class="mob-link">Serviços</a>
+  <a href="#processo"    class="mob-link">Processo</a>
+  <a href="#galeria"     class="mob-link">Galeria</a>
+  <a href="#depoimentos" class="mob-link">Clientes</a>
+  <a href="#faq"         class="mob-link">FAQ</a>
+  <a href="https://wa.me/5511999999999" class="mob-link btn btn-gold" target="_blank" rel="noopener" style="margin-top:12px; font-size:0.8rem;">
+    Agendar Agora
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-bg">
+    <!--
+      IMAGE SLOT 1 — HERO BACKGROUND
+    -->
+    <img
+      id="heroImg"
+      src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1800&q=85&auto=format&fit=crop"
+      alt="Veículo premium em estúdio"
+      loading="eager"
+      fetchpriority="high"
+    >
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Agenda limitada — apenas 8 veículos por semana
+    </div>
+
+    <h1 class="hero-title">
+      Fabricado com<br>
+      perfeição.<br>
+      Preservado com<br>
+      <em>obsessão.</em>
+    </h1>
+
+    <span class="hero-rule"></span>
+
+    <p class="hero-lead">
+      Polimento de correção, vitrificação cerâmica e PPF para quem entende que cada milímetro da pintura importa. Tratamento reservado para veículos que merecem o melhor.
+    </p>
+
+    <div class="hero-actions">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20um%20serviço%20na%20Elite%20Auto%20Detail!"
+        class="btn btn-gold btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        Agendar avaliação gratuita
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+      <a href="#servicos" class="btn btn-outline-gold btn-lg">
+        Ver serviços
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <span class="trust-item"><span class="trust-dot"></span>Gyeon Certified Detailer</span>
+      <span class="trust-item"><span class="trust-dot"></span>Koch-Chemie Partner</span>
+      <span class="trust-item"><span class="trust-dot"></span>Garantia por escrito</span>
+      <span class="trust-item"><span class="trust-dot"></span>Nota 5.0 no Google</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MARQUEE — MARCAS ATENDIDAS
+════════════════════════════════════════ -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item">
+      <span class="marquee-text">Porsche</span><span class="marquee-sep"></span>
+      <span class="marquee-text">BMW</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Ferrari</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Lamborghini</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Mercedes-AMG</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Audi</span><span class="marquee-sep"></span>
+      <span class="marquee-text">McLaren</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Maserati</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Bentley</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Aston Martin</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Rolls-Royce</span><span class="marquee-sep"></span>
+    </div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item" aria-hidden="true">
+      <span class="marquee-text">Porsche</span><span class="marquee-sep"></span>
+      <span class="marquee-text">BMW</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Ferrari</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Lamborghini</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Mercedes-AMG</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Audi</span><span class="marquee-sep"></span>
+      <span class="marquee-text">McLaren</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Maserati</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Bentley</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Aston Martin</span><span class="marquee-sep"></span>
+      <span class="marquee-text">Rolls-Royce</span><span class="marquee-sep"></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     STATS
+════════════════════════════════════════ -->
+<div class="stats-wrap" aria-label="Números">
+  <div class="stats-inner">
+    <div class="stat-item fade-up">
+      <div class="stat-val" data-target="7">0+</div>
+      <div class="stat-label">Anos de especialização</div>
+    </div>
+    <div class="stat-item fade-up d1">
+      <div class="stat-val" data-target="850">0+</div>
+      <div class="stat-label">Veículos tratados</div>
+    </div>
+    <div class="stat-item fade-up d2">
+      <div class="stat-val" data-target="100">0%</div>
+      <div class="stat-label">Clientes que indicam</div>
+    </div>
+    <div class="stat-item fade-up d3">
+      <div class="stat-val">5.0<span style="font-size:1.8rem">★</span></div>
+      <div class="stat-label">Avaliação Google</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════════
+     FILOSOFIA / SOBRE
+════════════════════════════════════════ -->
+<section class="philosophy-wrap" aria-label="Nossa filosofia">
+  <div class="philosophy-inner">
+
+    <div class="fade-right">
+      <div class="philosophy-image">
+        <div class="philosophy-img-main">
+          <!--
+            IMAGE SLOT 2 — TECHNICIAN / DETAIL WORK
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=85&auto=format&fit=crop"
+            alt="Detailer em ação"
+            loading="lazy"
+          >
+        </div>
+        <div class="philosophy-img-badge">
+          <div class="badge-big-val">7+</div>
+          <div class="badge-big-label">Anos de expertise</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow fade-up">Por que Elite</span>
+      <h2 class="section-title fade-up d1">Não somos uma<br>lava-rápida <em>premium</em>.</h2>
+      <p class="body-text fade-up d2">
+        Somos especialistas em preservação de pintura. Cada veículo que entra no nosso espaço recebe o mesmo respeito que os engenheiros da Porsche tiveram ao construí-lo.
+      </p>
+
+      <ul class="philosophy-list">
+        <li class="philosophy-item fade-up d1">
+          <span class="philo-num">01</span>
+          <div>
+            <div class="philo-title">Diagnóstico obrigatório</div>
+            <div class="philo-body">Antes de tocar no veículo, fazemos uma análise completa da pintura sob luz especializada. Sem diagnóstico, sem serviço. Essa é nossa política.</div>
+          </div>
+        </li>
+        <li class="philosophy-item fade-up d2">
+          <span class="philo-num">02</span>
+          <div>
+            <div class="philo-title">Produtos de referência mundial</div>
+            <div class="philo-body">Trabalhamos exclusivamente com Gyeon, Koch-Chemie e Meguiar's Professional — as mesmas marcas usadas em concursos de julgamento de pintura.</div>
+          </div>
+        </li>
+        <li class="philosophy-item fade-up d3">
+          <span class="philo-num">03</span>
+          <div>
+            <div class="philo-title">Oito veículos por semana. Não mais.</div>
+            <div class="philo-body">Nossa agenda é deliberadamente limitada. Não crescemos em volume — crescemos em qualidade. Cada cliente merece dedicação total.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════ -->
+<section class="services-wrap" id="servicos" aria-label="Nossos serviços">
+  <div class="services-inner">
+
+    <div class="services-head">
+      <div>
+        <span class="eyebrow fade-up">Especialidades</span>
+        <h2 class="section-title fade-up d1">O que fazemos.<br><em>Melhor.</em></h2>
+      </div>
+      <p class="body-text fade-up d2" style="text-align:right; max-width:340px;">
+        Cinco serviços. Um padrão de excelência que não negociamos.
+      </p>
+    </div>
+
+    <!-- Top: 3 image cards -->
+    <div class="services-top">
+
+      <div class="service-img-card short fade-in d1">
+        <div class="sic-bg">
+          <!--
+            IMAGE SLOT 3 — SERVICE: MACHINE POLISH
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=85&auto=format&fit=crop"
+            alt="Polimento técnico"
+            loading="lazy"
+          >
+        </div>
+        <div class="sic-overlay"></div>
+        <div class="sic-border"></div>
+        <div class="sic-content">
+          <div class="sic-num">01 — Polimento</div>
+          <h3 class="sic-title">Polimento Técnico<br>de Correção</h3>
+          <p class="sic-desc">Remoção de marcas de máquina, swirls, oxidação e arranhões leves. Revela a profundidade real da pintura de fábrica.</p>
+          <a href="https://wa.me/5511999999999?text=Quero%20saber%20sobre%20polimento!" class="sic-cta" target="_blank" rel="noopener">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-img-card tall fade-in d2">
+        <div class="sic-bg">
+          <!--
+            IMAGE SLOT 4 — SERVICE: CERAMIC COATING
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85&auto=format&fit=crop"
+            alt="Vitrificação cerâmica"
+            loading="lazy"
+          >
+        </div>
+        <div class="sic-overlay"></div>
+        <div class="sic-border"></div>
+        <div class="sic-content">
+          <div class="sic-num">02 — Proteção</div>
+          <h3 class="sic-title">Vitrificação<br>Cerâmica</h3>
+          <p class="sic-desc">Revestimento nano-cerâmico Gyeon Quartz. Brilho espelho, hidrofobicidade extrema e proteção de até 5 anos.</p>
+          <a href="https://wa.me/5511999999999?text=Quero%20saber%20sobre%20vitrificação!" class="sic-cta" target="_blank" rel="noopener">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-img-card short fade-in d3">
+        <div class="sic-bg">
+          <!--
+            IMAGE SLOT 5 — SERVICE: PPF FILM
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=85&auto=format&fit=crop"
+            alt="PPF Película protetora"
+            loading="lazy"
+          >
+        </div>
+        <div class="sic-overlay"></div>
+        <div class="sic-border"></div>
+        <div class="sic-content">
+          <div class="sic-num">03 — PPF</div>
+          <h3 class="sic-title">Película<br>Protetora (PPF)</h3>
+          <p class="sic-desc">Filme auto-regenerante invisível contra pedriscos, arranhões e impactos. A proteção física definitiva para pintura.</p>
+          <a href="https://wa.me/5511999999999?text=Quero%20saber%20sobre%20PPF!" class="sic-cta" target="_blank" rel="noopener">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom: 2 text cards -->
+    <div class="services-bottom">
+
+      <div class="service-text-card fade-up d1">
+        <div class="stc-num">04 — Detalhamento</div>
+        <div class="stc-icon">✦</div>
+        <h3 class="stc-title">Detalhamento Completo</h3>
+        <p class="stc-desc">8 a 12 horas de trabalho meticuloso em cada centímetro do veículo. Externo e interno. Resultado de concurso — a escolha para quem quer o máximo antes de um evento ou venda.</p>
+        <ul class="stc-features">
+          <li>Descontaminação química e mecânica</li>
+          <li>Polimento externo completo</li>
+          <li>Limpeza profunda do interior</li>
+          <li>Condicionamento de couro e plásticos</li>
+        </ul>
+      </div>
+
+      <div class="service-text-card fade-up d2">
+        <div class="stc-num">05 — Higienização</div>
+        <div class="stc-icon">◈</div>
+        <h3 class="stc-title">Higienização Premium</h3>
+        <p class="stc-desc">Limpeza bactericida profunda do habitáculo com extratora profissional, ozônio e produtos específicos para cada superfície. O interior do seu veículo mais limpo do que saiu da concessionária.</p>
+        <ul class="stc-features">
+          <li>Extração de assentos e tapetes</li>
+          <li>Tratamento com ozônio</li>
+          <li>Limpeza de ar-condicionado</li>
+          <li>Impermeabilização de tecidos</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════════
+     PROCESSO
+════════════════════════════════════════ -->
+<section class="process-wrap" id="processo" aria-label="Como funciona">
+  <div class="process-inner">
+    <div class="process-head">
+      <span class="eyebrow center fade-up">Metodologia</span>
+      <h2 class="section-title fade-up d1" style="text-align:center;">Do contato ao <em>resultado.</em></h2>
+      <p class="body-text fade-up d2">Quatro etapas. Zero atalhos.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up d1">
+        <div class="proc-num">I</div>
+        <h3 class="proc-title">Avaliação</h3>
+        <p class="proc-body">Diagnóstico gratuito presencial com luz especializada. Analisamos cada painel, documentamos o estado atual e propomos o tratamento ideal.</p>
+      </div>
+      <div class="process-step fade-up d2">
+        <div class="proc-num">II</div>
+        <h3 class="proc-title">Proposta</h3>
+        <p class="proc-body">Orçamento detalhado com escopo exato, prazo, produtos utilizados e resultado esperado. Sem surpresas. Sem custo oculto.</p>
+      </div>
+      <div class="process-step fade-up d3">
+        <div class="proc-num">III</div>
+        <h3 class="proc-title">Execução</h3>
+        <p class="proc-body">Processo documentado com fotos antes, durante e depois. Você acompanha cada etapa pelo WhatsApp. O veículo fica conosco o tempo necessário — nunca menos.</p>
+      </div>
+      <div class="process-step fade-up d4">
+        <div class="proc-num">IV</div>
+        <h3 class="proc-title">Entrega</h3>
+        <p class="proc-body">Apresentação do resultado com relatório fotográfico completo, certificado de garantia e instruções de manutenção específicas para o produto aplicado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     GALERIA
+════════════════════════════════════════ -->
+<section class="gallery-wrap" id="galeria" aria-label="Galeria de resultados">
+  <div class="gallery-inner">
+    <div class="gallery-head">
+      <div>
+        <span class="eyebrow fade-up">Resultados</span>
+        <h2 class="section-title fade-up d1">O que sai<br>do nosso espaço.</h2>
+      </div>
+      <a
+        href="https://wa.me/5511999999999?text=Quero%20ver%20mais%20resultados%20da%20Elite%20Auto%20Detail!"
+        class="btn btn-outline-gold fade-up d2"
+        target="_blank"
+        rel="noopener"
+        style="white-space:nowrap; flex-shrink:0;"
+      >
+        Ver mais no Instagram
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item g1 fade-in">
+        <!--
+          IMAGE SLOT 6 — GALLERY: PORSCHE 911 (large)
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&q=85&auto=format&fit=crop"
+          alt="Porsche 911 — Elite Auto Detail"
+          loading="lazy"
+        >
+        <div class="gallery-overlay">
+          <span class="gallery-car-label">Porsche 911 GT3 — Vitrificação Gyeon</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g2 fade-in d1">
+        <!--
+          IMAGE SLOT 7 — GALLERY: BMW M4
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=85&auto=format&fit=crop"
+          alt="BMW M4 — Elite Auto Detail"
+          loading="lazy"
+        >
+        <div class="gallery-overlay">
+          <span class="gallery-car-label">BMW M4 Competition — Polimento + PPF</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g3 fade-in d2">
+        <!--
+          IMAGE SLOT 8 — GALLERY: FERRARI / SUPERCAR
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=800&q=85&auto=format&fit=crop"
+          alt="Ferrari — Elite Auto Detail"
+          loading="lazy"
+        >
+        <div class="gallery-overlay">
+          <span class="gallery-car-label">Ferrari 488 — Detalhamento Completo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════════
+     CERTIFICAÇÕES / PRODUTOS
+════════════════════════════════════════ -->
+<div class="certs-wrap" aria-label="Produtos utilizados">
+  <div class="certs-inner">
+    <span class="certs-label fade-up">Produtos utilizados</span>
+    <span class="certs-rule fade-in"></span>
+    <div class="certs-list fade-up d1">
+      <span class="cert-tag">Gyeon Quartz</span>
+      <span class="cert-tag">Koch-Chemie</span>
+      <span class="cert-tag">Meguiar's Professional</span>
+      <span class="cert-tag">Sonax Profiline</span>
+      <span class="cert-tag">Gtechniq</span>
+      <span class="cert-tag">Rupes</span>
+      <span class="cert-tag">Festool</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════ -->
+<section class="testi-wrap" id="depoimentos" aria-label="Depoimentos">
+  <div class="testi-inner">
+    <div class="testi-head">
+      <span class="eyebrow center fade-up">Clientes</span>
+      <h2 class="section-title fade-up d1" style="text-align:center;">Quem entende,<br><em>indica.</em></h2>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card fade-up d1">
+        <span class="testi-car-badge">🏎 Porsche 911 Carrera S</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Levei meu 911 para polimento e vitrificação. O resultado foi além do que esperava — parece que a pintura ganhou vida. Dá para ver reflexos que nunca tinha visto antes. Nunca mais levo em outro lugar."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 9 — AVATAR 1
+            -->
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Rafael M.">
+          </div>
+          <div>
+            <div class="testi-name">Rafael Monteiro</div>
+            <div class="testi-role">Empresário · SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d2">
+        <span class="testi-car-badge">🏎 BMW M4 Competition</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Comprei o M4 seminovo e trouxe para a Elite antes de passar para o meu nome. Vitrificação + PPF completo. Nenhum detailer que conheci explicou o processo com tanta clareza. Confiança total do início ao fim."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 10 — AVATAR 2
+            -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80&auto=format&fit=crop&crop=face" alt="Gustavo F.">
+          </div>
+          <div>
+            <div class="testi-name">Gustavo Ferreira</div>
+            <div class="testi-role">Diretor Financeiro · SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d3">
+        <span class="testi-car-badge">🏎 Ferrari 488 Spider</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Para quem tem um carro desse nível, não tem como arriscar em lugar sem referência. Pesquisei muito antes de escolher a Elite. O detalhamento completo que fizeram foi impecável — cada costura, cada fresta, perfeito."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 11 — AVATAR 3
+            -->
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop&crop=face" alt="Carlos A.">
+          </div>
+          <div>
+            <div class="testi-name">Carlos Andrade</div>
+            <div class="testi-role">Colecionador · SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="faq-wrap" id="faq" aria-label="Perguntas frequentes">
+  <div class="faq-inner">
+
+    <div class="faq-left">
+      <span class="eyebrow fade-up">Dúvidas</span>
+      <h2 class="section-title fade-up d1">Perguntas<br><em>frequentes.</em></h2>
+      <p class="body-text fade-up d2">
+        Transparência total antes mesmo do primeiro contato.
+      </p>
+      <a
+        href="https://wa.me/5511999999999?text=Tenho%20uma%20dúvida%20sobre%20os%20serviços%20da%20Elite%20Auto%20Detail!"
+        class="btn btn-gold fade-up d3"
+        target="_blank"
+        rel="noopener"
+        style="margin-top: 32px; display: inline-flex;"
+      >
+        Perguntar pelo WhatsApp
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="accordion fade-up d1">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Qual a diferença entre vitrificação e enceramento?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            A cera é um produto orgânico que dura semanas. A vitrificação cerâmica é um revestimento nano-tecnológico que forma uma camada dura (9H na escala de dureza) quimicamente ligada à pintura, com durabilidade de 2 a 5 anos dependendo do produto. A hidrofobicidade, brilho e proteção são incomparáveis.
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Preciso fazer polimento antes de vitrificar?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim, quase sempre. A vitrificação "cristaliza" o estado atual da pintura. Se houver swirls, marcas de máquina ou oxidação, elas ficam permanentemente sob o revestimento. Por isso o diagnóstico antes de qualquer proposta é obrigatório — para sabermos exatamente o que a pintura precisa.
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Quanto tempo fica o veículo com vocês?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Varia por serviço: higienização (4–6h), polimento simples (6–8h), polimento + vitrificação (2–3 dias), PPF parcial (1–2 dias), detalhamento completo (2–3 dias). O veículo fica o tempo necessário — não menos. Você recebe atualizações com fotos em tempo real.
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          A vitrificação tem garantia?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. Emitimos um certificado de garantia por escrito com prazo de acordo com o produto aplicado (Gyeon Quartz: 2 a 5 anos). A garantia cobre falhas no revestimento — desde que respeitadas as instruções de manutenção que fornecemos na entrega.
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Vocês atendem veículos zero-km?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim, e é o momento ideal. Veículos zero-km já saem da concessionária com marcas de máquina e swirls do processo de entrega. Proteger antes do primeiro uso garante que a pintura fique em estado imaculado por anos.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<section class="cta-wrap" aria-label="Agendamento">
+  <div class="cta-bg">
+    <!--  reutiliza hero img - sem slot extra -->
+    <img
+      src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600&q=70&auto=format&fit=crop"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    >
+  </div>
+  <div class="cta-content">
+    <span class="eyebrow center fade-up">Agenda aberta</span>
+    <h2 class="cta-title fade-up d1">
+      Seu carro merece<br>
+      o <em>melhor.</em><br>
+      Você também.
+    </h2>
+    <p class="cta-sub fade-up d2">
+      Avaliação gratuita e sem compromisso. Nos diga o veículo e o objetivo — em minutos você tem uma proposta clara, honesta e sem enrolação.
+    </p>
+    <div class="cta-actions fade-up d3">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20avaliação%20gratuita%20na%20Elite%20Auto%20Detail!"
+        class="btn btn-gold btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Agendar avaliação gratuita
+      </a>
+      <a href="tel:+5511999999999" class="btn btn-outline-gold btn-lg">
+        Ligar agora
+      </a>
+    </div>
+    <p class="cta-note fade-up d4">
+      📍 São Paulo · <span>Atendimento apenas com agendamento prévio</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer aria-label="Rodapé">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Elite <span>Auto</span> Detail</div>
+        <p class="footer-tagline">
+          Estética automotiva de alto padrão para veículos que merecem o melhor. São Paulo.
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Serviços</div>
+        <ul>
+          <li><a href="#servicos">Polimento Técnico</a></li>
+          <li><a href="#servicos">Vitrificação Cerâmica</a></li>
+          <li><a href="#servicos">PPF — Película Protetora</a></li>
+          <li><a href="#servicos">Detalhamento Completo</a></li>
+          <li><a href="#servicos">Higienização Premium</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Estúdio</div>
+        <ul>
+          <li><a href="#processo">Metodologia</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contato</div>
+        <ul>
+          <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Elite Auto Detail. Todos os direitos reservados.</p>
+      <p class="footer-credit">
+        Desenvolvido por <a href="https://presencacerta.com.br" target="_blank" rel="noopener">Presença Certa</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP FLUTUANTE
+════════════════════════════════════════ -->
+<a
+  href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20avaliação%20gratuita%20na%20Elite%20Auto%20Detail!"
+  class="wa-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp"
+>
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  /* ── Header scroll + CTA reveal ── */
+  const header    = document.getElementById('header');
+  const headerCta = document.getElementById('headerCta');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 80;
+    header.classList.toggle('scrolled', scrolled);
+    if (headerCta) headerCta.style.display = scrolled ? 'inline-flex' : 'none';
+  }, { passive: true });
+
+  /* ── Hamburger ── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }));
+
+  /* ── Intersection Observer ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { target.classList.add('visible'); io.unobserve(target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -44px 0px' });
+  document.querySelectorAll('.fade-up,.fade-in,.fade-left,.fade-right').forEach(el => io.observe(el));
+
+  /* ── FAQ Accordion ── */
+  document.querySelectorAll('.acc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+
+  /* ── Counter animation ── */
+  const counters = document.querySelectorAll('.stat-val[data-target]');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      cio.unobserve(target);
+      const end      = parseInt(target.dataset.target);
+      const suffix   = target.textContent.replace(/\d+/, '');
+      const duration = 1600;
+      const steps    = 50;
+      let   current  = 0;
+      const timer = setInterval(() => {
+        current += end / steps;
+        if (current >= end) { current = end; clearInterval(timer); }
+        target.textContent = Math.round(current) + suffix;
+      }, duration / steps);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => cio.observe(c));
+
+  /* ── Hero parallax ── */
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg && window.matchMedia('(min-width:769px)').matches) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.2)
+        heroImg.style.transform = `translateY(${window.scrollY * 0.16}px)`;
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>

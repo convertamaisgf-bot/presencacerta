@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Pilates — Jardins, São Paulo</title>
+  <meta name="description" content="Pilates de alto padrão no Jardins. Turmas reduzidas, atenção individualizada e método exclusivo. Agende sua aula experimental.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════
+       DESIGN SYSTEM — CSS VARIABLES
+    ════════════════════════════════════════ */
+    :root {
+      --bg:          #FAF9F6;
+      --bg-warm:     #F3F0EB;
+      --surface:     #FFFFFF;
+      --text:        #2C2825;
+      --text-muted:  #8A7F78;
+      --sage:        #8FB9A8;
+      --sage-dark:   #6E9D8B;
+      --taupe:       #B8A99A;
+      --taupe-light: #E4DDD6;
+      --gold:        #C9A86C;
+      --border:      rgba(184,169,154,0.22);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', system-ui, sans-serif;
+
+      --section-pad: clamp(80px, 10vw, 140px);
+      --max-w:       1160px;
+      --radius:      16px;
+      --radius-sm:   8px;
+      --ease:        cubic-bezier(0.25,0.46,0.45,0.94);
+      --t:           0.4s;
+    }
+
+    /* ════════════════════════════════════════
+       RESET & BASE
+    ════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { text-decoration: none; color: inherit; }
+    button { cursor: pointer; }
+
+    /* ════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ════════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(38px);
+      transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1.1s var(--ease);
+    }
+    .fade-up.visible, .fade-in.visible { opacity: 1; transform: none; }
+
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.22s; }
+    .d3 { transition-delay: 0.34s; }
+    .d4 { transition-delay: 0.46s; }
+    .d5 { transition-delay: 0.58s; }
+
+    /* ════════════════════════════════════════
+       REUSABLES
+    ════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+    .eyebrow.center::before { display: none; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 3.8vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section-title em { font-style: italic; color: var(--sage); }
+    .section-title.light { color: #FAF9F6; }
+    .section-title.light em { color: var(--sage); }
+
+    .body-text {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-weight: 300;
+      max-width: 540px;
+    }
+
+    /* ─ Buttons ─ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      padding: 15px 34px;
+      transition: background var(--t) var(--ease),
+                  color     var(--t) var(--ease),
+                  transform var(--t) var(--ease),
+                  box-shadow var(--t) var(--ease),
+                  border-color var(--t) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    .btn svg { transition: transform var(--t) var(--ease); }
+    .btn:hover svg { transform: translateX(4px); }
+
+    .btn-dark {
+      background: var(--text);
+      color: #FAF9F6;
+    }
+    .btn-dark:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(143,185,168,.35);
+    }
+    .btn-sage {
+      background: var(--sage);
+      color: #fff;
+    }
+    .btn-sage:hover {
+      background: var(--sage-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(143,185,168,.4);
+    }
+    .btn-ghost-dark {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: transparent;
+      padding-left: 0;
+    }
+    .btn-ghost-dark:hover { color: var(--text); }
+    .btn-outline-light {
+      background: transparent;
+      color: rgba(250,249,246,.85);
+      border-color: rgba(250,249,246,.22);
+    }
+    .btn-outline-light:hover {
+      background: rgba(250,249,246,.07);
+      border-color: rgba(250,249,246,.5);
+    }
+
+    /* ════════════════════════════════════════
+       HEADER — GLASSMORPHISM
+    ════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      padding: 22px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250,249,246,.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(184,169,154,.12);
+      transition: padding var(--t) var(--ease), background var(--t) var(--ease);
+    }
+    #header.scrolled {
+      padding: 14px 48px;
+      background: rgba(250,249,246,.94);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .logo em { font-style: italic; color: var(--sage); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--t) var(--ease);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--sage) !important;
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 50px;
+      transition: background var(--t) var(--ease), transform var(--t) var(--ease) !important;
+    }
+    .nav-cta:hover { background: var(--sage-dark) !important; transform: translateY(-1px); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text);
+      transition: var(--t) var(--ease);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* mobile nav */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 68px 0 0;
+      z-index: 800;
+      background: rgba(250,249,246,.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--text);
+      transition: color var(--t);
+    }
+    .mobile-menu a:hover { color: var(--sage); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 160px 72px 80px 72px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content .eyebrow { margin-bottom: 28px; }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 5vw, 5.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    .hero-title em { font-style: italic; color: var(--sage); }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 400px;
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+
+    .hero-numbers {
+      display: flex;
+      gap: 44px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-num-value {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-num-label {
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual img {
+      position: absolute;
+      inset: 0;
+      transition: transform 7s ease;
+    }
+    .hero:hover .hero-visual img { transform: scale(1.04); }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 30%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════════
+       MANIFESTO BAND
+    ════════════════════════════════════════ */
+    .manifesto {
+      background: var(--text);
+      padding: clamp(80px,9vw,130px) 48px;
+      text-align: center;
+    }
+    .manifesto blockquote {
+      max-width: 820px;
+      margin: 0 auto;
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.2vw, 2.9rem);
+      font-weight: 300;
+      line-height: 1.55;
+      color: #FAF9F6;
+      font-style: italic;
+    }
+    .manifesto blockquote strong { font-style: normal; font-weight: 500; color: var(--sage); }
+    .manifesto cite {
+      display: block;
+      margin-top: 32px;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(250,249,246,.35);
+      font-style: normal;
+    }
+
+    /* ════════════════════════════════════════
+       EXPERIÊNCIA / DIFERENCIAIS
+    ════════════════════════════════════════ */
+    .experience {
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: var(--section-pad) 48px;
+    }
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+
+    /* images */
+    .exp-img-wrap {
+      position: relative;
+    }
+    .exp-img-main {
+      height: 580px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .exp-img-float {
+      position: absolute;
+      bottom: -36px;
+      right: -36px;
+      width: 210px;
+      height: 270px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(44,40,37,.14);
+      border: 4px solid var(--bg);
+    }
+
+    /* pillars list */
+    .pillars { list-style: none; margin-top: 40px; display: flex; flex-direction: column; gap: 30px; }
+    .pillar  { display: flex; gap: 20px; align-items: flex-start; }
+    .pillar-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(143,185,168,.1);
+      border: 1px solid rgba(143,185,168,.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--sage);
+      font-size: 1rem;
+    }
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 1.22rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .pillar-body {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       MÉTODOS
+    ════════════════════════════════════════ */
+    .methods-wrap {
+      background: var(--bg-warm);
+      padding: var(--section-pad) 48px;
+    }
+    .methods-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .methods-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .method-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(44,40,37,.04);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .method-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 56px rgba(44,40,37,.1);
+    }
+    .method-thumb { height: 280px; overflow: hidden; }
+    .method-thumb img { transition: transform 0.7s ease; }
+    .method-card:hover .method-thumb img { transform: scale(1.06); }
+
+    .method-body { padding: 30px 26px 36px; }
+    .method-tag {
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .method-name {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .method-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      font-weight: 300;
+    }
+    .method-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      transition: gap var(--t) var(--ease), color var(--t) var(--ease);
+    }
+    .method-cta:hover { gap: 14px; color: var(--sage-dark); }
+
+    /* ════════════════════════════════════════
+       ESTÚDIO — MOSAICO
+    ════════════════════════════════════════ */
+    .studio-wrap {
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: var(--section-pad) 48px;
+    }
+    .studio-head {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 64px;
+    }
+    .studio-head .eyebrow { justify-content: center; }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 240px;
+      gap: 14px;
+    }
+    .mosaic-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .mosaic-item img { transition: transform 0.6s ease; }
+    .mosaic-item:hover img { transform: scale(1.04); }
+    .m1 { grid-row: span 2; }
+    .m4 { grid-column: span 2; }
+
+    /* ════════════════════════════════════════
+       INSTRUTORA
+    ════════════════════════════════════════ */
+    .instructor-wrap {
+      background: var(--bg-warm);
+    }
+    .instructor {
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: var(--section-pad) 48px;
+    }
+    .instructor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .instructor-portrait-wrap { position: relative; }
+    .instructor-portrait {
+      height: 640px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .instructor-badge {
+      position: absolute;
+      bottom: 28px;
+      right: -24px;
+      background: var(--surface);
+      padding: 20px 26px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 16px 48px rgba(44,40,37,.12);
+      min-width: 140px;
+    }
+    .badge-val {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--text);
+    }
+    .badge-label {
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+    }
+    .cert {
+      background: rgba(143,185,168,.1);
+      border: 1px solid rgba(143,185,168,.22);
+      color: var(--sage-dark);
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .instructor-sig {
+      margin-top: 36px;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       DEPOIMENTOS
+    ════════════════════════════════════════ */
+    .testimonials-wrap {
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: var(--section-pad) 48px;
+    }
+    .testimonials-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .testimonials-head .eyebrow { justify-content: center; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--bg-warm);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(44,40,37,.07);
+    }
+    .testi-stars { color: var(--gold); letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 18px; }
+    .testi-text {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 300;
+      line-height: 1.72;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 26px;
+    }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar { width: 46px; height: 46px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+    .testi-role { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ════════════════════════════════════════
+       PLANOS / PRICING
+    ════════════════════════════════════════ */
+    .pricing-wrap {
+      background: var(--text);
+      padding: var(--section-pad) 48px;
+    }
+    .pricing-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .pricing-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .pricing-head .eyebrow  { justify-content: center; color: var(--sage); }
+    .pricing-head .body-text { color: rgba(250,249,246,.45); margin: 0 auto; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .price-card {
+      position: relative;
+      border: 1px solid rgba(250,249,246,.1);
+      border-radius: var(--radius);
+      padding: 44px 34px;
+      color: #FAF9F6;
+      transition: border-color var(--t) var(--ease), transform var(--t) var(--ease);
+    }
+    .price-card:hover {
+      border-color: rgba(143,185,168,.4);
+      transform: translateY(-4px);
+    }
+    .price-card.featured {
+      border-color: var(--sage);
+      background: rgba(143,185,168,.07);
+    }
+    .price-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sage);
+      color: #fff;
+      padding: 4px 18px;
+      border-radius: 50px;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .price-plan {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: 3.4rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-amount sup { font-size: 1.1rem; font-family: var(--font-body); vertical-align: top; margin-top: 10px; font-weight: 300; }
+    .price-period {
+      font-size: 0.76rem;
+      color: rgba(250,249,246,.38);
+      margin-bottom: 30px;
+    }
+    .price-divider { border: none; border-top: 1px solid rgba(250,249,246,.08); margin-bottom: 26px; }
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+    .price-features li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(250,249,246,.65);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--sage);
+      font-size: 0.78rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ════════════════════════════════════════
+       FAQ
+    ════════════════════════════════════════ */
+    .faq-wrap {
+      max-width: calc(var(--max-w) + 96px);
+      margin: 0 auto;
+      padding: var(--section-pad) 48px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 96px;
+      align-items: start;
+    }
+    .faq-left {
+      position: sticky;
+      top: 110px;
+    }
+
+    .accordion { display: flex; flex-direction: column; }
+    .acc-item  { border-bottom: 1px solid var(--border); }
+    .acc-btn   {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .acc-icon {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: var(--text-muted);
+      transition: background var(--t) var(--ease), color var(--t) var(--ease),
+                  border-color var(--t) var(--ease), transform var(--t) var(--ease);
+    }
+    .acc-item.open .acc-icon {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+    .acc-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.44s ease, padding 0.3s ease;
+    }
+    .acc-item.open .acc-body { max-height: 280px; }
+    .acc-body-inner {
+      padding-bottom: 22px;
+      font-size: 0.91rem;
+      color: var(--text-muted);
+      line-height: 1.88;
+      font-weight: 300;
+    }
+
+    /* ════════════════════════════════════════
+       CTA FINAL
+    ════════════════════════════════════════ */
+    .cta-section {
+      background: var(--bg-warm);
+      padding: var(--section-pad) 48px;
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-inner .eyebrow { justify-content: center; }
+    .cta-inner .body-text { margin: 0 auto 48px; }
+    .cta-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .cta-address {
+      margin-top: 36px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: var(--text);
+      padding: 70px 48px 40px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(250,249,246,.07);
+      margin-bottom: 32px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #FAF9F6;
+      margin-bottom: 14px;
+    }
+    .footer-logo em { font-style: italic; color: var(--sage); }
+    .footer-tagline {
+      font-size: 0.84rem;
+      color: rgba(250,249,246,.38);
+      line-height: 1.78;
+      font-weight: 300;
+      max-width: 250px;
+    }
+    .footer-col-title {
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #FAF9F6;
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul li a {
+      font-size: 0.84rem;
+      color: rgba(250,249,246,.38);
+      font-weight: 300;
+      transition: color var(--t) var(--ease);
+    }
+    .footer-col ul li a:hover { color: var(--sage); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: rgba(250,249,246,.25);
+    }
+    .footer-credit a {
+      color: var(--sage);
+      font-weight: 500;
+      transition: opacity var(--t) var(--ease);
+    }
+    .footer-credit a:hover { opacity: 0.7; }
+
+    /* ════════════════════════════════════════
+       WHATSAPP FLUTUANTE
+    ════════════════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.4);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .wa-float:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 16px 40px rgba(37,211,102,.5);
+    }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; display: block; }
+    .wa-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #25D366;
+      animation: waPulse 2.8s infinite;
+      pointer-events: none;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(1); opacity: .55; }
+      70%  { transform: scale(1.65); opacity: 0; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1080px) {
+      .hero            { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content    { padding: 140px 48px 64px; }
+      .hero-visual     { height: 55vh; }
+      .hero-visual::before { background: linear-gradient(to bottom, var(--bg) 0%, transparent 40%); }
+
+      .experience-grid { grid-template-columns: 1fr; gap: 52px; }
+      .exp-img-main    { height: 380px; }
+      .exp-img-float   { display: none; }
+
+      .methods-head    { grid-template-columns: 1fr; }
+      .methods-grid    { grid-template-columns: 1fr 1fr; }
+
+      .instructor-grid { grid-template-columns: 1fr; gap: 52px; }
+      .instructor-portrait { height: 460px; }
+      .instructor-badge { right: 0; }
+
+      .testi-grid      { grid-template-columns: 1fr; gap: 20px; }
+      .pricing-grid    { grid-template-columns: 1fr; gap: 20px; }
+      .faq-grid        { grid-template-columns: 1fr; gap: 52px; }
+      .faq-left        { position: static; }
+      .footer-top      { grid-template-columns: 1fr 1fr; gap: 40px; }
+
+      .mosaic          { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .m1              { grid-row: span 1; grid-column: span 2; height: 320px; }
+      .m4              { grid-column: span 1; }
+    }
+
+    @media (max-width: 720px) {
+      #header, #header.scrolled { padding: 16px 24px; }
+      .nav-links       { display: none; }
+      .hamburger       { display: flex; }
+
+      .hero-content    { padding: 120px 24px 52px; }
+      .hero-numbers    { gap: 28px; }
+
+      .experience, .studio-wrap, .instructor,
+      .testimonials-wrap, .faq-wrap, .cta-section { padding: var(--section-pad) 24px; }
+      .methods-wrap, .pricing-wrap { padding: var(--section-pad) 24px; }
+      footer           { padding: 52px 24px 32px; }
+
+      .methods-grid    { grid-template-columns: 1fr; }
+      .testi-grid      { grid-template-columns: 1fr; }
+
+      .mosaic          { grid-template-columns: 1fr; }
+      .m1, .m4         { grid-column: span 1; height: 260px; }
+
+      .footer-top      { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom   { flex-direction: column; gap: 10px; text-align: center; }
+
+      .wa-float        { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header id="header">
+  <a href="#" class="logo">Lumina <em>Pilates</em></a>
+
+  <nav class="nav-links" aria-label="Navegação principal">
+    <a href="#metodos">Métodos</a>
+    <a href="#studio">O Estúdio</a>
+    <a href="#instrutora">A Instrutora</a>
+    <a href="#planos">Planos</a>
+    <a href="#contato" class="nav-cta">Agendar Aula</a>
+  </nav>
+
+  <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <a href="#metodos"   class="mob-link">Métodos</a>
+  <a href="#studio"    class="mob-link">O Estúdio</a>
+  <a href="#instrutora" class="mob-link">A Instrutora</a>
+  <a href="#planos"    class="mob-link">Planos</a>
+  <a href="#contato"   class="mob-link btn btn-sage" style="margin-top:8px">Agendar Aula</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-content">
+    <span class="eyebrow fade-up">Jardins · São Paulo</span>
+
+    <h1 class="hero-title fade-up d1">
+      O seu corpo<br>
+      sabe o que<br>
+      precisa.<br>
+      <em>Nós também.</em>
+    </h1>
+
+    <p class="hero-lead fade-up d2">
+      Pilates de alto padrão para quem exige o melhor de si. Método exclusivo, turmas de até 4 pessoas e atenção que nenhuma academia consegue oferecer.
+    </p>
+
+    <div class="hero-actions fade-up d3">
+      <a href="#contato" class="btn btn-dark">
+        Aula experimental gratuita
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#metodos" class="btn btn-ghost-dark">
+        Conhecer o método
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="hero-numbers fade-up d4">
+      <div>
+        <div class="hero-num-value">8+</div>
+        <div class="hero-num-label">Anos de expertise</div>
+      </div>
+      <div>
+        <div class="hero-num-value">320</div>
+        <div class="hero-num-label">Alunas ativas</div>
+      </div>
+      <div>
+        <div class="hero-num-value">≤&thinsp;4</div>
+        <div class="hero-num-label">Por turma</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <!--
+      IMAGE SLOT 1 — HERO
+      Replace src with your generated image.
+      See Midjourney prompts at the bottom of this file.
+    -->
+    <img
+      id="heroImg"
+      src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1400&q=85&auto=format&fit=crop"
+      alt="Estúdio Lumina Pilates"
+      loading="eager"
+      fetchpriority="high"
+    >
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MANIFESTO
+════════════════════════════════════════ -->
+<section class="manifesto" aria-label="Filosofia">
+  <blockquote class="fade-in">
+    "Seu corpo não precisa de mais esforço —<br>
+    ele precisa de <strong>intenção, precisão</strong><br>
+    e do ambiente certo para florescer."
+    <cite>— Filosofia Lumina Pilates</cite>
+  </blockquote>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     EXPERIÊNCIA / DIFERENCIAIS
+════════════════════════════════════════ -->
+<section class="experience" id="experiencia" aria-label="Nossa experiência">
+  <div class="experience-grid">
+
+    <!-- imagens -->
+    <div class="exp-img-wrap fade-in">
+      <div class="exp-img-main">
+        <!--
+          IMAGE SLOT 2 — EQUIPMENT DETAIL
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=85&auto=format&fit=crop"
+          alt="Equipamentos Lumina"
+        >
+      </div>
+      <div class="exp-img-float">
+        <!--
+          IMAGE SLOT 3 — CLOSE-UP DETAIL
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&q=85&auto=format&fit=crop"
+          alt="Detalhe do método"
+        >
+      </div>
+    </div>
+
+    <!-- texto -->
+    <div>
+      <span class="eyebrow fade-up">Por que Lumina</span>
+      <h2 class="section-title fade-up d1">Uma experiência<br><em>além</em> da aula.</h2>
+      <p class="body-text fade-up d2">
+        Projetamos cada detalhe para que você sinta a diferença antes mesmo de começar a se mover. Do aroma que te acolhe à acústica que acalma — tudo aqui tem propósito.
+      </p>
+
+      <ul class="pillars">
+        <li class="pillar fade-up d1">
+          <div class="pillar-icon">✦</div>
+          <div>
+            <div class="pillar-title">Turmas de até 4 pessoas</div>
+            <div class="pillar-body">Atenção que turmas grandes jamais conseguem oferecer. Sua instrutora conhece seu histórico, suas limitações e seus objetivos — e trabalha especificamente para eles, sessão a sessão.</div>
+          </div>
+        </li>
+        <li class="pillar fade-up d2">
+          <div class="pillar-icon">✦</div>
+          <div>
+            <div class="pillar-title">Equipamentos Balanced Body</div>
+            <div class="pillar-body">Reformers, cadillac, cadeiras e barris da linha topo de mercado. Manutenção rigorosa para garantir precisão e segurança em cada movimento que você faz.</div>
+          </div>
+        </li>
+        <li class="pillar fade-up d3">
+          <div class="pillar-icon">✦</div>
+          <div>
+            <div class="pillar-title">Ambiente projetado para você</div>
+            <div class="pillar-body">Aromaterapia, iluminação natural e acústica controlada. Um espaço onde o tempo existe apenas para o seu corpo e a sua mente.</div>
+          </div>
+        </li>
+        <li class="pillar fade-up d4">
+          <div class="pillar-icon">✦</div>
+          <div>
+            <div class="pillar-title">Avaliação postural trimestral</div>
+            <div class="pillar-body">Monitoramos sua evolução com detalhamento científico e ajustamos o protocolo conforme você avança. Você sempre sabe onde estava e para onde está indo.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MÉTODOS
+════════════════════════════════════════ -->
+<section class="methods-wrap" id="metodos" aria-label="Nossos métodos">
+  <div class="methods-inner">
+
+    <div class="methods-head">
+      <div>
+        <span class="eyebrow fade-up">Nossos Métodos</span>
+        <h2 class="section-title fade-up d1">Três caminhos,<br>um <em>resultado</em>.</h2>
+      </div>
+      <p class="body-text fade-up d2">
+        Cada modalidade foi cuidadosamente curada para um objetivo e perfil diferente. Encontre o que o seu corpo pede neste momento.
+      </p>
+    </div>
+
+    <div class="methods-grid">
+      <!-- Método 1 -->
+      <article class="method-card fade-up d1">
+        <div class="method-thumb">
+          <!--
+            IMAGE SLOT 4 — METHOD: REFORMER
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=700&q=85&auto=format&fit=crop"
+            alt="Reformer Premium"
+            loading="lazy"
+          >
+        </div>
+        <div class="method-body">
+          <div class="method-tag">Método 01</div>
+          <h3 class="method-name">Reformer Premium</h3>
+          <p class="method-desc">O clássico de Joseph Pilates revisitado com protocolos contemporâneos. Fortalecimento profundo, mobilidade e reequilíbrio muscular com resistência progressiva e precisa.</p>
+          <a href="#contato" class="method-cta">
+            Agendar
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Método 2 -->
+      <article class="method-card fade-up d2">
+        <div class="method-thumb">
+          <!--
+            IMAGE SLOT 5 — METHOD: MAT THERAPY
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=85&auto=format&fit=crop"
+            alt="Mat Therapy"
+            loading="lazy"
+          >
+        </div>
+        <div class="method-body">
+          <div class="method-tag">Método 02</div>
+          <h3 class="method-name">Mat Therapy</h3>
+          <p class="method-desc">Pilates solo com foco terapêutico — ideal para quem busca conexão mente-corpo profunda, alívio de tensões crônicas ou retorno ao movimento após lesões.</p>
+          <a href="#contato" class="method-cta">
+            Agendar
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Método 3 -->
+      <article class="method-card fade-up d3">
+        <div class="method-thumb">
+          <!--
+            IMAGE SLOT 6 — METHOD: FULL APPARATUS
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&q=85&auto=format&fit=crop"
+            alt="Full Apparatus"
+            loading="lazy"
+          >
+        </div>
+        <div class="method-body">
+          <div class="method-tag">Método 03</div>
+          <h3 class="method-name">Full Apparatus</h3>
+          <p class="method-desc">A experiência completa do sistema Pilates. Reformer, Cadillac, Wunda Chair e Barrel em uma progressão inteligente para resultados que surpreendem — e duram.</p>
+          <a href="#contato" class="method-cta">
+            Agendar
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ESTÚDIO — MOSAICO
+════════════════════════════════════════ -->
+<section class="studio-wrap" id="studio" aria-label="Nosso espaço">
+  <div class="studio-head">
+    <span class="eyebrow fade-up center">O Espaço</span>
+    <h2 class="section-title fade-up d1">125m² pensados para<br><em>silenciar o mundo</em> lá fora.</h2>
+    <p class="body-text fade-up d2" style="margin:0 auto; text-align:center;">
+      Cada elemento deste espaço foi escolhido para que seu sistema nervoso entenda, desde a entrada, que aqui é diferente.
+    </p>
+  </div>
+
+  <div class="mosaic">
+    <div class="mosaic-item m1 fade-in">
+      <!--
+        IMAGE SLOT 7 — STUDIO MAIN (wide)
+      -->
+      <img
+        src="https://images.unsplash.com/photo-1593476123561-9516f2097158?w=1400&q=85&auto=format&fit=crop"
+        alt="Vista principal do estúdio"
+        loading="lazy"
+      >
+    </div>
+    <div class="mosaic-item fade-in d1">
+      <!--
+        IMAGE SLOT 8 — RECEPTION / WAITING AREA
+      -->
+      <img
+        src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=85&auto=format&fit=crop"
+        alt="Sala de espera"
+        loading="lazy"
+      >
+    </div>
+    <div class="mosaic-item fade-in d2">
+      <!--
+        IMAGE SLOT 9 — EQUIPMENT MACRO DETAIL
+      -->
+      <img
+        src="https://images.unsplash.com/photo-1571019613914-85f342c6a11e?w=700&q=85&auto=format&fit=crop"
+        alt="Detalhe dos equipamentos"
+        loading="lazy"
+      >
+    </div>
+    <div class="mosaic-item m4 fade-in d3">
+      <!--
+        IMAGE SLOT 10 — LOCKER / SPA AREA
+      -->
+      <img
+        src="https://images.unsplash.com/photo-1616627561839-074385245ff6?w=1100&q=85&auto=format&fit=crop"
+        alt="Vestiário"
+        loading="lazy"
+      >
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     INSTRUTORA
+════════════════════════════════════════ -->
+<section class="instructor-wrap" id="instrutora" aria-label="A instrutora">
+  <div class="instructor">
+    <div class="instructor-grid">
+
+      <div class="instructor-portrait-wrap fade-in">
+        <div class="instructor-portrait">
+          <!--
+            IMAGE SLOT 11 — INSTRUCTOR PORTRAIT
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=900&q=85&auto=format&fit=crop"
+            alt="Camila Vasconcelos — Instrutora Lumina"
+            loading="lazy"
+          >
+        </div>
+        <div class="instructor-badge">
+          <div class="badge-val">8+</div>
+          <div class="badge-label">Anos de<br>formação</div>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow fade-up">A Instrutora</span>
+        <h2 class="section-title fade-up d1">Camila<br><em>Vasconcelos</em></h2>
+        <p class="body-text fade-up d2">
+          Fisioterapeuta de formação e especialista em Pilates clínico, Camila acredita que o corpo humano é a obra mais complexa e bela que existe — e que seu papel é ajudá-lo a lembrar do que já sabe fazer.
+        </p>
+        <p class="body-text fade-up d3" style="margin-top:18px">
+          Com pós-graduação em Biomecânica e certificação internacional pelo BASI Pilates (EUA), ela desenvolveu o Método Lumina: uma abordagem que integra ciência do movimento, consciência corporal e cuidado genuíno com cada aluna.
+        </p>
+
+        <div class="certs fade-up d4">
+          <span class="cert">CREFITO-3</span>
+          <span class="cert">BASI Pilates · EUA</span>
+          <span class="cert">Biomecânica Clínica</span>
+          <span class="cert">Pilates para Gestantes</span>
+          <span class="cert">Reabilitação Postural</span>
+        </div>
+
+        <div class="instructor-sig fade-up d5">Camila Vasconcelos</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════ -->
+<section class="testimonials-wrap" id="depoimentos" aria-label="Depoimentos">
+  <div class="testimonials-head">
+    <span class="eyebrow fade-up center">Depoimentos</span>
+    <h2 class="section-title fade-up d1">O que nossas alunas<br><em>sentem</em>.</h2>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card fade-up d1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">
+        "Em três meses no Lumina resolvi uma lombalgia que carregava havia quatro anos. Mas o mais surpreendente foi reencontrar a minha própria postura — e a minha autoconfiança."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <!--
+            IMAGE SLOT 12 — AVATAR 1
+          -->
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop&crop=face" alt="Mariana R.">
+        </div>
+        <div>
+          <div class="testi-name">Mariana Ramos</div>
+          <div class="testi-role">Empresária · aluna há 14 meses</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card fade-up d2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">
+        "Já passei por outros estúdios, mas nenhum tem o nível de atenção que o Lumina oferece. A Camila sabe o que meu corpo precisa antes mesmo de eu perceber. É outro nível."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <!--
+            IMAGE SLOT 13 — AVATAR 2
+          -->
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=100&q=80&auto=format&fit=crop&crop=face" alt="Carolina S.">
+        </div>
+        <div>
+          <div class="testi-name">Carolina Silva</div>
+          <div class="testi-role">Médica · aluna há 8 meses</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card fade-up d3">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">
+        "O Lumina virou meu ritual de autocuidado. Chego tensa e saio completamente leve. A estrutura, a música, o aroma — cada detalhe foi pensado para você desacelerar de verdade."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <!--
+            IMAGE SLOT 14 — AVATAR 3
+          -->
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80&auto=format&fit=crop&crop=face" alt="Beatriz A.">
+        </div>
+        <div>
+          <div class="testi-name">Beatriz Almeida</div>
+          <div class="testi-role">Advogada · aluna há 2 anos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PLANOS / PRICING
+════════════════════════════════════════ -->
+<section class="pricing-wrap" id="planos" aria-label="Nossos planos">
+  <div class="pricing-inner">
+    <div class="pricing-head">
+      <span class="eyebrow fade-up center">Investimento</span>
+      <h2 class="section-title light fade-up d1">Invista no<br><em>que importa</em>.</h2>
+      <p class="body-text fade-up d2">Turmas reduzidas, resultado garantido. Escolha a frequência que melhor se encaixa na sua rotina.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card fade-up d1">
+        <div class="price-plan">Essencial</div>
+        <div class="price-amount"><sup>R$</sup>490</div>
+        <div class="price-period">por mês · 4 aulas</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li>1 aula por semana</li>
+          <li>Reformer ou Mat Therapy</li>
+          <li>Avaliação inicial inclusa</li>
+          <li>Acesso à biblioteca digital</li>
+        </ul>
+        <a href="#contato" class="btn btn-outline-light" style="display:block; text-align:center; padding:13px 28px;">Começar agora</a>
+      </div>
+
+      <div class="price-card featured fade-up d2">
+        <div class="price-badge">Mais escolhido</div>
+        <div class="price-plan">Lumina</div>
+        <div class="price-amount"><sup>R$</sup>890</div>
+        <div class="price-period">por mês · 8 aulas</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li>2 aulas por semana</li>
+          <li>Acesso a todos os métodos</li>
+          <li>Avaliação postural trimestral</li>
+          <li>Biblioteca digital completa</li>
+          <li>Canal direto com a Camila</li>
+        </ul>
+        <a href="#contato" class="btn btn-sage" style="display:block; text-align:center; padding:13px 28px;">Agendar aula experimental</a>
+      </div>
+
+      <div class="price-card fade-up d3">
+        <div class="price-plan">Premium</div>
+        <div class="price-amount"><sup>R$</sup>1.490</div>
+        <div class="price-period">por mês · sessões ilimitadas</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li>Aulas ilimitadas</li>
+          <li>Sessão privada mensal</li>
+          <li>Full Apparatus incluso</li>
+          <li>Protocolo 100% personalizado</li>
+          <li>Prioridade de horário</li>
+          <li>Relatório de evolução mensal</li>
+        </ul>
+        <a href="#contato" class="btn btn-outline-light" style="display:block; text-align:center; padding:13px 28px;">Falar com a Camila</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="faq-wrap" id="faq" aria-label="Perguntas frequentes">
+  <div class="faq-grid">
+
+    <div class="faq-left">
+      <span class="eyebrow fade-up">Perguntas</span>
+      <h2 class="section-title fade-up d1">Ficou alguma<br><em>dúvida?</em></h2>
+      <p class="body-text fade-up d2">Respondemos as mais comuns aqui. Para qualquer outra, estamos a uma mensagem de distância.</p>
+      <a href="#contato" class="btn btn-dark fade-up d3" style="margin-top:36px; display:inline-flex;">
+        Falar pelo WhatsApp
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="accordion fade-up d1">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Preciso ter experiência com Pilates para começar?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Não. Temos alunas em todos os níveis — do absoluto iniciante ao avançado. Toda nova aluna passa por uma avaliação inicial para montarmos o protocolo ideal para o seu momento e objetivo.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Como funciona a aula experimental?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            É uma sessão de 55 minutos onde você vai conhecer o método, o espaço e a Camila. É gratuita e sem compromisso. Ao final, conversamos sobre qual plano faz mais sentido para a sua rotina e objetivos.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Atende quem tem lesões ou condições especiais?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. Camila tem formação em Pilates clínico e trabalha com reabilitação, gestantes, pós-operatório, escoliose, hérnia de disco e hipermobilidade. Cada protocolo é 100% individualizado.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Qual o tamanho das turmas?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Máximo de 4 alunas por turma no Reformer e Full Apparatus. Até 6 no Mat Therapy. Essa é uma escolha deliberada — sem ela, não conseguimos oferecer o nível de atenção que o Lumina promete.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Posso remarcar aulas que perder?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. Com aviso mínimo de 12h, sua aula pode ser remarcada para qualquer vaga disponível no mesmo mês. Cancelamentos com menos de 12h não geram crédito, pois bloqueamos a vaga de outras alunas.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<section class="cta-section" id="contato" aria-label="Contato e agendamento">
+  <div class="cta-inner">
+    <span class="eyebrow fade-up center">Comece hoje</span>
+    <h2 class="section-title fade-up d1">Seu corpo já está<br>pedindo por <em>isso</em>.</h2>
+    <p class="body-text fade-up d2">
+      Vagas limitadas por design — para garantir que cada aluna receba o cuidado que merece. Reserve sua aula experimental agora, sem compromisso.
+    </p>
+
+    <div class="cta-actions fade-up d3">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20minha%20aula%20experimental%20no%20Lumina%20Pilates!"
+        class="btn btn-dark"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Agendar pelo WhatsApp
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:contato@luminapilates.com.br" class="btn btn-ghost-dark">
+        Enviar e-mail
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <p class="cta-address fade-up d4">
+      📍 Rua Bela Cintra, 1842 — Jardins, São Paulo &nbsp;·&nbsp; Seg–Sáb, 7h às 20h
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer aria-label="Rodapé">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Lumina <em>Pilates</em></div>
+        <p class="footer-tagline">
+          Pilates de alto padrão para quem exige o melhor do próprio corpo. Jardins, São Paulo.
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Métodos</div>
+        <ul>
+          <li><a href="#metodos">Reformer Premium</a></li>
+          <li><a href="#metodos">Mat Therapy</a></li>
+          <li><a href="#metodos">Full Apparatus</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Estúdio</div>
+        <ul>
+          <li><a href="#instrutora">A Instrutora</a></li>
+          <li><a href="#studio">O Espaço</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#faq">Perguntas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contato</div>
+        <ul>
+          <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:contato@luminapilates.com.br">E-mail</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Lumina Pilates. Todos os direitos reservados.</p>
+      <p class="footer-credit">
+        Desenvolvido por <a href="https://presencacerta.com.br" target="_blank" rel="noopener">Presença Certa</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP FLUTUANTE
+════════════════════════════════════════ -->
+<a
+  href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20minha%20aula%20experimental%20no%20Lumina%20Pilates!"
+  class="wa-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Conversar no WhatsApp"
+>
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  /* ── Header scroll ── */
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── Hamburger / mobile menu ── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Intersection Observer — fade animations ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        target.classList.add('visible');
+        io.unobserve(target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-up, .fade-in').forEach(el => io.observe(el));
+
+  /* ── FAQ Accordion ── */
+  document.querySelectorAll('.acc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.acc-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Hero parallax suave ── */
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg && window.matchMedia('(min-width: 769px)').matches) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.2) {
+        heroImg.style.transform = `translateY(${y * 0.18}px)`;
+      }
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>

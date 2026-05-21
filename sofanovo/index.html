@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SofáNovo — Higienização e Impermeabilização de Estofados</title>
+  <meta name="description" content="Higienização profissional de sofás, colchões, tapetes e cadeiras. Atendemos em sua casa. Produto ecológico, resultado imediato. Agende agora.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════
+       DESIGN SYSTEM
+    ════════════════════════════════════════ */
+    :root {
+      --bg:          #FFFFFF;
+      --bg-soft:     #F4FCFF;
+      --bg-mid:      #E3F6FB;
+      --cyan:        #00B4D8;
+      --cyan-dark:   #0096BB;
+      --cyan-darker: #007A99;
+      --cyan-light:  #90E0EF;
+      --cyan-pale:   #CAF0F8;
+      --cyan-xpale:  #EBF8FC;
+      --green:       #00C896;
+      --text:        #222222;
+      --text-mid:    #555555;
+      --text-muted:  #999999;
+      --border:      rgba(0,180,216,.13);
+      --shadow:      0 10px 30px rgba(0,0,0,.05);
+      --shadow-cyan: 0 12px 36px rgba(0,180,216,.22);
+      --shadow-lg:   0 20px 60px rgba(0,0,0,.07);
+
+      --font: 'Poppins', system-ui, sans-serif;
+      --radius:    16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
+      --section-pad: clamp(72px, 8vw, 120px);
+      --max-w: 1140px;
+      --t: 0.32s;
+      --ease: cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    /* ════════════════════════════════════════
+       RESET & BASE
+    ════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font); }
+
+    /* ════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ════════════════════════════════════════ */
+    .fade-up  { opacity:0; transform:translateY(28px); transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .fade-in  { opacity:0; transition:opacity .9s var(--ease); }
+    .fade-left  { opacity:0; transform:translateX(-24px); transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .fade-right { opacity:0; transform:translateX(24px);  transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .scale-in { opacity:0; transform:scale(.95); transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .fade-up.visible,.fade-in.visible,.fade-left.visible,.fade-right.visible,.scale-in.visible {
+      opacity:1; transform:none;
+    }
+    .d1{transition-delay:.08s} .d2{transition-delay:.18s}
+    .d3{transition-delay:.28s} .d4{transition-delay:.38s} .d5{transition-delay:.48s}
+
+    /* ════════════════════════════════════════
+       REUSABLES
+    ════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--cyan);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .eyebrow.center::before { display: none; }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.2vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--cyan); }
+
+    .body-text {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      font-weight: 400;
+      max-width: 500px;
+    }
+
+    /* ─ Buttons ─ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 14px 30px;
+      border: 2px solid transparent;
+      transition: background var(--t) var(--ease), color var(--t) var(--ease),
+                  transform var(--t) var(--ease), box-shadow var(--t) var(--ease),
+                  border-color var(--t) var(--ease);
+    }
+    .btn svg { flex-shrink:0; transition: transform var(--t) var(--ease); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn-cyan {
+      background: var(--cyan);
+      color: #fff;
+    }
+    .btn-cyan:hover {
+      background: var(--cyan-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-cyan);
+    }
+    .btn-green {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-green:hover {
+      background: #1DA851;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(37,211,102,.38);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border-color: var(--cyan);
+    }
+    .btn-outline:hover {
+      background: var(--cyan-xpale);
+      transform: translateY(-2px);
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--cyan-dark);
+    }
+    .btn-white:hover {
+      background: var(--cyan-pale);
+      transform: translateY(-2px);
+    }
+    .btn-lg { padding: 17px 38px; font-size: 0.95rem; }
+
+    /* ════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,180,216,.08);
+      transition: padding var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    #header.scrolled {
+      padding: 12px 48px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--cyan); }
+
+    .nav-links { display:flex; align-items:center; gap:30px; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: color var(--t) var(--ease);
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-mid);
+      border-radius: 2px;
+      transition: var(--t) var(--ease);
+    }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--cyan); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--cyan); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 64px 0 0;
+      z-index: 800;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--text);
+      transition: color var(--t);
+    }
+    .mobile-menu a:hover { color: var(--cyan); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 52px 80px 72px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan-xpale);
+      color: var(--cyan-dark);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 26px;
+      width: fit-content;
+      animation: fadeUp .7s var(--ease) .1s both;
+    }
+    .tag-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+      animation: fadeUp .7s var(--ease) .2s both;
+    }
+    .hero-title span { color: var(--cyan); }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      color: var(--text-mid);
+      max-width: 420px;
+      line-height: 1.82;
+      font-weight: 400;
+      margin-bottom: 40px;
+      animation: fadeUp .7s var(--ease) .32s both;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+      animation: fadeUp .7s var(--ease) .44s both;
+    }
+    .hero-proof {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      animation: fadeUp .7s var(--ease) .56s both;
+    }
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .proof-icon {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--cyan-xpale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:none; }
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual img {
+      position: absolute;
+      inset: 0;
+      transition: transform 7s ease;
+    }
+    .hero:hover .hero-visual img { transform: scale(1.03); }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 20%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════════
+       TRUST STRIP
+    ════════════════════════════════════════ */
+    .trust-strip {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+    }
+    .trust-item {
+      padding: 0 32px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .trust-item:first-child { padding-left: 0; text-align: left; }
+    .trust-item:last-child  { border-right: none; padding-right: 0; text-align: right; }
+    .trust-val {
+      font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+      font-weight: 800;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .trust-label {
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* ════════════════════════════════════════
+       ANTES & DEPOIS — SLIDER
+    ════════════════════════════════════════ */
+    .ba-section {
+      padding: var(--section-pad) 48px;
+      background: var(--bg);
+    }
+    .ba-inner { max-width: var(--max-w); margin: 0 auto; }
+    .ba-head  { text-align: center; margin-bottom: 52px; }
+    .ba-head .body-text { margin: 0 auto; }
+
+    .ba-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      cursor: ew-resize;
+      user-select: none;
+      touch-action: none;
+      height: 480px;
+    }
+
+    /* base layer — ANTES */
+    .ba-before {
+      position: absolute;
+      inset: 0;
+    }
+    .ba-before img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .ba-before-label {
+      position: absolute;
+      top: 20px; left: 20px;
+      z-index: 3;
+      background: rgba(220,50,50,.88);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* overlay — DEPOIS */
+    .ba-after {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      width: 52%;
+      /* width controlled by JS */
+    }
+    .ba-after img {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      /* width set by JS = container.offsetWidth */
+    }
+    .ba-after-label {
+      position: absolute;
+      top: 20px; right: 20px;
+      z-index: 3;
+      background: rgba(0,180,216,.9);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* divider line */
+    .ba-divider {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 52%;
+      width: 3px;
+      background: #fff;
+      z-index: 10;
+      cursor: ew-resize;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    }
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: ew-resize;
+      color: var(--cyan);
+    }
+
+    .ba-hint {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ════════════════════════════════════════
+       ALERTA DE SAÚDE
+    ════════════════════════════════════════ */
+    .health-wrap {
+      background: var(--bg-soft);
+      padding: var(--section-pad) 48px;
+      border-top: 1px solid var(--border);
+    }
+    .health-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .health-head { margin-bottom: 52px; }
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .health-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .health-stat {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--shadow);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .health-stat:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .stat-icon {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-sm);
+      background: var(--cyan-xpale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .stat-val-big {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--cyan-dark);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .stat-text {
+      font-size: 0.86rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .health-visual {
+      position: relative;
+      height: 420px;
+    }
+    .health-img {
+      height: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .health-bubble {
+      position: absolute;
+      bottom: -16px;
+      left: -20px;
+      background: var(--cyan);
+      color: #fff;
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-cyan);
+      max-width: 240px;
+    }
+    .bubble-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .bubble-body {
+      font-size: 0.78rem;
+      opacity: .85;
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════════════
+       SERVIÇOS
+    ════════════════════════════════════════ */
+    .services-wrap {
+      padding: var(--section-pad) 48px;
+    }
+    .services-inner { max-width: var(--max-w); margin: 0 auto; }
+    .services-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-head .body-text { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid rgba(0,180,216,.1);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(0,180,216,.25);
+    }
+    .service-thumb {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-thumb img { transition: transform .6s ease; }
+    .service-card:hover .service-thumb img { transform: scale(1.05); }
+    .service-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,150,187,.2), transparent);
+    }
+
+    .service-body { padding: 26px 24px 30px; }
+    .service-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--cyan-xpale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+      border: 2px solid var(--cyan-pale);
+    }
+    .service-name {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+    }
+    .service-includes {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service-includes li {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-includes li::before {
+      content: '✓';
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+    }
+
+    /* last card spans 3 */
+    .service-card.wide {
+      grid-column: span 3;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+    }
+    .service-card.wide .service-thumb { height: 100%; min-height: 180px; }
+
+    /* ════════════════════════════════════════
+       COMO FUNCIONA
+    ════════════════════════════════════════ */
+    .process-wrap {
+      background: var(--cyan);
+      padding: var(--section-pad) 48px;
+    }
+    .process-inner { max-width: var(--max-w); margin: 0 auto; }
+    .process-head  { text-align: center; margin-bottom: 64px; }
+    .process-head .section-title { color: #fff; }
+    .process-head .body-text { color: rgba(255,255,255,.72); margin: 0 auto; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(100% / 8);
+      right: calc(100% / 8);
+      height: 2px;
+      background: rgba(255,255,255,.25);
+      border-radius: 2px;
+    }
+
+    .process-step { text-align: center; padding: 0 28px; }
+    .proc-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: 2px solid rgba(255,255,255,.4);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 1.6rem;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+    }
+    .proc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .proc-body {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+    }
+
+    /* ════════════════════════════════════════
+       DIFERENCIAIS
+    ════════════════════════════════════════ */
+    .diff-wrap {
+      padding: var(--section-pad) 48px;
+      background: var(--bg-soft);
+    }
+    .diff-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .diff-image {
+      position: relative;
+      height: 500px;
+    }
+    .diff-img-main {
+      height: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .diff-img-badge {
+      position: absolute;
+      bottom: 24px;
+      right: -24px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--border);
+    }
+    .dbadge-icon { font-size: 2rem; }
+    .dbadge-val  { font-size: 1.3rem; font-weight: 800; color: var(--cyan-dark); line-height:1; }
+    .dbadge-text { font-size: 0.7rem; color: var(--text-muted); margin-top:2px; }
+
+    .diff-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .diff-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .diff-item:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+    .diff-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--cyan-xpale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .diff-item-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .diff-item-body {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ════════════════════════════════════════
+       DEPOIMENTOS
+    ════════════════════════════════════════ */
+    .testi-wrap {
+      padding: var(--section-pad) 48px;
+    }
+    .testi-inner { max-width: var(--max-w); margin: 0 auto; }
+    .testi-head  { text-align: center; margin-bottom: 56px; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+    .testi-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 26px;
+      box-shadow: var(--shadow);
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .testi-stars { color: #F59E0B; font-size: .85rem; letter-spacing:2px; margin-bottom: 14px; }
+    .testi-text {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.82;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author { display:flex; align-items:center; gap:12px; }
+    .testi-avatar { width:44px; height:44px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid var(--cyan-pale); }
+    .testi-name { font-size:.88rem; font-weight:700; color:var(--text); }
+    .testi-role { font-size:.72rem; color:var(--text-muted); margin-top:2px; }
+    .testi-service-tag {
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      background:var(--cyan-xpale);
+      color:var(--cyan-dark);
+      padding:4px 12px;
+      border-radius:50px;
+      font-size:0.66rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:14px;
+    }
+
+    /* ════════════════════════════════════════
+       FAQ
+    ════════════════════════════════════════ */
+    .faq-wrap {
+      background: var(--bg-soft);
+      padding: var(--section-pad) 48px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 88px;
+      align-items: start;
+    }
+    .faq-left { position: sticky; top: 100px; }
+
+    .accordion { display:flex; flex-direction:column; }
+    .acc-item  { border-bottom:1px solid var(--border); }
+    .acc-btn   {
+      width:100%; background:none; border:none;
+      padding: 20px 0;
+      display:flex; justify-content:space-between; align-items:center; gap:20px;
+      text-align:left;
+      font-family: var(--font);
+      font-size: .96rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: color var(--t) var(--ease);
+    }
+    .acc-btn:hover { color: var(--cyan); }
+    .acc-item.open .acc-btn { color: var(--cyan); }
+    .acc-icon {
+      width:28px; height:28px;
+      border-radius:50%;
+      background: var(--cyan-xpale);
+      border: 1.5px solid var(--cyan-pale);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+      font-size:1.1rem; line-height:1;
+      color: var(--cyan);
+      transition: background var(--t), color var(--t), transform var(--t);
+    }
+    .acc-item.open .acc-icon {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+    .acc-body { overflow:hidden; max-height:0; transition: max-height .4s ease; }
+    .acc-item.open .acc-body { max-height: 260px; }
+    .acc-body-inner {
+      padding-bottom:20px;
+      font-size:.9rem;
+      color:var(--text-muted);
+      line-height:1.85;
+    }
+
+    /* ════════════════════════════════════════
+       CTA FINAL
+    ════════════════════════════════════════ */
+    .cta-wrap {
+      background: linear-gradient(135deg, #0096BB 0%, #00B4D8 50%, #00C9A7 100%);
+      padding: var(--section-pad) 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-wrap::before {
+      content:'';
+      position:absolute;
+      top:-40%; right:-10%;
+      width:500px; height:500px;
+      border-radius:50%;
+      background:rgba(255,255,255,.06);
+      pointer-events:none;
+    }
+    .cta-wrap::after {
+      content:'';
+      position:absolute;
+      bottom:-30%; left:5%;
+      width:360px; height:360px;
+      border-radius:50%;
+      background:rgba(255,255,255,.05);
+      pointer-events:none;
+    }
+    .cta-inner { max-width:660px; margin:0 auto; position:relative; z-index:1; }
+    .cta-title {
+      font-size: clamp(2rem,3.8vw,3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-sub {
+      font-size:1rem;
+      color:rgba(255,255,255,.8);
+      line-height:1.75;
+      margin-bottom:44px;
+    }
+    .cta-actions { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .cta-note {
+      margin-top:24px;
+      font-size:.76rem;
+      color:rgba(255,255,255,.65);
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: #1B2B33;
+      padding: 60px 48px 36px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      margin-bottom: 28px;
+    }
+    .footer-logo { font-size:1.3rem; font-weight:800; color:#fff; margin-bottom:12px; }
+    .footer-logo span { color:var(--cyan-light); }
+    .footer-tagline { font-size:.84rem; color:rgba(255,255,255,.38); line-height:1.75; max-width:250px; }
+    .footer-col-title { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,.55); margin-bottom:16px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:.84rem; color:rgba(255,255,255,.35); transition:color var(--t) var(--ease); }
+    .footer-col ul li a:hover { color:var(--cyan-light); }
+    .footer-bottom {
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:.74rem; color:rgba(255,255,255,.22);
+    }
+    .footer-credit a { color:var(--cyan-light); font-weight:600; transition:opacity var(--t); }
+    .footer-credit a:hover { opacity:.7; }
+
+    /* ════════════════════════════════════════
+       WHATSAPP FLUTUANTE
+    ════════════════════════════════════════ */
+    .wa-float {
+      position:fixed; bottom:28px; right:28px; z-index:999;
+      width:60px; height:60px;
+      background:#25D366; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 28px rgba(37,211,102,.45);
+      transition:transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .wa-float:hover { transform:scale(1.1) translateY(-3px); box-shadow:0 16px 40px rgba(37,211,102,.55); }
+    .wa-float svg { width:30px; height:30px; fill:#fff; }
+    .wa-pulse {
+      position:absolute; inset:0; border-radius:50%;
+      background:#25D366;
+      animation:waPulse 2.8s infinite;
+      pointer-events:none;
+    }
+    @keyframes waPulse {
+      0%   { transform:scale(1); opacity:.5; }
+      70%  { transform:scale(1.7); opacity:0; }
+      100% { transform:scale(1.7); opacity:0; }
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width:1040px) {
+      .hero              { grid-template-columns:1fr; min-height:auto; }
+      .hero-content      { padding:130px 48px 64px; }
+      .hero-visual       { height:55vh; }
+      .hero-visual::before { background:linear-gradient(to bottom, var(--bg) 0%, transparent 35%); }
+      .health-grid       { grid-template-columns:1fr; gap:48px; }
+      .health-visual     { height:320px; }
+      .health-bubble     { left:0; }
+      .services-grid     { grid-template-columns:1fr 1fr; }
+      .service-card.wide { grid-column:span 2; }
+      .process-grid      { grid-template-columns:1fr 1fr; gap:40px; }
+      .process-grid::before { display:none; }
+      .diff-inner        { grid-template-columns:1fr; gap:48px; }
+      .diff-image        { height:360px; }
+      .diff-img-badge    { right:0; }
+      .testi-grid        { grid-template-columns:1fr; gap:18px; }
+      .faq-inner         { grid-template-columns:1fr; gap:48px; }
+      .faq-left          { position:static; }
+      .footer-top        { grid-template-columns:1fr 1fr; gap:36px; }
+      .trust-inner       { grid-template-columns:1fr 1fr; gap:0; }
+      .trust-item:nth-child(2) { border-right:none; }
+      .trust-item:nth-child(3) { border-right:1px solid var(--border); border-top:1px solid var(--border); padding-top:28px; }
+      .trust-item:nth-child(4) { border-right:none; border-top:1px solid var(--border); padding-top:28px; }
+    }
+
+    @media (max-width:720px) {
+      #header,#header.scrolled { padding:14px 24px; }
+      .nav-links  { display:none; }
+      .hamburger  { display:flex; }
+      .hero-content { padding:110px 24px 52px; }
+      .ba-section,.health-wrap,.services-wrap,.diff-wrap,
+      .testi-wrap,.faq-wrap,.cta-wrap { padding:var(--section-pad) 24px; }
+      .process-wrap { padding:var(--section-pad) 24px; }
+      footer { padding:48px 24px 32px; }
+      .trust-inner { padding:32px 24px; }
+      .ba-wrap { height:280px; }
+      .services-grid { grid-template-columns:1fr; }
+      .service-card.wide { grid-column:span 1; grid-template-columns:1fr; }
+      .service-card.wide .service-thumb { height:200px; }
+      .process-grid { grid-template-columns:1fr; gap:32px; }
+      .footer-top  { grid-template-columns:1fr; gap:28px; }
+      .footer-bottom { flex-direction:column; gap:8px; text-align:center; }
+      .trust-inner { grid-template-columns:1fr 1fr; }
+      .wa-float { bottom:20px; right:20px; width:54px; height:54px; }
+      .diff-img-badge { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header id="header">
+  <a href="#" class="logo">Sofá<span>Novo</span></a>
+
+  <nav class="nav-links" aria-label="Navegação">
+    <a href="#antesdepois">Antes & Depois</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <a
+    href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20higienização%20com%20a%20SofáNovo!"
+    class="btn btn-cyan"
+    target="_blank"
+    rel="noopener"
+    style="padding:10px 22px; font-size:0.78rem;"
+  >
+    Agendar agora
+  </a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#antesdepois" class="mob-link">Antes & Depois</a>
+  <a href="#servicos"    class="mob-link">Serviços</a>
+  <a href="#como-funciona" class="mob-link">Como funciona</a>
+  <a href="#depoimentos" class="mob-link">Depoimentos</a>
+  <a href="#faq"         class="mob-link">FAQ</a>
+  <a href="https://wa.me/5511999999999" class="mob-link btn btn-cyan" target="_blank" rel="noopener" style="margin-top:10px;">
+    Agendar agora
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="tag-dot"></span>
+      Atendimento em domicílio · São Paulo
+    </div>
+
+    <h1 class="hero-title">
+      Seu sofá parece limpo.<br>
+      O que mora dentro<br>
+      dele, <span>não</span>.
+    </h1>
+
+    <p class="hero-lead">
+      Higienização e impermeabilização profissional de sofás, colchões, tapetes e cadeiras. Feita na sua casa, em poucas horas, com produtos ecológicos e seguros para crianças e pets.
+    </p>
+
+    <div class="hero-actions">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20higienização%20com%20a%20SofáNovo!"
+        class="btn btn-green btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Orçamento grátis no WhatsApp
+      </a>
+      <a href="#antesdepois" class="btn btn-outline btn-lg">
+        Ver resultado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-proof">
+      <div class="proof-item"><span class="proof-icon">⭐</span>4.9 no Google</div>
+      <div class="proof-item"><span class="proof-icon">🏠</span>Vai até sua casa</div>
+      <div class="proof-item"><span class="proof-icon">🌿</span>Produto ecológico</div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <!--
+      IMAGE SLOT 1 — HERO: sala de estar limpa e aconchegante
+    -->
+    <img
+      id="heroImg"
+      src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=85&auto=format&fit=crop"
+      alt="Sala de estar com sofá limpo"
+      loading="eager"
+      fetchpriority="high"
+    >
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TRUST STRIP
+════════════════════════════════════════ -->
+<div class="trust-strip" aria-label="Números">
+  <div class="trust-inner">
+    <div class="trust-item fade-up">
+      <div class="trust-val" data-target="2400">0+</div>
+      <div class="trust-label">Clientes atendidos</div>
+    </div>
+    <div class="trust-item fade-up d1">
+      <div class="trust-val" data-target="4">0</div>
+      <div class="trust-label">Anos no mercado</div>
+    </div>
+    <div class="trust-item fade-up d2">
+      <div class="trust-val">4.9⭐</div>
+      <div class="trust-label">Avaliação Google</div>
+    </div>
+    <div class="trust-item fade-up d3">
+      <div class="trust-val">100%</div>
+      <div class="trust-label">Satisfação garantida</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     ANTES & DEPOIS — SLIDER
+════════════════════════════════════════ -->
+<section class="ba-section" id="antesdepois" aria-label="Antes e Depois">
+  <div class="ba-inner">
+    <div class="ba-head">
+      <span class="eyebrow center fade-up">Resultado real</span>
+      <h2 class="section-title fade-up d1">Arraste para ver a<br>diferença <span>de perto</span>.</h2>
+      <p class="body-text fade-up d2">Mesmo sofá. Mesma casa. Antes e depois de uma sessão de higienização SofáNovo.</p>
+    </div>
+
+    <div class="ba-wrap scale-in" id="baWrap" role="img" aria-label="Comparação antes e depois da higienização">
+      <!-- ANTES -->
+      <div class="ba-before">
+        <!--
+          IMAGE SLOT 2 — ANTES: sofá sujo/manchado
+        -->
+        <img
+          id="baBeforeImg"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85&auto=format&fit=crop"
+          alt="Sofá antes da higienização"
+          loading="lazy"
+          draggable="false"
+        >
+        <span class="ba-before-label">Antes</span>
+      </div>
+
+      <!-- DEPOIS -->
+      <div class="ba-after" id="baAfter">
+        <!--
+          IMAGE SLOT 3 — DEPOIS: mesmo sofá limpo e revitalizado
+        -->
+        <img
+          id="baAfterImg"
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=85&auto=format&fit=crop"
+          alt="Sofá depois da higienização"
+          loading="lazy"
+          draggable="false"
+        >
+        <span class="ba-after-label">Depois</span>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="ba-divider" id="baDivider" aria-hidden="true">
+        <div class="ba-handle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8l-6-6-6 6M18 16l-6 6-6-6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <p class="ba-hint fade-up">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+      Arraste o divisor para comparar
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ALERTA DE SAÚDE
+════════════════════════════════════════ -->
+<section class="health-wrap" aria-label="Por que higienizar">
+  <div class="health-inner">
+    <div class="health-head">
+      <span class="eyebrow fade-up">Saúde da família</span>
+      <h2 class="section-title fade-up d1">Higienização não é luxo.<br><span>É saúde.</span></h2>
+    </div>
+
+    <div class="health-grid">
+      <div class="health-stats">
+        <div class="health-stat fade-up d1">
+          <div class="stat-icon">🦠</div>
+          <div>
+            <div class="stat-val-big">10.000+</div>
+            <div class="stat-text">bactérias por cm² vivem em sofás não higienizados — mais do que em um vaso sanitário.</div>
+          </div>
+        </div>
+        <div class="health-stat fade-up d2">
+          <div class="stat-icon">🪲</div>
+          <div>
+            <div class="stat-val-big">2 milhões</div>
+            <div class="stat-text">de ácaros podem habitar um colchão médio. São invisíveis e a principal causa de rinite e asma em crianças.</div>
+          </div>
+        </div>
+        <div class="health-stat fade-up d3">
+          <div class="stat-icon">😤</div>
+          <div>
+            <div class="stat-val-big">80%</div>
+            <div class="stat-text">dos casos de alergia doméstica têm origem em estofados e colchões não higienizados regularmente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-in d1">
+        <div class="health-visual">
+          <div class="health-img">
+            <!--
+              IMAGE SLOT 4 — SAÚDE: família feliz em sala de estar limpa (criança brincando no sofá)
+            -->
+            <img
+              src="https://images.unsplash.com/photo-1609220136736-443140cfeaa8?w=900&q=85&auto=format&fit=crop"
+              alt="Família saudável em ambiente limpo"
+              loading="lazy"
+            >
+          </div>
+          <div class="health-bubble">
+            <div class="bubble-title">🌿 Produto seguro</div>
+            <div class="bubble-body">100% ecológico, sem cheiro forte, aprovado para crianças e pets.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════ -->
+<section class="services-wrap" id="servicos" aria-label="Nossos serviços">
+  <div class="services-inner">
+    <div class="services-head">
+      <span class="eyebrow center fade-up">O que higienizamos</span>
+      <h2 class="section-title fade-up d1">Tudo que sua família<br>usa todo dia, <span>limpo</span>.</h2>
+      <p class="body-text fade-up d2">Cinco serviços especializados, todos feitos na sua casa, sem precisar carregar nada.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Sofás -->
+      <article class="service-card fade-up d1">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 5 — SERVIÇO: sofá sendo higienizado
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=700&q=85&auto=format&fit=crop"
+            alt="Higienização de sofá"
+            loading="lazy"
+          >
+          <div class="service-thumb-overlay"></div>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">🛋️</div>
+          <h3 class="service-name">Sofás & Poltronas</h3>
+          <p class="service-desc">Extração profunda de sujidade, odores e ácaros. O sofá seca em até 4 horas e fica impermeabilizado contra novas manchas.</p>
+          <ul class="service-includes">
+            <li>Pré-tratamento de manchas</li>
+            <li>Extração a vapor com máquina profissional</li>
+            <li>Impermeabilização inclusa</li>
+            <li>Seca em 2–4 horas</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Colchões -->
+      <article class="service-card fade-up d2">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 6 — SERVIÇO: higienização de colchão
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85&auto=format&fit=crop"
+            alt="Higienização de colchão"
+            loading="lazy"
+          >
+          <div class="service-thumb-overlay"></div>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">🛏️</div>
+          <h3 class="service-name">Colchões</h3>
+          <p class="service-desc">Eliminação de ácaros, fungos e bactérias com aspiração profissional de alta potência. Você dorme mais — e melhor.</p>
+          <ul class="service-includes">
+            <li>Anti-ácaro certificado</li>
+            <li>Tratamento antifúngico</li>
+            <li>Processo higienizante completo</li>
+            <li>Ideal para alérgicos</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Tapetes -->
+      <article class="service-card fade-up d3">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 7 — SERVIÇO: higienização de tapete
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=700&q=85&auto=format&fit=crop"
+            alt="Higienização de tapete"
+            loading="lazy"
+          >
+          <div class="service-thumb-overlay"></div>
+        </div>
+        <div class="service-body">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-name">Tapetes & Carpetes</h3>
+          <p class="service-desc">Lavagem e extração profunda para tapetes de qualquer material. Cores revitalizadas, fibras limpas, livre de alérgenos.</p>
+          <ul class="service-includes">
+            <li>Todos os materiais e tamanhos</li>
+            <li>Remoção de manchas difíceis</li>
+            <li>Odor eliminado</li>
+            <li>Seca in loco</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Cadeiras — card wide -->
+      <article class="service-card wide fade-up d2">
+        <div class="service-thumb">
+          <!--
+            IMAGE SLOT 8 — SERVIÇO: cadeiras de jantar sendo higienizadas
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=700&q=85&auto=format&fit=crop"
+            alt="Higienização de cadeiras de jantar"
+            loading="lazy"
+          >
+          <div class="service-thumb-overlay"></div>
+        </div>
+        <div class="service-body" style="display:flex;flex-direction:column;justify-content:center;padding:36px;">
+          <div class="service-icon">🪑</div>
+          <h3 class="service-name">Cadeiras & Puffs</h3>
+          <p class="service-desc">Cadeiras de jantar, cadeira de escritório, puffs e bancos estofados. Removemos manchas de alimentos, gordura e uso diário.</p>
+          <ul class="service-includes" style="margin-top:16px;">
+            <li>Couro, tecido e veludo</li>
+            <li>Higienização borda a borda</li>
+            <li>Impermeabilização disponível</li>
+            <li>Resultado imediato</li>
+          </ul>
+          <a
+            href="https://wa.me/5511999999999?text=Quero%20higienizar%20cadeiras%20e%20estofados!"
+            class="btn btn-cyan"
+            target="_blank"
+            rel="noopener"
+            style="margin-top:28px; align-self:flex-start;"
+          >
+            Agendar agora →
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     COMO FUNCIONA
+════════════════════════════════════════ -->
+<section class="process-wrap" id="como-funciona" aria-label="Como funciona">
+  <div class="process-inner">
+    <div class="process-head">
+      <span class="eyebrow center fade-up" style="color:rgba(255,255,255,.7)">Simples assim</span>
+      <h2 class="section-title fade-up d1" style="color:#fff;">4 passos para um lar<br>mais limpo e saudável.</h2>
+      <p class="body-text fade-up d2" style="color:rgba(255,255,255,.72);">Você não precisa mover nada, carregar nada nem sair de casa.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up d1">
+        <div class="proc-circle">💬</div>
+        <h3 class="proc-title">Você manda mensagem</h3>
+        <p class="proc-body">Nos diga o que quer higienizar. Em minutos você recebe um orçamento claro e sem surpresas.</p>
+      </div>
+      <div class="process-step fade-up d2">
+        <div class="proc-circle">📅</div>
+        <h3 class="proc-title">Agendamos juntos</h3>
+        <p class="proc-body">Escolha o melhor dia e horário. Trabalhamos de segunda a sábado, inclusive pela manhã.</p>
+      </div>
+      <div class="process-step fade-up d3">
+        <div class="proc-circle">🚐</div>
+        <h3 class="proc-title">Chegamos na hora</h3>
+        <p class="proc-body">Nossa equipe chega equipada com tudo. Você não precisa preparar nada ou mover os móveis.</p>
+      </div>
+      <div class="process-step fade-up d4">
+        <div class="proc-circle">✨</div>
+        <h3 class="proc-title">Entregamos limpo</h3>
+        <p class="proc-body">O serviço leva em média 2 a 4 horas. Você usa tudo no mesmo dia — limpo, cheiroso e impermeabilizado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DIFERENCIAIS
+════════════════════════════════════════ -->
+<section class="diff-wrap" aria-label="Por que SofáNovo">
+  <div class="diff-inner">
+
+    <div class="fade-in">
+      <div class="diff-image">
+        <div class="diff-img-main">
+          <!--
+            IMAGE SLOT 9 — EQUIPE: técnico profissional com equipamento em domicílio
+          -->
+          <img
+            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=85&auto=format&fit=crop"
+            alt="Técnico SofáNovo em atendimento"
+            loading="lazy"
+          >
+        </div>
+        <div class="diff-img-badge">
+          <span class="dbadge-icon">🌿</span>
+          <div>
+            <div class="dbadge-val">100%</div>
+            <div class="dbadge-text">Produto ecológico<br>& hipoalergênico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow fade-up">Por que escolher</span>
+      <h2 class="section-title fade-up d1">Mais do que limpeza.<br><span>Cuidado de verdade.</span></h2>
+      <p class="body-text fade-up d2">Não somos um serviço genérico. Somos especialistas em estofados — e isso faz toda a diferença no resultado.</p>
+
+      <ul class="diff-list">
+        <li class="diff-item fade-up d1">
+          <div class="diff-icon">🌿</div>
+          <div>
+            <div class="diff-item-title">Produto 100% ecológico e seguro</div>
+            <div class="diff-item-body">Sem cheiro forte de produtos químicos. Seguro para crianças, grávidas e pets. Pode usar o sofá no mesmo dia.</div>
+          </div>
+        </li>
+        <li class="diff-item fade-up d2">
+          <div class="diff-icon">🏆</div>
+          <div>
+            <div class="diff-item-title">Equipe treinada e uniformizada</div>
+            <div class="diff-item-body">Todos os técnicos passam por treinamento intensivo. Trabalhamos com uniformes e equipamentos identificados — você sabe quem está na sua casa.</div>
+          </div>
+        </li>
+        <li class="diff-item fade-up d3">
+          <div class="diff-icon">🛡️</div>
+          <div>
+            <div class="diff-item-title">Satisfação garantida por escrito</div>
+            <div class="diff-item-body">Se o resultado não atender suas expectativas, voltamos sem custo. Não negociamos qualidade — ela é o nosso padrão mínimo.</div>
+          </div>
+        </li>
+        <li class="diff-item fade-up d4">
+          <div class="diff-icon">💧</div>
+          <div>
+            <div class="diff-item-title">Impermeabilização inclusa</div>
+            <div class="diff-item-body">Todo serviço de sofá inclui impermeabilização sem custo extra. As próximas manchas saem com um simples papel toalha.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════ -->
+<section class="testi-wrap" id="depoimentos" aria-label="Depoimentos">
+  <div class="testi-inner">
+    <div class="testi-head">
+      <span class="eyebrow center fade-up">O que dizem</span>
+      <h2 class="section-title fade-up d1">Famílias que<br>já <span>transformaram</span> seu lar.</h2>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card fade-up d1">
+        <span class="testi-service-tag">🛋️ Sofá 3 lugares</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Meu sofá bege estava com manchas de suco que eu achei que nunca sairiam. Ficou igual a novo — até minha filha perguntou se eu tinha comprado outro. Recomendo muito, o atendimento foi impecável."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 10 — AVATAR 1
+            -->
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop&crop=face" alt="Camila R.">
+          </div>
+          <div>
+            <div class="testi-name">Camila Rodrigues</div>
+            <div class="testi-role">Mãe · Moema, SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d2">
+        <span class="testi-service-tag">🛏️ Colchão de casal</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Meu filho tem asma e eu não sabia que o colchão era o problema. Depois da higienização as crises reduziram demais. A equipe foi super profissional, explicou tudo que estava fazendo. Vale cada centavo."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 11 — AVATAR 2
+            -->
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Marcos S.">
+          </div>
+          <div>
+            <div class="testi-name">Marcos Souza</div>
+            <div class="testi-role">Pai · Tatuapé, SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up d3">
+        <span class="testi-service-tag">🏠 Tapete + 2 poltronas</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Tenho dois cachorros e o cheiro do tapete estava insuportável. Agora a sala cheira a novo e o tapete ficou de uma cor que eu nem sabia que era essa! Já marquei a próxima higienização."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <!--
+              IMAGE SLOT 12 — AVATAR 3
+            -->
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&auto=format&fit=crop&crop=face" alt="Fernanda L.">
+          </div>
+          <div>
+            <div class="testi-name">Fernanda Lima</div>
+            <div class="testi-role">Professora · Pinheiros, SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="faq-wrap" id="faq" aria-label="Perguntas frequentes">
+  <div class="faq-inner">
+
+    <div class="faq-left">
+      <span class="eyebrow fade-up">Dúvidas</span>
+      <h2 class="section-title fade-up d1">Perguntas<br><span>frequentes</span>.</h2>
+      <p class="body-text fade-up d2">Se sua dúvida não estiver aqui, mande uma mensagem — respondemos em minutos.</p>
+      <a
+        href="https://wa.me/5511999999999?text=Tenho%20uma%20dúvida%20sobre%20a%20SofáNovo!"
+        class="btn btn-cyan fade-up d3"
+        target="_blank"
+        rel="noopener"
+        style="margin-top:28px; display:inline-flex;"
+      >
+        Perguntar no WhatsApp
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="accordion fade-up d1">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Quanto tempo o sofá fica molhado?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Entre 2 e 4 horas, dependendo do tecido e da temperatura ambiente. Usamos equipamentos de extração profissional que removem a maior parte da umidade durante o próprio processo. Você usa o sofá no mesmo dia.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Os produtos são seguros para crianças e pets?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Sim. Trabalhamos exclusivamente com produtos biodegradáveis, sem cloro, sem amônia e sem cheiro agressivo. Todos os nossos produtos são aprovados para uso em ambientes com crianças, grávidas e animais de estimação.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Preciso sair de casa durante o serviço?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Não. Você pode ficar em casa normalmente durante todo o processo. Nossos técnicos trabalham de forma organizada e discreta, sem atrapalhar a rotina da família.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          A higienização remove todos os tipos de mancha?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            A maioria das manchas é removida — inclusive suco, café, vinho, gordura e urina de pet. Manchas muito antigas ou de tinta podem não sair completamente, mas sempre melhoram significativamente. No orçamento já te avisamos sobre o caso específico do seu estofado.
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          Com que frequência devo higienizar?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body" role="region">
+          <div class="acc-body-inner">
+            Para sofás e colchões, recomendamos a cada 6 meses para casas com crianças ou pets. Para casas sem animais, uma vez ao ano é suficiente. A impermeabilização que aplicamos ajuda a proteger o estofado entre as higienizações.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<section class="cta-wrap" aria-label="Agende agora">
+  <div class="cta-inner">
+    <span class="eyebrow center fade-up" style="color:rgba(255,255,255,.75)">Agenda aberta</span>
+    <h2 class="cta-title fade-up d1">
+      Sua família merece<br>
+      um lar mais limpo<br>
+      e saudável.
+    </h2>
+    <p class="cta-sub fade-up d2">
+      Orçamento grátis em 5 minutos. Atendimento feito na sua casa, sem complicação.
+    </p>
+    <div class="cta-actions fade-up d3">
+      <a
+        href="https://wa.me/5511999999999?text=Olá%2C%20quero%20um%20orçamento%20da%20SofáNovo!"
+        class="btn btn-white btn-lg"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero meu orçamento grátis
+      </a>
+      <a href="tel:+5511999999999" class="btn btn-outline-light btn-lg" style="background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.3);">
+        Ligar agora
+      </a>
+    </div>
+    <p class="cta-note fade-up d4">⏱ Respondemos em até 5 minutos · Segunda a Sábado, 7h às 19h</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer aria-label="Rodapé">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Sofá<span>Novo</span></div>
+        <p class="footer-tagline">Higienização e impermeabilização profissional feita na sua casa. São Paulo e Grande SP.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Serviços</div>
+        <ul>
+          <li><a href="#servicos">Sofás & Poltronas</a></li>
+          <li><a href="#servicos">Colchões</a></li>
+          <li><a href="#servicos">Tapetes & Carpetes</a></li>
+          <li><a href="#servicos">Cadeiras & Puffs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Empresa</div>
+        <ul>
+          <li><a href="#antesdepois">Antes & Depois</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contato</div>
+        <ul>
+          <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 SofáNovo. Todos os direitos reservados.</p>
+      <p class="footer-credit">Desenvolvido por <a href="https://presencacerta.com.br" target="_blank" rel="noopener">Presença Certa</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP FLUTUANTE
+════════════════════════════════════════ -->
+<a
+  href="https://wa.me/5511999999999?text=Olá%2C%20quero%20um%20orçamento%20da%20SofáNovo!"
+  class="wa-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp SofáNovo"
+>
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  /* ── Header scroll ── */
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── Hamburger ── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }));
+
+  /* ── Intersection Observer ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { target.classList.add('visible'); io.unobserve(target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up,.fade-in,.fade-left,.fade-right,.scale-in').forEach(el => io.observe(el));
+
+  /* ── FAQ Accordion ── */
+  document.querySelectorAll('.acc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+
+  /* ── Before/After Slider ── */
+  const baWrap    = document.getElementById('baWrap');
+  const baAfter   = document.getElementById('baAfter');
+  const baDivider = document.getElementById('baDivider');
+  const baAfterImg = document.getElementById('baAfterImg');
+
+  function setAfterImgWidth() {
+    if (baAfterImg && baWrap) {
+      baAfterImg.style.width = baWrap.offsetWidth + 'px';
+    }
+  }
+  setAfterImgWidth();
+  window.addEventListener('resize', setAfterImgWidth);
+
+  let isDragging = false;
+
+  function applyPosition(clientX) {
+    const rect    = baWrap.getBoundingClientRect();
+    const x       = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const pct     = (x / rect.width) * 100;
+    baAfter.style.width   = pct + '%';
+    baDivider.style.left  = pct + '%';
+  }
+
+  baDivider.addEventListener('mousedown',  () => isDragging = true);
+  document.addEventListener('mouseup',    () => isDragging = false);
+  document.addEventListener('mousemove',  (e) => { if (isDragging) applyPosition(e.clientX); });
+
+  /* touch */
+  baDivider.addEventListener('touchstart', (e) => { isDragging = true; e.preventDefault(); }, { passive: false });
+  document.addEventListener('touchend',   () => isDragging = false);
+  document.addEventListener('touchmove',  (e) => {
+    if (isDragging) applyPosition(e.touches[0].clientX);
+  }, { passive: true });
+
+  /* also drag on the whole container */
+  baWrap.addEventListener('mousedown', () => isDragging = true);
+  baWrap.addEventListener('mousemove', (e) => { if (isDragging) applyPosition(e.clientX); });
+
+  /* ── Counter animation ── */
+  const counters = document.querySelectorAll('.trust-val[data-target]');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      cio.unobserve(target);
+      const end      = parseInt(target.dataset.target);
+      const suffix   = target.textContent.replace(/[\d,]/g, '');
+      const duration = 1600;
+      const steps    = 55;
+      let   current  = 0;
+      const timer = setInterval(() => {
+        current += end / steps;
+        if (current >= end) { current = end; clearInterval(timer); }
+        target.textContent = Math.round(current).toLocaleString('pt-BR') + suffix;
+      }, duration / steps);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => cio.observe(c));
+
+  /* ── Hero parallax ── */
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg && window.matchMedia('(min-width:769px)').matches) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.2)
+        heroImg.style.transform = `translateY(${window.scrollY * 0.14}px)`;
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
