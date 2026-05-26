@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparação — Agência v1 vs v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-border: rgba(201,168,76,0.3);
+    --bg: #0A0A0A;
+    --bg-1: #111;
+    --bg-2: #181818;
+    --text: #F0EDE4;
+    --text-2: #B0A898;
+    --green: #25D366;
+  }
+
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  header {
+    flex-shrink: 0;
+    height: 56px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    gap: 1rem;
+    z-index: 10;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .header-sep {
+    width: 1px;
+    height: 20px;
+    background: var(--gold-border);
+  }
+
+  .header-hint {
+    font-size: 0.75rem;
+    color: var(--text-2);
+  }
+
+  /* ── TOGGLE (mobile) ── */
+  .toggle-bar {
+    display: none;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--gold-border);
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--gold-border);
+    background: transparent;
+    color: var(--text-2);
+    transition: all 0.2s;
+  }
+
+  .toggle-btn.active {
+    background: var(--gold);
+    color: #0A0A0A;
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 768px) {
+    .toggle-bar { display: flex; flex-shrink: 0; }
+    .header-hint { display: none; }
+  }
+
+  /* ── FRAME WRAPPER ── */
+  .frames {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  @media (max-width: 768px) {
+    .frames { grid-template-columns: 1fr; }
+  }
+
+  .frame-col {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(201,168,76,0.12);
+    overflow: hidden;
+    min-height: 0;
+  }
+  .frame-col:last-child { border-right: none; }
+
+  @media (max-width: 768px) {
+    .frame-col { display: none; }
+    .frame-col.mobile-active { display: flex; }
+  }
+
+  .frame-label {
+    flex-shrink: 0;
+    padding: 0.55rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .frame-label-name {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .frame-col:first-child .frame-label-name { color: var(--text-2); }
+  .frame-col:last-child  .frame-label-name { color: var(--gold); }
+
+  .frame-badge {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+  .frame-col:first-child .frame-badge {
+    color: var(--text-2);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .frame-col:last-child .frame-badge {
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    background: rgba(201,168,76,0.06);
+  }
+
+  iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    min-height: 0;
+  }
+
+  /* ── DIFF LEGEND ── */
+  .diff-legend {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .diff-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: var(--text-2);
+    letter-spacing: 0.05em;
+  }
+
+  .diff-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) { .diff-legend { display: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <span class="header-title">Comparação · Agência</span>
+    <div class="header-sep"></div>
+    <span class="header-hint">Role os dois painéis de forma independente para comparar</span>
+  </div>
+  <div class="diff-legend">
+    <div class="diff-item"><span class="diff-dot"></span>Shimmer no headline</div>
+    <div class="diff-item"><span class="diff-dot"></span>Círculos com glow pulsante</div>
+    <div class="diff-item"><span class="diff-dot"></span>Linha conectora</div>
+    <div class="diff-item"><span class="diff-dot"></span>Cards com scroll reveal</div>
+    <div class="diff-item"><span class="diff-dot"></span>Ripple no botão</div>
+  </div>
+</header>
+
+<div class="toggle-bar">
+  <button class="toggle-btn active" onclick="switchTo('v1', this)">Versão Atual</button>
+  <button class="toggle-btn"        onclick="switchTo('v2', this)">Nova Versão ✦</button>
+</div>
+
+<div class="frames">
+  <div class="frame-col mobile-active" id="col-v1">
+    <div class="frame-label">
+      <span class="frame-label-name">Versão Atual</span>
+      <span class="frame-badge">Publicada</span>
+    </div>
+    <iframe src="./index.html" title="Versão Atual"></iframe>
+  </div>
+
+  <div class="frame-col" id="col-v2">
+    <div class="frame-label">
+      <span class="frame-label-name">Nova Versão</span>
+      <span class="frame-badge">✦ Proposta</span>
+    </div>
+    <iframe src="./index-v2.html" title="Nova Versão"></iframe>
+  </div>
+</div>
+
+<script>
+  function switchTo(ver, btn) {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('col-v1').classList.toggle('mobile-active', ver === 'v1');
+    document.getElementById('col-v2').classList.toggle('mobile-active', ver === 'v2');
+  }
+</script>
+
+</body>
+</html>
