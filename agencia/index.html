@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presença Certa — Gestão de Conteúdo que Traz Clientes</title>
+<meta name="description" content="Gestão de conteúdo que traz clientes novos. Você atende. A gente cuida do resto. Agende seu diagnóstico gratuito.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://presencacerta.com.br/agencia">
+<meta property="og:title" content="Presença Certa — Gestão de Conteúdo que Traz Clientes">
+<meta property="og:description" content="Gestão de conteúdo que traz clientes novos. Você atende. A gente cuida do resto.">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/icone.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/convertamaisgf-bot/presencacerta/refs/heads/main/image/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.12);
+    --gold-border: rgba(201,168,76,0.28);
+    --bg-0: #0A0A0A;
+    --bg-1: #111111;
+    --bg-2: #181818;
+    --bg-3: #222222;
+    --text-1: #F0EDE4;
+    --text-2: #B0A898;
+    --text-3: #6E6760;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --green: #25D366;
+    --green-dim: rgba(37,211,102,0.12);
+    --green-border: rgba(37,211,102,0.28);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-0);
+    color: var(--text-1);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  section { position: relative; z-index: 1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .nav-logo span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+
+  .nav-cta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0A0A0A;
+    background: var(--green);
+    padding: 0.55rem 1.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .nav-cta:hover { background: #1fbd59; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 1.5rem 5rem;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 50%, transparent 75%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(37,211,102,0.04) 0%, transparent 60%);
+  }
+
+  .hero-badge-wrapper {
+    animation: float 3.5s ease-in-out infinite;
+    will-change: transform;
+    margin-bottom: 2.5rem;
+    display: inline-block;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    background: var(--gold-dim);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0px, 0); }
+    50% { transform: translate3d(0, -4px, 0); }
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--text-1);
+    max-width: 820px;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-2);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.9;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #0A0A0A;
+    background: var(--green);
+    padding: 1rem 2.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-whatsapp::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+  }
+
+  .btn-whatsapp:hover {
+    background: #1fbd59;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(37,211,102,0.25);
+  }
+
+  .btn-whatsapp svg { flex-shrink: 0; }
+
+  .hero-note {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.7), transparent);
+    animation: shimmer 3.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -60%; }
+    100% { left: 160%; }
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ── PROBLEM ── */
+  .problem {
+    padding: 6rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .problem h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+    color: var(--text-1);
+  }
+
+  .problem h2 em { font-style: italic; color: var(--gold-light); }
+
+  .problem-intro {
+    font-size: 1rem;
+    color: var(--text-2);
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.8;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .problem-grid { grid-template-columns: 1fr; }
+  }
+
+  .problem-card {
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--bg-3);
+    border-radius: 8px;
+    background: var(--bg-1);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .problem-card:hover { border-color: rgba(201,168,76,0.2); }
+
+  .problem-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .problem-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-1);
+    margin-bottom: 0.5rem;
+  }
+
+  .problem-card p {
+    font-size: 0.88rem;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how {
+    padding: 6rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .how h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+    color: var(--text-1);
+  }
+
+  .how-intro {
+    font-size: 1rem;
+    color: var(--text-2);
+    margin-bottom: 4rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--bg-3);
+    border: 1px solid var(--bg-3);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+
+  .step {
+    padding: 2.5rem 1.75rem;
+    background: var(--bg-1);
+    text-align: left;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold-border);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .step h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .step p {
+    font-size: 0.88rem;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+
+  /* ── INCLUDES ── */
+  .includes {
+    padding: 6rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .includes-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .includes h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--text-1);
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 560px) {
+    .includes-grid { grid-template-columns: 1fr; }
+  }
+
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--bg-3);
+    border-radius: 8px;
+    background: var(--bg-1);
+    transition: border-color 0.3s;
+  }
+
+  .include-item:hover { border-color: var(--gold-border); }
+
+  .include-check {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .include-check svg { color: var(--gold); }
+
+  .include-text h4 {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-1);
+    margin-bottom: 0.2rem;
+  }
+
+  .include-text p {
+    font-size: 0.8rem;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+
+  /* ── FOR WHO ── */
+  .forwho {
+    padding: 6rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .forwho h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--text-1);
+    margin-bottom: 0.75rem;
+  }
+
+  .forwho-intro {
+    font-size: 1rem;
+    color: var(--text-2);
+    margin-bottom: 3rem;
+  }
+
+  .icp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 560px) {
+    .icp-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .icp-card {
+    padding: 1.5rem 1rem;
+    border: 1px solid var(--bg-3);
+    border-radius: 8px;
+    background: var(--bg-1);
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .icp-card:hover {
+    border-color: var(--gold-border);
+    background: var(--bg-2);
+    transform: translateY(-2px);
+  }
+
+  .icp-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .icp-card p {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    padding: 7rem 1.5rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%);
+  }
+
+  .cta-box {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+    border: 1px solid var(--gold-border);
+    border-radius: 16px;
+    background: var(--bg-1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cta-box h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--text-1);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cta-box p {
+    font-size: 0.97rem;
+    color: var(--text-2);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .cta-meta {
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    color: var(--text-3);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--bg-3);
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.78rem;
+    color: var(--text-3);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── MOBILE ADJUSTMENTS ── */
+  @media (max-width: 480px) {
+    .cta-box { padding: 2.5rem 1.5rem; }
+    nav { padding: 1rem 1.25rem; }
+    .nav-cta { padding: 0.5rem 1rem; font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://presencacerta.com.br">
+    Presença Certa
+    <span>Agência de Conteúdo</span>
+  </a>
+  <a class="nav-cta" href="https://wa.me/55XXXXXXXXXXX?text=Oi%2C%20vim%20pelo%20Instagram%20e%20quero%20agendar%20um%20diagn%C3%B3stico%20gratuito%20da%20Presen%C3%A7a%20Certa." target="_blank" rel="noopener">
+    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L.057 23.82a.5.5 0 0 0 .614.614l5.97-1.475A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.513-5.206-1.41l-.373-.22-3.873.956.975-3.768-.238-.387A9.962 9.962 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Agendar diagnóstico
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge-wrapper">
+    <div class="hero-badge">Gestão de Conteúdo</div>
+  </div>
+
+  <h1>Você atende.<br><em>A gente cuida do resto.</em></h1>
+
+  <p class="hero-sub">
+    Conteúdo consistente no seu Instagram, todo mês, sem você precisar parar o que está fazendo para postar.
+  </p>
+
+  <a class="btn-whatsapp"
+     href="https://wa.me/55XXXXXXXXXXX?text=Oi%2C%20vim%20pelo%20Instagram%20e%20quero%20agendar%20um%20diagn%C3%B3stico%20gratuito%20da%20Presen%C3%A7a%20Certa."
+     target="_blank" rel="noopener">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L.057 23.82a.5.5 0 0 0 .614.614l5.97-1.475A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.513-5.206-1.41l-.373-.22-3.873.956.975-3.768-.238-.387A9.962 9.962 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Agendar diagnóstico gratuito
+  </a>
+  <p class="hero-note">Sem compromisso. 15 minutos. 100% gratuito.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <span class="section-label">O problema</span>
+  <h2>Seu negócio é bom.<br><em>O Instagram não mostra.</em></h2>
+  <p class="problem-intro">
+    Você sabe que presença digital traz cliente. Mas entre atender, gerir e viver, conteúdo fica para depois — sempre.
+  </p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="problem-card-icon">⏳</span>
+      <h3>Falta de tempo</h3>
+      <p>Postar todo dia exige horas que você não tem. Fica devendo posts, se culpa e abandona.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-card-icon">🤯</span>
+      <h3>Não sabe o que postar</h3>
+      <p>Fica na frente da tela em branco. Quando você pensa num tema, já perdeu o timing.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-card-icon">📉</span>
+      <h3>Inconsistência mata o alcance</h3>
+      <p>O algoritmo pune quem some. Sem constância, mesmo os seguidores que você tem param de ver.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <span class="section-label">Como funciona</span>
+  <h2>Simples do início ao fim</h2>
+  <p class="how-intro">Em três passos, seu Instagram começa a trabalhar por você.</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-number">01</span>
+      <h3>Diagnóstico</h3>
+      <p>Conversamos 15 minutos. Entendemos seu negócio, público e objetivo. Sem enrolação.</p>
+    </div>
+    <div class="step">
+      <span class="step-number">02</span>
+      <h3>Estratégia</h3>
+      <p>Montamos o calendário editorial do mês: temas, formatos, copy e visual. Tudo alinhado com seu estilo.</p>
+    </div>
+    <div class="step">
+      <span class="step-number">03</span>
+      <h3>Conteúdo todo mês</h3>
+      <p>Publicamos para você. Posts, carrosséis, stories e reels — sem você precisar fazer nada.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INCLUDES -->
+<section class="includes">
+  <div class="includes-header">
+    <span class="section-label">O que está incluso</span>
+    <h2>Tudo que o seu Instagram precisa</h2>
+  </div>
+
+  <div class="includes-grid">
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Calendário editorial mensal</h4>
+        <p>Planejamento completo de temas e formatos.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Posts e carrosséis</h4>
+        <p>Design profissional alinhado com sua marca.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Legendas com copy estratégico</h4>
+        <p>Textos pensados para engajar e converter.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Stories e reels</h4>
+        <p>Formatos de alto alcance no algoritmo.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Publicação agendada</h4>
+        <p>Você não precisa lembrar de postar. A gente faz.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6l3 3 5-5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="include-text">
+        <h4>Relatório mensal de resultados</h4>
+        <p>Alcance, engajamento e o que está funcionando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOR WHO -->
+<section class="forwho">
+  <span class="section-label">Para quem é</span>
+  <h2>Você atende. A gente posta.</h2>
+  <p class="forwho-intro">Feito para profissionais que já têm clientes — e querem mais.</p>
+
+  <div class="icp-grid">
+    <div class="icp-card">
+      <span class="icp-icon">💇</span>
+      <p>Salões e barbearias</p>
+    </div>
+    <div class="icp-card">
+      <span class="icp-icon">🏋️</span>
+      <p>Personal trainers e estúdios</p>
+    </div>
+    <div class="icp-card">
+      <span class="icp-icon">🦷</span>
+      <p>Clínicas e consultórios</p>
+    </div>
+    <div class="icp-card">
+      <span class="icp-icon">🍕</span>
+      <p>Restaurantes e deliveries</p>
+    </div>
+    <div class="icp-card">
+      <span class="icp-icon">🏠</span>
+      <p>Corretores e imobiliárias</p>
+    </div>
+    <div class="icp-card">
+      <span class="icp-icon">⚖️</span>
+      <p>Advogados e contadores</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-box">
+    <h2>Pronto para ter um<br><em>Instagram que trabalha por você?</em></h2>
+    <p>
+      Agende um diagnóstico de 15 minutos. Gratuito, sem compromisso.<br>
+      Vamos entender seu negócio e te mostrar o que é possível.
+    </p>
+    <a class="btn-whatsapp"
+       href="https://wa.me/55XXXXXXXXXXX?text=Oi%2C%20vim%20pelo%20Instagram%20e%20quero%20agendar%20um%20diagn%C3%B3stico%20gratuito%20da%20Presen%C3%A7a%20Certa."
+       target="_blank" rel="noopener">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L.057 23.82a.5.5 0 0 0 .614.614l5.97-1.475A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.513-5.206-1.41l-.373-.22-3.873.956.975-3.768-.238-.387A9.962 9.962 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero agendar meu diagnóstico
+    </a>
+    <p class="cta-meta">Sem enrolação. Só abrimos vagas para clientes que a gente consegue ajudar de verdade.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Presença Certa</p>
+  <p class="footer-tagline">Gestão de conteúdo que traz clientes novos</p>
+  <div class="footer-links">
+    <a href="https://presencacerta.com.br">Presença Sites</a>
+    <a href="https://instagram.com/presencacerta.ag" target="_blank" rel="noopener">@presencacerta.ag</a>
+  </div>
+</footer>
+
+</body>
+</html>
