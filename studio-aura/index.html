@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Aura – Beleza & Bem-Estar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #F7F2EE;
+  --rose: #CFA7A0;
+  --taupe: #B49A8D;
+  --plum: #6F4B5E;
+  --gold: #C9A46B;
+  --espresso: #4C342F;
+  --sage: #A9B3A2;
+  --white: #FDFAF7;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background-color: var(--cream);
+  color: var(--espresso);
+  overflow-x: hidden;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(247,242,238,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196,164,107,0.15);
+  transition: all 0.4s ease;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--espresso);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 1; }
+
+.nav-cta {
+  background: var(--plum);
+  color: var(--cream) !important;
+  opacity: 1 !important;
+  padding: 10px 24px;
+  border-radius: 2px;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.2em;
+}
+.nav-cta:hover { background: var(--espresso) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  height: 100vh;
+  min-height: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+}
+
+.hero-image {
+  position: relative;
+  overflow: hidden;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 70%, var(--cream));
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 64px 60px 48px;
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-size: clamp(3.2rem, 5vw, 5.5rem);
+  line-height: 1.0;
+  color: var(--espresso);
+  margin-bottom: 28px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--plum);
+}
+
+.hero-sub {
+  font-size: 1.0rem;
+  line-height: 1.8;
+  color: var(--taupe);
+  max-width: 380px;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--plum);
+  color: var(--cream);
+  padding: 16px 36px;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover { background: var(--espresso); transform: translateY(-2px); }
+.btn-primary svg { width: 18px; height: 18px; fill: currentColor; }
+
+.btn-ghost {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--taupe);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rose);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--plum); }
+
+.hero-detail {
+  position: absolute;
+  bottom: 48px;
+  right: 48px;
+  text-align: right;
+}
+.hero-detail-line {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.6;
+  margin-bottom: 4px;
+}
+
+/* ─── SECTION SHARED ─── */
+section { padding: 100px 48px; }
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+  margin-bottom: 16px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--plum);
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--taupe);
+  font-weight: 300;
+}
+
+/* ─── DIFERENCIAIS STRIP ─── */
+.diferenciais {
+  background: var(--espresso);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+.dif-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cream);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.dif-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── SERVICES ─── */
+.services {
+  background: var(--white);
+  max-width: 100%;
+}
+.services-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  margin-bottom: 64px;
+  align-items: end;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+}
+.service-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.service-card:hover img { transform: scale(1.06); }
+
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  /* Overlay mais escuro e denso na base */
+  background: linear-gradient(
+    to top,
+    rgba(30,18,15,0.96) 0%,
+    rgba(30,18,15,0.75) 38%,
+    rgba(30,18,15,0.25) 62%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+}
+/* Tag dourada com fundo escuro sólido — legibilidade garantida */
+.service-tag {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: inline-block;
+  background: rgba(20, 10, 8, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-left: 2px solid var(--gold);
+}
+/* div wrapper removido — não é mais necessário */
+.service-text-block {
+  display: contents;
+}
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  text-shadow:
+    0 1px 6px rgba(0,0,0,0.8),
+    0 2px 16px rgba(0,0,0,0.5);
+}
+.service-items {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.85;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+}
+
+/* ─── AMBIENTE ─── */
+.ambiente {
+  background: var(--cream);
+  padding: 100px 0;
+}
+.ambiente-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.ambiente-images {
+  position: relative;
+  overflow: hidden;
+}
+.ambiente-images img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ambiente-content {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+.diferenciais-list {
+  margin-top: 48px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.diferenciais-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--espresso);
+  font-weight: 300;
+}
+.dif-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--cream);
+  border: 1px solid var(--rose);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-top: 2px;
+}
+.dif-text strong {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+  color: var(--plum);
+}
+
+/* ─── AMBIENTE 2ND IMAGE ─── */
+.ambiente2 {
+  background: var(--white);
+  padding: 0;
+}
+.ambiente2-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+.amb2-content {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1;
+}
+.amb2-image {
+  order: 2;
+  overflow: hidden;
+}
+.amb2-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── HORÁRIOS ─── */
+.horarios {
+  background: var(--plum);
+  padding: 96px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Ornamento de fundo — círculo dourado difuso */
+.horarios::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,164,107,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.horarios .section-title { color: var(--cream); }
+.horarios .section-label { color: var(--gold); }
+
+/* Linha decorativa dourada sob o título */
+.horarios-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px auto 52px;
+  max-width: 340px;
+}
+.horarios-divider::before,
+.horarios-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+.horarios-diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.hours-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  max-width: 780px;
+  margin: 0 auto;
+  border: 1px solid rgba(201,164,107,0.25);
+}
+.hour-item {
+  flex: 1;
+  min-width: 200px;
+  padding: 40px 36px;
+  text-align: center;
+  position: relative;
+  transition: background 0.3s ease;
+}
+/* Divisor vertical dourado entre os cards */
+.hour-item + .hour-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,164,107,0.4), transparent);
+}
+.hour-item:hover {
+  background: rgba(201,164,107,0.07);
+}
+.hour-icon {
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  display: block;
+  opacity: 0.75;
+}
+.hour-day {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+.hour-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+.hour-closed {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: rgba(247,242,238,0.28);
+}
+
+/* Endereço refinado */
+.horarios-address {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 52px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: rgba(247,242,238,0.5);
+  border-top: 1px solid rgba(201,164,107,0.2);
+  padding-top: 32px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+.horarios-address svg {
+  width: 14px; height: 14px;
+  fill: var(--gold);
+  opacity: 0.7;
+  flex-shrink: 0;
+  margin-top: 1px;
+  align-self: flex-start;
+}
+
+/* ─── CTA FINAL ─── */
+.cta-final {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.cta-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(0.45);
+}
+.cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 80px 96px;
+}
+.cta-content .section-label { color: var(--rose); }
+.cta-content .section-title { color: var(--cream); font-size: clamp(2.5rem, 4vw, 4.5rem); }
+.cta-content .section-title em { color: var(--rose); }
+.cta-content .section-desc { color: rgba(247,242,238,0.75); margin-bottom: 48px; max-width: 480px; }
+
+.cta-wpp {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--plum);
+  color: var(--cream);
+  padding: 18px 40px;
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  font-family: 'Jost', sans-serif;
+}
+.cta-wpp:hover { background: var(--espresso); transform: translateY(-2px); }
+.cta-wpp svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+.cta-note {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(247,242,238,0.45);
+  margin-top: 20px;
+  font-weight: 300;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--espresso);
+  padding: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--cream);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.footer-logo span { color: var(--gold); }
+.footer-address {
+  font-size: 0.75rem;
+  color: rgba(247,242,238,0.5);
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+}
+.footer-instagram {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  text-decoration: none;
+}
+
+/* ─── WHATSAPP FLOAT ─── */
+.wpp-float {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: wpp-pulse 3s infinite;
+}
+.wpp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+}
+.wpp-float svg { width: 28px; height: 28px; fill: white; }
+
+@keyframes wpp-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 72px 24px; }
+  .hero { grid-template-columns: 1fr; height: auto; }
+  .hero-image { height: 55vh; }
+  .hero-image::after { background: linear-gradient(to top, var(--cream) 5%, transparent); }
+  .hero-content { padding: 40px 24px 60px; position: relative; }
+  .hero-detail { display: none; }
+  .services-header { grid-template-columns: 1fr; gap: 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { aspect-ratio: 4/3; }
+  .ambiente-inner, .ambiente2-inner { grid-template-columns: 1fr; }
+  .ambiente-images { height: 50vw; min-height: 300px; }
+  .ambiente-content, .amb2-content { padding: 48px 24px; }
+  .amb2-image { height: 50vw; min-height: 300px; }
+  .cta-content { padding: 60px 24px; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-address { text-align: center; white-space: normal; font-size: 0.72rem; }
+  .horarios-address { white-space: normal; text-align: center; }
+  .diferenciais { gap: 32px; padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Studio <span>Aura</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#sobre">Nosso Espaço</a></li>
+    <li><a href="#horarios">Horários</a></li>
+    <li><a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" class="nav-cta">Agendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:80px; padding-left:0; padding-right:0; padding-bottom:0;">
+  <div class="hero-image">
+    <img src="images/img-01.avif" alt="Tratamento capilar Studio Aura">
+  </div>
+  <div class="hero-content fade-up visible">
+    <span class="hero-eyebrow">Vila Mariana · São Paulo</span>
+    <h1>Beleza que<br><em>transforma</em><br>a ess&ecirc;ncia</h1>
+    <p class="hero-sub">Um refúgio de cuidado e autoestima no coração de São Paulo. Especialistas em mechas, saúde capilar e bem-estar completo.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" class="btn-primary">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.852a.5.5 0 0 0 .609.609l6.007-1.471A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.668-.518-5.186-1.42l-.372-.22-3.854.944.964-3.742-.241-.388A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn-ghost">Ver nossos serviços ↓</a>
+    </div>
+    <div class="hero-detail">
+      <p class="hero-detail-line">@StudioAura_Beleza</p>
+      <p class="hero-detail-line">Ter–Sex 09h–19h · Sáb 08h30–18h30</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="diferenciais">
+  <div class="dif-item"><span class="dif-dot"></span> Consultoria de Visagismo</div>
+  <div class="dif-item"><span class="dif-dot"></span> Produtos Veganos & Cruelty-Free</div>
+  <div class="dif-item"><span class="dif-dot"></span> Coffee & Relax Incluso</div>
+  <div class="dif-item"><span class="dif-dot"></span> Atendimento Humanizado</div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicos" style="padding-left:0;padding-right:0;">
+  <div class="services-inner" style="padding: 0 48px 0;">
+    <div class="services-header fade-up">
+      <div>
+        <span class="section-label">Experiências</span>
+        <h2 class="section-title">Nosso <em>Menu</em></h2>
+      </div>
+      <p class="section-desc">Cada serviço é pensado como uma experiência completa de autocuidado. Aqui não cortamos apenas o cabelo — analisamos o que harmoniza com você.</p>
+    </div>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <img src="images/img-02.avif" alt="Cabelos">
+      <div class="service-overlay">
+        <span class="service-tag">01 / Cabelos</span>
+        <div class="service-text-block">
+          <h3 class="service-name">Fios com<br>Identidade</h3>
+          <p class="service-items">Corte & Visagismo · Coloração<br>Mechas & Balayage · Hidratação<br>Escova Modelada</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/img-03.avif" alt="Manicure e Pedicure">
+      <div class="service-overlay">
+        <span class="service-tag">02 / Unhas</span>
+        <div class="service-text-block">
+          <h3 class="service-name">Mãos & Pés<br>Impecáveis</h3>
+          <p class="service-items">Pé & Mão Tradicional<br>Blindagem de Unhas<br>Alongamento Fibra de Vidro</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/img-04.avif" alt="Design de Olhar">
+      <div class="service-overlay">
+        <span class="service-tag">03 / Design de Olhar</span>
+        <div class="service-text-block">
+          <h3 class="service-name">Olhar que<br>Encanta</h3>
+          <p class="service-items">Design de Sobrancelhas<br>Sobrancelha com Henna<br>Lash Lifting</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; padding: 56px 48px 0; background: var(--white);">
+    <a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" style="display:inline-flex;align-items:center;gap:10px;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--plum);text-decoration:none;border-bottom:1px solid var(--rose);padding-bottom:3px;">
+      Dúvidas sobre qual serviço escolher? Fale com nossa equipe →
+    </a>
+  </div>
+</section>
+
+<!-- TERAPIA CAPILAR CTA ESPECIAL -->
+<div style="background:var(--cream);padding:64px 48px;">
+  <div style="max-width:700px;margin:0 auto;text-align:center;" class="fade-up">
+    <span class="section-label" style="display:block;text-align:center;">Especialidade da Casa</span>
+    <h2 class="section-title" style="text-align:center;">Terapia Capilar<br><em>Personalizada</em></h2>
+    <p class="section-desc" style="margin:20px auto 40px;max-width:500px;text-align:center;">Detox do couro cabeludo + cronograma capilar montado sob medida para o seu tipo de fio. Porque cabelo saudável é cabelo bonito.</p>
+    <a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" class="btn-primary" style="margin:0 auto;">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.852a.5.5 0 0 0 .609.609l6.007-1.471A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.668-.518-5.186-1.42l-.372-.22-3.854.944.964-3.742-.241-.388A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero meu Cronograma
+    </a>
+  </div>
+</div>
+
+<!-- AMBIENTE -->
+<section class="ambiente" id="sobre" style="padding-left:0;padding-right:0;">
+  <div class="ambiente-inner">
+    <div class="ambiente-images">
+      <img src="images/img-05.avif" alt="Interior Studio Aura">
+    </div>
+    <div class="ambiente-content fade-up">
+      <span class="section-label">Nosso Espaço</span>
+      <h2 class="section-title">Um refúgio<br>no seu <em>dia</em></h2>
+      <p class="section-desc">Projetamos cada detalhe para que sua visita seja mais do que um serviço — seja um momento seu.</p>
+      <ul class="diferenciais-list">
+        <li>
+          <div class="dif-icon">☕</div>
+          <div class="dif-text"><strong>Coffee & Relax</strong>Café gourmet e snacks de cortesia enquanto você é atendida com calma.</div>
+        </li>
+        <li>
+          <div class="dif-icon">🌿</div>
+          <div class="dif-text"><strong>Produtos Veganos</strong>Linhas eco-friendly e cruelty-free para quem cuida de si e do mundo.</div>
+        </li>
+        <li>
+          <div class="dif-icon">✨</div>
+          <div class="dif-text"><strong>Atendimento Humanizado</strong>Sem pressa. O horário é seu, e a atenção também.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIENTE 2 -->
+<div class="ambiente2">
+  <div class="ambiente2-inner">
+    <div class="amb2-content fade-up">
+      <span class="section-label">Produtos & Rituais</span>
+      <h2 class="section-title">A beleza está<br>nos <em>detalhes</em></h2>
+      <p class="section-desc" style="margin-bottom:32px;">Selecionamos as melhores linhas capilares e cosméticos — porque cada fio merece cuidado à altura.</p>
+      <a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--cream);border:1px solid var(--rose);color:var(--plum);padding:14px 28px;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.3s ease;">
+        Dúvidas sobre qual cor escolher? Fale agora com nossa colorista →
+      </a>
+    </div>
+    <div class="amb2-image">
+      <img src="images/img-06.avif" alt="Produtos Studio Aura">
+    </div>
+  </div>
+</div>
+
+<!-- HORÁRIOS -->
+<section class="horarios" id="horarios">
+  <span class="section-label">Planeje sua visita</span>
+  <h2 class="section-title">Horário de<br><em>Funcionamento</em></h2>
+
+  <div class="horarios-divider">
+    <div class="horarios-diamond"></div>
+  </div>
+
+  <div class="hours-grid">
+    <div class="hour-item">
+      <span class="hour-icon">🕘</span>
+      <div class="hour-day">Terça – Sexta</div>
+      <div class="hour-time">09h – 19h</div>
+    </div>
+    <div class="hour-item">
+      <span class="hour-icon">🕘</span>
+      <div class="hour-day">Sábado</div>
+      <div class="hour-time">08h30 – 18h30</div>
+    </div>
+    <div class="hour-item">
+      <span class="hour-icon">🌙</span>
+      <div class="hour-day">Domingo & Segunda</div>
+      <div class="hour-closed">Fechado</div>
+    </div>
+  </div>
+
+  <div class="horarios-address">
+    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    Rua das Camélias, 450 &nbsp;·&nbsp; Vila Mariana, São Paulo – SP
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" style="padding:0;">
+  <div class="cta-bg">
+    <img src="images/img-07.avif" alt="Studio Aura">
+  </div>
+  <div class="cta-content fade-up">
+    <span class="section-label">Você merece</span>
+    <h2 class="section-title">Transforme sua<br><em>ess&ecirc;ncia</em><br>em beleza</h2>
+    <p class="section-desc">Agende agora pelo WhatsApp e garanta seu horário. Nossa equipe responde rapidamente e te ajuda a escolher o melhor serviço.</p>
+    <a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" class="cta-wpp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.852a.5.5 0 0 0 .609.609l6.007-1.471A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.668-.518-5.186-1.42l-.372-.22-3.854.944.964-3.742-.241-.388A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero Agendar Agora
+    </a>
+    <p class="cta-note">Resposta rápida · Sem compromisso · Atendimento humanizado</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Studio <span>Aura</span></div>
+  <div class="footer-address">
+    Rua das Camélias, 450 – Vila Mariana, São Paulo – SP &nbsp;·&nbsp; Ter–Sex: 09h–19h · Sáb: 08h30–18h30
+  </div>
+  <a href="https://instagram.com/StudioAura_Beleza" target="_blank" class="footer-instagram">@StudioAura_Beleza</a>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5521985252497?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Studio%20Aura%20e%20adorei%20o%20trabalho.%20Gostaria%20de%20criar%20uma%20p%C3%A1gina%20semelhante%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar%3F" target="_blank" class="wpp-float" title="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.852a.5.5 0 0 0 .609.609l6.007-1.471A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.668-.518-5.186-1.42l-.372-.22-3.854.944.964-3.742-.241-.388A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.boxShadow = '0 2px 20px rgba(76,52,47,0.08)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>
