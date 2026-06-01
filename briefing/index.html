@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing de Conteúdo — Presença Certa Agência</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --destaque: #C9A84C;
+      --destaque-claro: #F5E088;
+      --bg: #0D0D0D;
+      --card: #111111;
+      --borda: #1e1e1e;
+      --borda-hover: #2a2a2a;
+      --texto: #cccccc;
+      --texto-fraco: #666;
+      --texto-label: #888;
+      --branco: #ffffff;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      min-height: 100vh;
+    }
+
+    /* === HEADER === */
+    .header {
+      background: var(--card);
+      border-bottom: 1px solid var(--borda);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .header-agencia {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--destaque);
+      margin-bottom: 10px;
+    }
+    .header-titulo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--branco);
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-size: 14px;
+      color: var(--texto-label);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .header-linha {
+      width: 48px;
+      height: 3px;
+      background: var(--destaque);
+      border-radius: 2px;
+      margin: 18px auto 0;
+    }
+
+    /* === PROGRESSO === */
+    .progresso-wrap {
+      max-width: 760px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+    .progresso-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .progresso-label { font-size: 11px; color: var(--texto-label); letter-spacing: 1px; text-transform: uppercase; }
+    .progresso-pct { font-size: 12px; color: var(--destaque); font-weight: 700; }
+    .progresso-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--borda);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progresso-fill {
+      height: 100%;
+      background: var(--destaque);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* === MAIN === */
+    .page-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    /* === SEÇÕES === */
+    .secao {
+      margin-bottom: 12px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--card);
+      transition: border-color 0.2s;
+    }
+    .secao.ativa { border-color: var(--borda-hover); }
+
+    .secao-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .secao-header:hover { background: rgba(255,255,255,0.02); }
+
+    .secao-num {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--borda-hover);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--texto-label);
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .secao.completa .secao-num {
+      background: var(--destaque);
+      border-color: var(--destaque);
+      color: #fff;
+    }
+    .secao-num-check { display: none; }
+    .secao.completa .secao-num-check { display: inline; }
+    .secao.completa .secao-num-digit { display: none; }
+
+    .secao-titulo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--branco);
+      flex: 1;
+    }
+    .secao-desc {
+      font-size: 12px;
+      color: var(--texto-label);
+      margin-top: 2px;
+    }
+
+    .secao-chevron {
+      color: var(--texto-fraco);
+      font-size: 16px;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .secao.aberta .secao-chevron { transform: rotate(180deg); }
+
+    .secao-body {
+      display: none;
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--borda);
+    }
+    .secao.aberta .secao-body { display: block; }
+
+    /* === CAMPOS === */
+    .campo { margin-top: 20px; }
+    .campo-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--texto-label);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .campo-label span.req { color: var(--destaque); margin-left: 2px; }
+    .campo-hint {
+      font-size: 12px;
+      color: var(--texto-fraco);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      background: #0d0d0d;
+      border: 1px solid var(--borda-hover);
+      border-radius: 8px;
+      color: var(--branco);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--destaque);
+    }
+    input::placeholder, textarea::placeholder { color: var(--texto-fraco); }
+    select option { background: #111; }
+
+    /* === CHECKBOXES === */
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    @media (max-width: 500px) { .check-grid { grid-template-columns: 1fr; } }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--borda-hover);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .check-item:hover { border-color: #3a3a3a; background: rgba(255,255,255,0.02); }
+    .check-item.marcado { border-color: var(--destaque); background: rgba(233,30,140,0.06); }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--borda-hover);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .check-item.marcado .check-box {
+      background: var(--destaque);
+      border-color: var(--destaque);
+    }
+    .check-box::after {
+      content: '';
+      width: 8px; height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      display: none;
+    }
+    .check-item.marcado .check-box::after { display: block; }
+    .check-label { font-size: 13px; color: var(--texto); }
+
+    /* === RADIO === */
+    .radio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--borda-hover);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .radio-item:hover { border-color: #3a3a3a; }
+    .radio-item.marcado { border-color: var(--destaque); background: rgba(233,30,140,0.08); color: var(--destaque); }
+    .radio-item input { display: none; }
+    .radio-label { font-size: 13px; }
+
+    /* === BOTÃO PRÓXIMO === */
+    .btn-wrap { margin-top: 24px; display: flex; justify-content: flex-end; }
+    .btn-proximo {
+      padding: 11px 28px;
+      background: var(--destaque);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .btn-proximo:hover { opacity: 0.88; }
+
+    /* === ENVIO === */
+    .envio-card {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 36px 28px;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .envio-icon { font-size: 40px; margin-bottom: 16px; }
+    .envio-titulo { font-size: 20px; font-weight: 700; color: var(--branco); margin-bottom: 10px; }
+    .envio-sub { font-size: 14px; color: var(--texto-label); line-height: 1.6; max-width: 420px; margin: 0 auto 28px; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      background: var(--destaque);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-bottom: 12px;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 24px;
+      background: transparent;
+      color: #25D366;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid #25D36644;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+    .btn-whatsapp:hover { background: rgba(37,211,102,0.07); border-color: #25D366; }
+    .btn-copiar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--borda-hover);
+      color: var(--texto-label);
+      font-size: 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-copiar:hover { border-color: var(--texto-label); color: var(--branco); }
+    .envio-secundario { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+    .envio-divisor { font-size: 11px; color: var(--texto-fraco); margin: 16px 0 12px; }
+    .envio-sucesso { display: none; }
+    .envio-sucesso-icon { font-size: 52px; margin-bottom: 12px; }
+    .envio-sucesso-titulo { font-size: 22px; font-weight: 700; color: var(--branco); margin-bottom: 8px; }
+    .envio-sucesso-sub { font-size: 14px; color: var(--texto-label); line-height: 1.6; }
+
+    .aviso-obrig {
+      font-size: 11px;
+      color: var(--texto-fraco);
+      margin-top: 16px;
+    }
+    .aviso-obrig span { color: var(--destaque); }
+
+    /* === RODAPÉ === */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 11px;
+      color: var(--texto-fraco);
+      border-top: 1px solid var(--borda);
+      margin-top: 40px;
+    }
+    footer strong { color: var(--destaque); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-agencia">Presença Certa Agência</div>
+  <div class="header-titulo">Briefing de Conteúdo</div>
+  <div class="header-sub">Preencha as informações abaixo para que possamos criar uma estratégia de conteúdo personalizada para o seu negócio.</div>
+  <div class="header-linha"></div>
+</div>
+
+<div class="progresso-wrap">
+  <div class="progresso-topo">
+    <span class="progresso-label">Progresso</span>
+    <span class="progresso-pct" id="pct-texto">0%</span>
+  </div>
+  <div class="progresso-bar">
+    <div class="progresso-fill" id="progresso-fill"></div>
+  </div>
+</div>
+
+<div class="page-inner">
+
+  <!-- SEÇÃO 1 — Identificação -->
+  <div class="secao aberta" id="s1">
+    <div class="secao-header" onclick="toggleSecao('s1')">
+      <div class="secao-num">
+        <span class="secao-num-digit">1</span>
+        <span class="secao-num-check">✓</span>
+      </div>
+      <div>
+        <div class="secao-titulo">Sobre o negócio</div>
+        <div class="secao-desc">Informações básicas de identificação</div>
+      </div>
+      <div class="secao-chevron">▾</div>
+    </div>
+    <div class="secao-body">
+      <div class="campo">
+        <label class="campo-label">Nome do negócio <span class="req">*</span></label>
+        <input type="text" id="nome_negocio" placeholder="Ex: Studio Nails, Clínica Bella, Arq. Amanda Torres..." oninput="atualizar()">
+      </div>
+      <div class="campo">
+        <label class="campo-label">Seu nome</label>
+        <input type="text" id="nome_responsavel" placeholder="Seu nome ou da pessoa responsável" oninput="atualizar()">
+      </div>
+      <div class="campo">
+        <label class="campo-label">Handle do Instagram <span class="req">*</span></label>
+        <input type="text" id="handle" placeholder="@seuhandle" oninput="atualizar()">
+      </div>
+      <div class="campo">
+        <label class="campo-label">WhatsApp</label>
+        <input type="tel" id="whatsapp" placeholder="(11) 99999-9999" oninput="atualizar()">
+      </div>
+      <div class="campo">
+        <label class="campo-label">Nicho / segmento</label>
+        <div class="campo-hint">Ex: Manicure, Arquitetura, Personal Trainer, Nutrição, Moda...</div>
+        <input type="text" id="nicho" placeholder="Qual é o seu segmento de atuação?" oninput="atualizar()">
+      </div>
+      <div class="btn-wrap"><button class="btn-proximo" onclick="proximaSecao('s1','s2')">Próximo →</button></div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2 — Oferta -->
+  <div class="secao" id="s2">
+    <div class="secao-header" onclick="toggleSecao('s2')">
+      <div class="secao-num">
+        <span class="secao-num-digit">2</span>
+        <span class="secao-num-check">✓</span>
+      </div>
+      <div>
+        <div class="secao-titulo">Oferta e serviços</div>
+        <div class="secao-desc">O que você vende e qual transformação entrega</div>
+      </div>
+      <div class="secao-chevron">▾</div>
+    </div>
+    <div class="secao-body">
+      <div class="campo">
+        <label class="campo-label">O que você vende / oferece? <span class="req">*</span></label>
+        <div class="campo-hint">Descreva seu serviço ou produto principal</div>
+        <textarea id="oferta" rows="3" placeholder="Ex: Aplicação de unhas em gel, blindagem e nail art personalizados..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Qual transformação o cliente tem depois de te contratar?</label>
+        <div class="campo-hint">O que muda na vida ou no negócio dele? Antes → Depois</div>
+        <textarea id="transformacao" rows="3" placeholder="Ex: Antes: unhas que lascam em 3 dias e deixam insegura. Depois: unhas impecáveis por 3 semanas com qualidade profissional." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Como o cliente te contrata?</label>
+        <div class="campo-hint">Pode selecionar mais de uma opção</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" value="WhatsApp" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">WhatsApp</span></label>
+          <label class="check-item"><input type="checkbox" value="Direct no Instagram" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Direct no Instagram</span></label>
+          <label class="check-item"><input type="checkbox" value="Site / landing page" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Site / landing page</span></label>
+          <label class="check-item"><input type="checkbox" value="Loja física" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Loja física</span></label>
+          <label class="check-item"><input type="checkbox" value="Telefone / ligação" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Telefone / ligação</span></label>
+          <label class="check-item"><input type="checkbox" value="Outro" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Outro</span></label>
+        </div>
+      </div>
+      <div class="btn-wrap"><button class="btn-proximo" onclick="proximaSecao('s2','s3')">Próximo →</button></div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3 — Público -->
+  <div class="secao" id="s3">
+    <div class="secao-header" onclick="toggleSecao('s3')">
+      <div class="secao-num">
+        <span class="secao-num-digit">3</span>
+        <span class="secao-num-check">✓</span>
+      </div>
+      <div>
+        <div class="secao-titulo">Seu público</div>
+        <div class="secao-desc">Para quem você trabalha e o que eles precisam</div>
+      </div>
+      <div class="secao-chevron">▾</div>
+    </div>
+    <div class="secao-body">
+      <div class="campo">
+        <label class="campo-label">Quem é o seu cliente ideal? <span class="req">*</span></label>
+        <div class="campo-hint">Descreva em termos práticos — não precisa ser demográfico. Pense em quem compra mais, paga melhor e indica você.</div>
+        <textarea id="publico" rows="3" placeholder="Ex: Mulheres que trabalham, prezam apresentação profissional, já tiveram experiências ruins com manicures e querem resultado durável..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Qual é a maior dor/problema do seu cliente antes de te contratar?</label>
+        <textarea id="dor_principal" rows="2" placeholder="Ex: Unhas que lascam rápido, não encontrar uma manicure de confiança com horários disponíveis..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">O que eles mais desejam? Qual é o sonho ou resultado que buscam?</label>
+        <textarea id="desejo_principal" rows="2" placeholder="Ex: Unhas sempre impecáveis sem precisar se preocupar, sentir-se confiante em qualquer situação..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Quais as principais objeções que você ouve antes de fechar?</label>
+        <div class="campo-hint">O que as pessoas dizem quando hesitam em contratar?</div>
+        <textarea id="objecoes" rows="3" placeholder="Ex: 'Tá caro', 'Meu gel nunca dura', 'Vou pensar', 'Tenho medo de alergia'..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="btn-wrap"><button class="btn-proximo" onclick="proximaSecao('s3','s4')">Próximo →</button></div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4 — Perfil Instagram -->
+  <div class="secao" id="s4">
+    <div class="secao-header" onclick="toggleSecao('s4')">
+      <div class="secao-num">
+        <span class="secao-num-digit">4</span>
+        <span class="secao-num-check">✓</span>
+      </div>
+      <div>
+        <div class="secao-titulo">Situação do Instagram</div>
+        <div class="secao-desc">Estado atual do perfil e histórico</div>
+      </div>
+      <div class="secao-chevron">▾</div>
+    </div>
+    <div class="secao-body">
+      <div class="campo">
+        <label class="campo-label">Quantos seguidores tem hoje?</label>
+        <div class="radio-grid">
+          <label class="radio-item"><input type="radio" name="seguidores" value="Menos de 500" onchange="atualizar()"><span class="radio-label">Menos de 500</span></label>
+          <label class="radio-item"><input type="radio" name="seguidores" value="500 a 1.000" onchange="atualizar()"><span class="radio-label">500 a 1.000</span></label>
+          <label class="radio-item"><input type="radio" name="seguidores" value="1.000 a 5.000" onchange="atualizar()"><span class="radio-label">1.000 a 5.000</span></label>
+          <label class="radio-item"><input type="radio" name="seguidores" value="5.000 a 10.000" onchange="atualizar()"><span class="radio-label">5.000 a 10.000</span></label>
+          <label class="radio-item"><input type="radio" name="seguidores" value="Mais de 10.000" onchange="atualizar()"><span class="radio-label">Mais de 10.000</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Qual é a situação do perfil hoje?</label>
+        <div class="radio-grid">
+          <label class="radio-item"><input type="radio" name="estagio" value="Novo (menos de 3 meses, ainda estou começando)" onchange="atualizar()"><span class="radio-label">Novo — estou começando</span></label>
+          <label class="radio-item"><input type="radio" name="estagio" value="Ativo e consistente (posto com frequência regular)" onchange="atualizar()"><span class="radio-label">Ativo e consistente</span></label>
+          <label class="radio-item"><input type="radio" name="estagio" value="Posto às vezes, sem frequência definida" onchange="atualizar()"><span class="radio-label">Posto às vezes, sem frequência fixa</span></label>
+          <label class="radio-item"><input type="radio" name="estagio" value="Parado há algum tempo, quero retomar" onchange="atualizar()"><span class="radio-label">Parado, quero retomar</span></label>
+          <label class="radio-item"><input type="radio" name="estagio" value="Ativo mas sem estratégia definida" onchange="atualizar()"><span class="radio-label">Ativo mas sem estratégia</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Qual é a principal dificuldade do perfil hoje?</label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" value="Falta de ideias de conteúdo" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Falta de ideias</span></label>
+          <label class="check-item"><input type="checkbox" value="Falta de alcance / pouca descoberta" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Falta de alcance</span></label>
+          <label class="check-item"><input type="checkbox" value="Falta de engajamento" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Falta de engajamento</span></label>
+          <label class="check-item"><input type="checkbox" value="Falta de conversão / vendas" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Falta de conversão</span></label>
+          <label class="check-item"><input type="checkbox" value="Falta de tempo para produzir" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Falta de tempo</span></label>
+          <label class="check-item"><input type="checkbox" value="Não sabe o que medir" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Não sabe o que medir</span></label>
+        </div>
+      </div>
+      <div class="btn-wrap"><button class="btn-proximo" onclick="proximaSecao('s4','s5')">Próximo →</button></div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5 — Objetivo e produção -->
+  <div class="secao" id="s5">
+    <div class="secao-header" onclick="toggleSecao('s5')">
+      <div class="secao-num">
+        <span class="secao-num-digit">5</span>
+        <span class="secao-num-check">✓</span>
+      </div>
+      <div>
+        <div class="secao-titulo">Objetivo e capacidade de produção</div>
+        <div class="secao-desc">O que quer alcançar e com o que conta</div>
+      </div>
+      <div class="secao-chevron">▾</div>
+    </div>
+    <div class="secao-body">
+      <div class="campo">
+        <label class="campo-label">Qual o objetivo principal do Instagram nos próximos 30 dias? <span class="req">*</span></label>
+        <div class="radio-grid">
+          <label class="radio-item"><input type="radio" name="objetivo" value="Atrair novos clientes" onchange="atualizar()"><span class="radio-label">Atrair novos clientes</span></label>
+          <label class="radio-item"><input type="radio" name="objetivo" value="Gerar agendamentos / orçamentos" onchange="atualizar()"><span class="radio-label">Gerar agendamentos</span></label>
+          <label class="radio-item"><input type="radio" name="objetivo" value="Crescer os seguidores" onchange="atualizar()"><span class="radio-label">Crescer seguidores</span></label>
+          <label class="radio-item"><input type="radio" name="objetivo" value="Aumentar engajamento" onchange="atualizar()"><span class="radio-label">Aumentar engajamento</span></label>
+          <label class="radio-item"><input type="radio" name="objetivo" value="Lançar um produto ou serviço" onchange="atualizar()"><span class="radio-label">Lançar produto/serviço</span></label>
+          <label class="radio-item"><input type="radio" name="objetivo" value="Reativar o perfil" onchange="atualizar()"><span class="radio-label">Reativar o perfil</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Quais formatos consegue produzir com consistência?</label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" value="Reels (vídeo)" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Reels (vídeo)</span></label>
+          <label class="check-item"><input type="checkbox" value="Carrossel (posts em sequência)" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Carrossel</span></label>
+          <label class="check-item"><input type="checkbox" value="Stories (diário)" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Stories</span></label>
+          <label class="check-item"><input type="checkbox" value="Post estático (imagem)" onchange="toggleCheck(this);atualizar()"><div class="check-box"></div><span class="check-label">Post estático</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Com que frequência consegue postar?</label>
+        <div class="radio-grid">
+          <label class="radio-item"><input type="radio" name="frequencia" value="1 vez por semana" onchange="atualizar()"><span class="radio-label">1x / semana</span></label>
+          <label class="radio-item"><input type="radio" name="frequencia" value="2 a 3 vezes por semana" onchange="atualizar()"><span class="radio-label">2-3x / semana</span></label>
+          <label class="radio-item"><input type="radio" name="frequencia" value="4 a 5 vezes por semana" onchange="atualizar()"><span class="radio-label">4-5x / semana</span></label>
+          <label class="radio-item"><input type="radio" name="frequencia" value="Todo dia" onchange="atualizar()"><span class="radio-label">Todo dia</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Alguma limitação importante?</label>
+        <div class="campo-hint">Ex: não aparece no vídeo, não tem fotos do processo, atende só em determinada cidade...</div>
+        <textarea id="limitacoes" rows="2" placeholder="Opcional — qualquer restrição que devemos considerar" oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Algum concorrente ou referência que admira no Instagram?</label>
+        <div class="campo-hint">Pode ser do seu nicho ou de outra área — apenas para entender o estilo que te agrada</div>
+        <textarea id="concorrentes" rows="2" placeholder="Ex: @fulano, @ciclana — gosto do tom de voz, da frequência, dos tipos de conteúdo..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Alguma informação adicional que queira compartilhar?</label>
+        <textarea id="adicional" rows="3" placeholder="Qualquer contexto importante que não foi coberto acima..." oninput="atualizar()"></textarea>
+      </div>
+      <div class="btn-wrap"><button class="btn-proximo" onclick="proximaSecao('s5','envio')">Finalizar →</button></div>
+    </div>
+  </div>
+
+  <!-- ENVIO -->
+  <div class="envio-card" id="envio" style="display:none;">
+
+    <!-- Estado: pronto para enviar -->
+    <div id="envio-form">
+      <div class="envio-icon">🎯</div>
+      <div class="envio-titulo">Briefing pronto!</div>
+      <div class="envio-sub">Revise e clique em enviar. Nossa equipe vai analisar e entrar em contato em breve.</div>
+
+      <button class="btn-submit" id="btn-submit" onclick="submeterFormspree()">
+        ✉️ &nbsp;Enviar briefing
+      </button>
+
+      <div class="envio-divisor">ou prefere enviar de outro jeito?</div>
+
+      <div class="envio-secundario">
+        <a class="btn-whatsapp" id="btn-wpp" href="#" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar pelo WhatsApp
+        </a>
+        <button class="btn-copiar" onclick="copiarTexto()">📋 Copiar texto</button>
+      </div>
+    </div>
+
+    <!-- Estado: enviado com sucesso -->
+    <div class="envio-sucesso" id="envio-sucesso">
+      <div class="envio-sucesso-icon">✅</div>
+      <div class="envio-sucesso-titulo">Briefing enviado!</div>
+      <div class="envio-sucesso-sub">Recebemos suas informações.<br>Em breve nossa equipe entrará em contato para começar sua estratégia.</div>
+    </div>
+
+  </div>
+
+  <p class="aviso-obrig" style="text-align:center; margin-top:20px;">Campos com <span>*</span> são obrigatórios</p>
+
+</div>
+
+<footer>
+  Desenvolvido por <strong>Presença Certa Agência</strong> · Sistema de Planejamento de Conteúdo
+</footer>
+
+<script>
+  // === CONFIG ===
+  const WHATSAPP_NUMERO  = '5511999999999';          // ← substitua pelo número real
+  const FORMSPREE_URL    = 'https://formspree.io/f/xdajrrlj';
+
+  // === TOGGLE SEÇÃO ===
+  function toggleSecao(id) {
+    const s = document.getElementById(id);
+    s.classList.toggle('aberta');
+  }
+
+  // === ABRIR PRÓXIMA ===
+  function proximaSecao(atual, proximo) {
+    document.getElementById(atual).classList.remove('aberta');
+    marcarCompleta(atual);
+    if (proximo === 'envio') {
+      document.getElementById('envio').style.display = 'block';
+      document.getElementById('envio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      gerarLink();
+    } else {
+      const s = document.getElementById(proximo);
+      s.classList.add('aberta');
+      s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    atualizarProgresso();
+  }
+
+  function marcarCompleta(id) {
+    document.getElementById(id).classList.add('completa');
+  }
+
+  // === CHECK ITEMS ===
+  function toggleCheck(input) {
+    const item = input.closest('.check-item');
+    item.classList.toggle('marcado', input.checked);
+  }
+
+  // Inicializar radio items
+  document.querySelectorAll('.radio-item input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll(`.radio-item input[name="${input.name}"]`).forEach(r => {
+        r.closest('.radio-item').classList.toggle('marcado', r.checked);
+      });
+    });
+  });
+
+  // === PROGRESSO ===
+  const totalSecoes = 5;
+  let secoesCompletas = 0;
+
+  function atualizarProgresso() {
+    secoesCompletas = document.querySelectorAll('.secao.completa').length;
+    const pct = Math.round((secoesCompletas / totalSecoes) * 100);
+    document.getElementById('progresso-fill').style.width = pct + '%';
+    document.getElementById('pct-texto').textContent = pct + '%';
+  }
+
+  function atualizar() { atualizarProgresso(); }
+
+  // === GERAR TEXTO DO BRIEFING ===
+  function coletarDados() {
+    const g = id => (document.getElementById(id)?.value || '').trim();
+    const radio = name => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '—';
+    };
+    const checks = name => {
+      return Array.from(document.querySelectorAll(`input[type="checkbox"][value]`))
+        .filter(el => el.checked && el.closest('.secao-body'))
+        .map(el => el.value);
+    };
+    const dificuldades = Array.from(document.querySelectorAll('#s4 input[type="checkbox"]:checked')).map(e => e.value);
+    const formatos = Array.from(document.querySelectorAll('#s5 input[type="checkbox"]:checked')).map(e => e.value);
+
+    return {
+      nome_negocio: g('nome_negocio'),
+      nome_responsavel: g('nome_responsavel'),
+      handle: g('handle'),
+      whatsapp: g('whatsapp'),
+      nicho: g('nicho'),
+      oferta: g('oferta'),
+      transformacao: g('transformacao'),
+      forma_compra: (() => { const vals = Array.from(document.querySelectorAll('#s2 input[type="checkbox"]:checked')).map(e => e.value); return vals.length ? vals.join(', ') : '—'; })(),
+      publico: g('publico'),
+      dor_principal: g('dor_principal'),
+      desejo_principal: g('desejo_principal'),
+      objecoes: g('objecoes'),
+      seguidores: radio('seguidores'),
+      estagio: radio('estagio'),
+      dificuldades: dificuldades.length ? dificuldades.join(', ') : '—',
+      objetivo: radio('objetivo'),
+      formatos: formatos.length ? formatos.join(', ') : '—',
+      frequencia: radio('frequencia'),
+      limitacoes: g('limitacoes'),
+      concorrentes: g('concorrentes'),
+      adicional: g('adicional'),
+    };
+  }
+
+  function formatarTexto(d) {
+    return `📋 *BRIEFING DE CONTEÚDO — PRESENÇA CERTA AGÊNCIA*
+
+*SOBRE O NEGÓCIO*
+• Negócio: ${d.nome_negocio || '—'}
+• Responsável: ${d.nome_responsavel || '—'}
+• Instagram: ${d.handle || '—'}
+• WhatsApp: ${d.whatsapp || '—'}
+• Nicho: ${d.nicho || '—'}
+
+*OFERTA E SERVIÇOS*
+• O que vende: ${d.oferta || '—'}
+• Transformação entregue: ${d.transformacao || '—'}
+• Como o cliente contrata: ${d.forma_compra}
+
+*PÚBLICO-ALVO*
+• Cliente ideal: ${d.publico || '—'}
+• Dor principal: ${d.dor_principal || '—'}
+• Desejo principal: ${d.desejo_principal || '—'}
+• Objeções comuns: ${d.objecoes || '—'}
+
+*INSTAGRAM ATUAL*
+• Seguidores: ${d.seguidores}
+• Estágio: ${d.estagio}
+• Principais dificuldades: ${d.dificuldades}
+
+*OBJETIVO E PRODUÇÃO*
+• Objetivo 30 dias: ${d.objetivo}
+• Formatos disponíveis: ${d.formatos}
+• Frequência de postagem: ${d.frequencia}
+• Limitações: ${d.limitacoes || '—'}
+• Referências / concorrentes: ${d.concorrentes || '—'}
+• Informações adicionais: ${d.adicional || '—'}`;
+  }
+
+  function gerarLink() {
+    const d = coletarDados();
+    const texto = formatarTexto(d);
+    const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`;
+    document.getElementById('btn-wpp').href = url;
+  }
+
+  // === ENVIAR VIA FORMSPREE ===
+  async function submeterFormspree() {
+    const d = coletarDados();
+    const btn = document.getElementById('btn-submit');
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+
+    try {
+      const resp = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(d)
+      });
+
+      if (resp.ok) {
+        document.getElementById('envio-form').style.display   = 'none';
+        document.getElementById('envio-sucesso').style.display = 'block';
+      } else {
+        btn.textContent = '⚠️ Erro ao enviar — tente pelo WhatsApp';
+        btn.disabled = false;
+      }
+    } catch (e) {
+      btn.textContent = '⚠️ Sem conexão — tente pelo WhatsApp';
+      btn.disabled = false;
+    }
+  }
+
+  function copiarTexto() {
+    const d = coletarDados();
+    const texto = formatarTexto(d);
+    navigator.clipboard.writeText(texto).then(() => {
+      const btn = document.querySelector('.btn-copiar');
+      btn.textContent = '✅ Copiado!';
+      setTimeout(() => { btn.innerHTML = '📋 Copiar texto'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
